@@ -21,6 +21,10 @@
         </style>
                <form align="center"  method="post" action="control.do">
             <br>
+            <div>
+                 <img src="IMG/logotipo.png" width="250" height="100" >
+            </div>
+            <br>
             <img src="IMG/login_1.svg" width="70" height="70" >
             <font  face="Arial Black" color="100E0E"><h1>LOGIN</h1></font>
             <img src="IMG/usuario.svg" width="25" height="25" > <input type="text" name="usuario" placeholder="Usuario" >
