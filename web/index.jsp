@@ -15,6 +15,7 @@
         <h1>Hello World!</h1>
         <%
         System.out.print("Hooola fany");
+        System.out.println("Holi");
         %>
     </body>
 </html>
