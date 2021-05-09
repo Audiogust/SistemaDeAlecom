@@ -15,11 +15,12 @@
         .redondo{
             background-image: url("IMG/imagen 1.png"); 
             display: block;
-            width: 150px;
-            height: 150px;
+            width: 250px;
+            height: 250px;
             border-radius: 50%; 
+            background-repeat:no-repeat;
+            background-position:center;
         }
-        
         
     </style>
     <body>
