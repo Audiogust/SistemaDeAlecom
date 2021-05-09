@@ -9,6 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <title>JSP Page</title>
     </head>
     <style>
@@ -20,12 +21,19 @@
             border-radius: 50%; 
             background-repeat:no-repeat;
             background-position:center;
+            margin-right: 14px!important;
         }
-        
+        .alinear{
+            
+        }
     </style>
     <body>
-       <button class="redondo" >
-            
-        </button>
+        <div class="container alinear"  align="center">
+            <button class="redondo btn btn-primary btn-lg boton">     
+            </button>
+            <br>
+            <button class="redondo btn btn-primary btn-lg boton">     
+            </button>
+        </div>
     </body>
 </html>
