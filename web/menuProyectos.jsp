@@ -13,6 +13,11 @@
         <title>JSP Page</title>
     </head>
     <style>
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
         .redondo{
             background-image: url("IMG/imagen 1.png"); 
             display: block;
@@ -24,7 +29,7 @@
             margin-right: 14px!important;
         }
         .alinear{
-            
+            display: flex;
         }
     </style>
     <body>
