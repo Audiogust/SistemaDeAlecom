@@ -44,6 +44,7 @@
     </div>
         <div class="container alinear"  align="center">    
             <button class="redondo btn btn-primary btn-lg boton" name="opcion" onclick="location.href='Wisp.jsp'">     
+            Hola
             </button>
             
             <button class="redondo btn btn-primary btn-lg boton" name="opcion" onclick="location.href='MenuPrincipal.jsp'">     
