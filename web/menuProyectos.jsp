@@ -30,14 +30,23 @@
         }
         .alinear{
             display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            padding: 40px;
+        }
+        body{
+            background-color: #999A9D;     
         }
     </style>
-    <body>
-        <div class="container alinear"  align="center">
-            <button class="redondo btn btn-primary btn-lg boton">     
+    <body> 
+    <div align="center">
+        <h1> PROYECTOS </h1>  
+    </div>
+        <div class="container alinear"  align="center">    
+            <button class="redondo btn btn-primary btn-lg boton" name="opcion" onclick="location.href='Wisp.jsp'">     
             </button>
-            <br>
-            <button class="redondo btn btn-primary btn-lg boton">     
+            
+            <button class="redondo btn btn-primary btn-lg boton" name="opcion" onclick="location.href='MenuPrincipal.jsp'">     
             </button>
         </div>
     </body>
