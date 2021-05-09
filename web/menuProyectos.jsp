@@ -11,7 +11,20 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
+    <style>
+        .redondo{
+            background-image: url("IMG/imagen 1.png"); 
+            display: block;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%; 
+        }
+        
+        
+    </style>
     <body>
-        <h1>Hello World!</h1>
+       <button class="redondo" >
+            
+        </button>
     </body>
 </html>

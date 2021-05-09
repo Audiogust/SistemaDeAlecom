@@ -6,16 +6,16 @@
 package Control;
 
 import Modelo.Conexion;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 
 public class Control extends HttpServlet {
@@ -46,7 +46,7 @@ public class Control extends HttpServlet {
                    
                     if (c != null) {
 
-                        PreparedStatement ps = c.prepareStatement("select * from usuarios where usuario=? and contrasena=?");
+                        PreparedStatement ps = c.prepareStatement("select * from usuarios where nombre=? and contrasena=?");
                         ps.setString(1, usuario);
                         ps.setString(2, password);
                         ResultSet rs = ps.executeQuery();
