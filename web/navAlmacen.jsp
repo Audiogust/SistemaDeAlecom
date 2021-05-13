@@ -14,7 +14,7 @@
     </head>
           <style>
            body {
-                background-image: url("Imagenes/fondo12.jpg");
+                background-image: url("IMG/fondo_4.jpg");
                 background-position: center;
                 background-size: cover;
                 height: 100vh;
@@ -42,20 +42,20 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                          <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="MenuPrincipal.jsp">WISP</a>
+                            <a class="nav-link active" aria-current="page" href="Wisp.jsp">WISP</a>
                         </li>
                         <li class="nav-item">
-                            <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="Clientes.jsp" target="myFrame">Materiales</a>
+                            <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="Materiales.jsp" target="myFrame">Materiales</a>
                         </li>
                         <li class="nav-item">
-                            <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="Clientes_Ocultos.jsp" target="myFrame">Materiales Solicitados</a>
+                            <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="MaterialesSolicitados.jsp" target="myFrame">Materiales Solicitados</a>
                         </li>
                      </ul>
                     <br>
                 </div>
                 </div></nav>
         <div class="m-4" style="height: 550px;">
-                                <iframe name="myFrame" style="height: 100%; width: 103%; border: none"></iframe>
+                                <iframe name="myFrame" style="height: 1940%; width: 103%; border: none"></iframe>
                             </div>
     </body>
 </html>
