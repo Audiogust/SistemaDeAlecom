@@ -25,7 +25,7 @@
         <img src="IMG/logotipo.png" width="150" height="80" HSPACE="20">    
         </div>
         <div class="container flexc">
-        <form align="center" action="controlFull.do">
+        <form align="center" action="controlFullSwap.do">
             <h1>Proyectos</h1>
             <img src="IMG/trabajar.svg" width="100" height="100"/>
             
@@ -76,8 +76,8 @@
             </div>
             
             <div class="input-group">
-            <span class="input-group-text">Autorizado por</span>
-            <input type="text" aria-label="First name" class="form-control" name="i_autorizado">
+            <span class="input-group-text">Autorizado por: </span>
+            <input type="text" aria-label="First name" class="form-control" name="i_autorizadop">
             </div>
             
             <div class="input-group">

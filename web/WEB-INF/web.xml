@@ -8,6 +8,10 @@
         <servlet-name>ControlClientes</servlet-name>
         <servlet-class>Control.ControlClientes</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControlFullSwap</servlet-name>
+        <servlet-class>Control.ControlFullSwap</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Control</servlet-name>
         <url-pattern>/control.do</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>ControlClientes</servlet-name>
         <url-pattern>/controlClientes.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControlFullSwap</servlet-name>
+        <url-pattern>/controlFullSwap.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

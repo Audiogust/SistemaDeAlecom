@@ -26,7 +26,7 @@ import java.util.Calendar;
  *
  * @author Hp
  */
-public class ControlFull extends HttpServlet {
+public class ControlFullSwap extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,8 +41,8 @@ public class ControlFull extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            
-              String opcion = request.getParameter("opcion");
+            /* TODO output your page here. You may use following sample code. */
+  String opcion = request.getParameter("opcion");
             
             /*
               if (opcion.equals("BuscarMaterial")) {
@@ -87,9 +87,8 @@ public class ControlFull extends HttpServlet {
                 String soli[] = request.getParameterValues("solicitudes");
                 String nombres[] = request.getParameterValues("nombresM");
                 for (int i = 0; i < soli.length; i++) {
-                    String nom= mat.Operacion(nombres[i],Integer.parseInt(soli[i]));
-                    System.out.println(nom);
-                    System.out.println(soli[i]+""+nombres[i]);
+                    mat.Operacion(nombres[i],Integer.parseInt(soli[i]));                    
+                    System.out.println(soli[i]+" "+nombres[i]);
                 }
                  request.getRequestDispatcher("MenuPrincipal.jsp").forward(request, response);
             }
@@ -114,7 +113,7 @@ public class ControlFull extends HttpServlet {
                 String tecnologia = request.getParameter("tecnologia");
                 String ubicacion = request.getParameter("ubicacion");
                 String fecha = request.getParameter("i_fecha");
-                String autoriza = request.getParameter("i_autorizado");
+                String autoriza = request.getParameter("i_autorizadop");
                 String otigon = request.getParameter("otigon");
                 String tipo = request.getParameter("tipoPro");
 
@@ -169,51 +168,6 @@ public class ControlFull extends HttpServlet {
 
             }
 
-              
-            if (opcion.equals("enviar")) {
-                Connection c = Conexion.conectar();
-                try {
-                    
-                    String usuario = request.getParameter("usuario");
-                    String password = request.getParameter("password");
-                    
-                   
-                    if (c != null) {
-
-                        PreparedStatement ps = c.prepareStatement("select * from usuarios where usuario=? and contrasena=?");
-                        ps.setString(1, usuario);
-                        ps.setString(2, password);
-                        ResultSet rs = ps.executeQuery();
-                        HttpSession sesion = request.getSession();
-                        if (rs.next()) {
-                            int t = rs.getInt("tipo");
-                            switch (t) {
-                                case 1:
-                                    sesion.setAttribute("user", usuario);
-                                    sesion.setAttribute("nivel", "1");
-                                    request.getRequestDispatcher("MenuPrincipal.jsp").forward(request, response);
-                                    break;
-                                case 2:
-                                    request.getRequestDispatcher("MenuPrincipal_1.jsp").forward(request, response);
-                                    break;
-                                case 3:
-                                    request.getRequestDispatcher("MenuPrincipal_2.jsp").forward(request, response);
-                                    break;
-                            }
-                        } else {
-                            out.print("Usuario o Password Incorrecta!");
-
-                        }
-                    } else {
-                        out.print("No hay conexion a la base");
-                    }
-                } catch (Exception e) {
-                    out.print("Error");
-                    System.out.println(e);
-                }
-            }
-       
-            
             if (opcion.equals("BuscarMaterial")) {
                 request.getRequestDispatcher("Consulta.jsp").forward(request, response);
             }

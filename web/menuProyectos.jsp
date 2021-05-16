@@ -43,7 +43,7 @@
         <h1> PROYECTOS </h1>  
     </div>
         <div class="container alinear"  align="center">    
-            <button class="redondo btn btn-primary btn-lg boton" name="opcion" onclick="location.href='Wisp.jsp'">     
+            <button class="redondo btn btn-primary btn-lg boton" name="opcion" onclick="location.href='Wisp.jsp'">                                
             </button>
             
             <button class="redondo btn btn-primary btn-lg boton" name="opcion" onclick="location.href='MenuPrincipal.jsp'">     

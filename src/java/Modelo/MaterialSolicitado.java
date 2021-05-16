@@ -104,9 +104,9 @@ public String Operacion(String material,int cantidad) {
 
         if (c != null) {
             try {
-                PreparedStatement ps = c.prepareStatement("update Materiales set existencia =existencia+ "+(-cantidad)+" where descripcion=?");
+                PreparedStatement ps = c.prepareStatement(" update Materiales set existencia = existencia + "+(-cantidad)+" where descripcion = ? ");
                 ps.setString(1, material);   
-                ps.execute();
+                ps.execute();   
                 return "Material Anexado";
             } catch (Exception e) {
                 return "Error en guardar " + e;
