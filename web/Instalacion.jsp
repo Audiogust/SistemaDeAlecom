@@ -75,8 +75,8 @@
                                 <td><%= objs.getDireccion()%></td>
                                 <td><%= objs.getMegas()%></td>
                            
-                             <td align="center" ><a href="Formato_registro.jsp?txtpara=M&id=<%= objs.getId()%>">
-                                     <img src="Imagenes/editar.svg" width="25px" height="25px"> </td>
+                             <td align="center" ><a href="Formato.jsp?txtpara=M&id=<%= objs.getId()%>">
+                                     <img src="IMG/formato1.png" width="25px" height="25px"> </td>
                                 
                              </tr>
                                 <%}%>

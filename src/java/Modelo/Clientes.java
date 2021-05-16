@@ -175,6 +175,31 @@ public class Clientes {
         }
     }
     
+     public boolean buscarClientes(String id){
+        boolean res=false;
+        try {
+        Connection c = Conexion.conectar();
+        Statement st =c.createStatement();
+        ResultSet rs=st.executeQuery("select * from Clientes where ID='"+id+"'");
+            if (rs.next()) {
+                this.id=rs.getString("ID");
+                this.nombre=rs.getString("nombre");
+                this.direccion=rs.getString("direccion");
+                this.telefono=rs.getString("telefono");
+                this.correo=rs.getString("correo");
+                this.tiempo=rs.getString("tiempo");
+                this.megas=rs.getString("megas");
+                this.tarifa=rs.getString("tarifa");
+                this.fecha=rs.getString("fecha");
+                this.grupo=rs.getInt("grupo");
+                this.comentarios=rs.getString("comentarios");
+                res=true;
+            }
+        } catch (Exception e) {
+        }
+        return res;
+    }
+    
     public static Vector mostrar() throws SQLException{
         Vector clientes = null; 
         Connection c = Conexion.conectar();

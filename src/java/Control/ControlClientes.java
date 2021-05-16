@@ -6,6 +6,7 @@
 package Control;
 
 import Modelo.Clientes;
+import Modelo.Material;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -93,6 +94,24 @@ public class ControlClientes extends HttpServlet {
                  
                   request.getRequestDispatcher("Instalacion.jsp").forward(request, response);
               }
+            if (opcion.equals("guardarDatos")) {
+                String codigo[] = request.getParameterValues("codigo");
+                String cantidad[] = request.getParameterValues("cantidades");
+                Material m = new Material();
+
+                for (int i = 0; i < codigo.length; i++) {
+                    if (codigo[i].length() > 0) {
+
+                        String material = m.Descripcion(codigo[i]);
+
+                        System.out.println(codigo[i] + " " + cantidad[i] + " " + material);
+
+                    }
+                }
+
+                request.getRequestDispatcher("Wisp.jsp").forward(request, response);
+            }
+
              
         }
     }
