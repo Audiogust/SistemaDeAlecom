@@ -97,12 +97,15 @@ public class ControlClientes extends HttpServlet {
             if (opcion.equals("guardarDatos")) {
                 String codigo[] = request.getParameterValues("codigo");
                 String cantidad[] = request.getParameterValues("cantidades");
+                String id = request.getParameter("id_wisp");
                 Material m = new Material();
+                Material m1 = new Material();
 
                 for (int i = 0; i < codigo.length; i++) {
                     if (codigo[i].length() > 0) {
 
                         String material = m.Descripcion(codigo[i]);
+                        String mat = m1.Wisp(id, material, cantidad[i]);
 
                         System.out.println(codigo[i] + " " + cantidad[i] + " " + material);
 

@@ -168,5 +168,23 @@ public class Material {
         }
      }
      
+     
+        public String Wisp(String codigo, String descripcion, String cantidad) {
+        Connection c = Conexion.conectar();
+        try {
+            if (c != null) {
+                PreparedStatement ps = c.prepareStatement(" INSERT INTO MaterialSolicitadoWisp(ID,nombre,solicitado)  values(?,?,?)");
+                ps.setString(1, codigo);
+                ps.setString(2, descripcion);
+                ps.setInt(3,Integer.parseInt(cantidad));
+                ps.execute();
+                return "Modificación realizada";
+            } else {
+                return "No hay conexion a la base ";
+            }
+        } catch (Exception e) {
+            return "Error al modificar " + e;
+        }
+     }
     
 }

@@ -64,7 +64,7 @@
         <form action="controlClientes.do">
             
             <div>
-            <td width="50%"><input type="text" size="53" name="id"  value="<%= id%>" id="textfield"></td>
+            <td width="50%"><input type="text" size="53" name="id_wisp"  value="<%= id%>" id="textfield"></td>
             <td width="50%"><input type="text" size="53"  value="<%= nombre%>" id="textfield"></td>          
             
             </div>

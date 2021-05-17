@@ -235,5 +235,22 @@ public class Clientes {
             return null;
         }
     }
-
+          
+     public static Vector mostrarBusquedamM(String busqueda) throws SQLException{
+        Vector clientes = null; 
+        Connection c = Conexion.conectar();
+           if (c != null) {
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(" SELECT * FROM Clientes WHERE nombre  LIKE '%" + busqueda +"%' and status = 'D'");
+             clientes  = new Vector();
+             while(rs.next()){
+                       clientes.add(new Clientes(rs.getInt("Numero"), rs.getString("ID"), rs.getString("nombre"), rs.getString("direccion"), rs.getString("telefono"), rs.getString("correo"), rs.getString("tiempo"),
+                         rs.getString("megas"), rs.getString("tarifa"), rs.getString("fecha"), rs.getInt("grupo"), rs.getString("comentarios")));
+             }               
+              return clientes;                
+           }else {
+            return null;
+        }     
+     }
 }
+
