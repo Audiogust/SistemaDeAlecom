@@ -12,6 +12,7 @@ public class MaterialSolicitado {
 
 private int id;
 private String otiga;
+private String codigo;
 private String nombre;
 private String unidades;
 private int existencia;
@@ -22,9 +23,10 @@ private String solicitado;
         
     }
 
-    public MaterialSolicitado(int id, String otiga, String nombre, String unidades, int existencia, String solicitado) {
+    public MaterialSolicitado(int id, String otiga, String codigo, String nombre, String unidades, int existencia, String solicitado) {
         this.id = id;
         this.otiga = otiga;
+        this.codigo = codigo;
         this.nombre = nombre;
         this.unidades = unidades;
         this.existencia = existencia;
@@ -45,6 +47,14 @@ private String solicitado;
 
     public void setOtiga(String otiga) {
         this.otiga = otiga;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getNombre() {
@@ -90,7 +100,7 @@ public static Vector mostrarBusqueda(String busqueda) throws SQLException{
              proyectos  = new Vector();
              while(rs.next()){
                        proyectos.add(new MaterialSolicitado(rs.getInt("id"),
-                         rs.getString("otiga"), rs.getString("nombre"),rs.getString("unidad"),
+                         rs.getString("otiga"),rs.getString("codigo"), rs.getString("nombre"),rs.getString("unidad"),
                          rs.getInt("existencia"),rs.getString("solicitado")));                       
              }               
               return proyectos;                
@@ -104,7 +114,7 @@ public String Operacion(String material,int cantidad) {
 
         if (c != null) {
             try {
-                PreparedStatement ps = c.prepareStatement(" update Materiales set existencia = existencia + "+(-cantidad)+" where descripcion = ? ");
+                PreparedStatement ps = c.prepareStatement(" update Materiales set existencia = existencia + "+(-cantidad)+" where codigo = ? ");
                 ps.setString(1, material);   
                 ps.execute();   
                 return "Material Anexado";

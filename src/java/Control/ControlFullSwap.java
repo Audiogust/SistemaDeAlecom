@@ -85,7 +85,7 @@ public class ControlFullSwap extends HttpServlet {
             if (opcion.equals("enviarAlmacen")) {
                 MaterialSolicitado mat = new MaterialSolicitado();
                 String soli[] = request.getParameterValues("solicitudes");
-                String nombres[] = request.getParameterValues("nombresM");
+                String nombres[] = request.getParameterValues("codigosS");
                 for (int i = 0; i < soli.length; i++) {
                     mat.Operacion(nombres[i],Integer.parseInt(soli[i]));                    
                     System.out.println(soli[i]+" "+nombres[i]);

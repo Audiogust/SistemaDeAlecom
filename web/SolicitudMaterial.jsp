@@ -13,7 +13,6 @@
     </head>
     <body>
         <h1>Materiales solicitados</h1>
-        
-        
+         
     </body>
 </html>
