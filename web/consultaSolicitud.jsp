@@ -29,8 +29,7 @@
             String otiga="";
             
 
-            if (VPara.equals("N") == false) {
-                String id = idd;
+            if (VPara.equals("N") == false) {           
                 p.buscarProyecto(idd);
                 nombre = p.getNombre();
                 otiga = p.getOtiga();              
@@ -40,7 +39,7 @@
         <h1>Consultar solicitudes de Materiales</h1>
         
     <center>
-        <form align="center" action="controlFull.do">
+        <form align="center" action="controlFullSwap.do">
         <div class="form-group d-flex">
             <div class="col-sm-6 ">
                 
@@ -53,6 +52,7 @@
                             <tr>
                                 <th>id</th>
                                 <th>otiga</th>
+                                <th>Codigo</th>
                                 <th>Nombre</th>
                                 <th>Unidad</th>
                                 <th>Existencia</th>
@@ -76,7 +76,8 @@
                              <tr>
                                 <td><%= objs.getId() %></td>
                                 <td><%= objs.getOtiga()%></td>
-                                <td><input type="text" name="nombresM" value="<%= objs.getNombre()%>" disable></td>
+                                <td><input type="text" name="codigosS" value="<%= objs.getCodigo()%>" disable></td>
+                                <td><%= objs.getNombre()%></td>
                                 <td><%= objs.getUnidades()%></td>
                                 <td><%= objs.getExistencia()%></td>
                                 <td><%= objs.getSolicitado()%></td>                              
