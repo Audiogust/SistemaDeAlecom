@@ -16,8 +16,10 @@
            body {
                 background-image: url("IMG/imagen 1.png");
                 background-position: center;
-                background-size: cover;
+               
                 height: 100vh;
+                
+              
                 
                 min-height: 600px;
                 }

@@ -18,8 +18,8 @@
         <h1>Materiales Solicitados</h1>
         <form action="controlClientes.do">
             <div class="container" align="center">
-                <input type="text" name="nombre" value="" class="form-control" placeholder="Nombre Material"> 
-                <button type="submit" name="opcion" value="BuscarProyectoS" class="btn btn-outline-info">Buscar</button>
+                <input type="text" name="nombre" value="" class="form-control" placeholder="Nombre"> 
+                <button type="submit" name="opcion" value="BuscarClientesW" class="btn btn-outline-info">Buscar</button>
             </div>
             <br><table align="center" border="5" width="50%" class="table thead-dark table-bordered table-hover">
   	                 <thead class="bg-info"> 
@@ -36,6 +36,7 @@
                                 <th>FECHA</th>
                                 <th>GRUPO</th>
                                 <th>COMENTARIOS</th>
+                                <th>SELECCIONAR</th>
                             </tr>
 		         </thead>
                             <%
@@ -63,7 +64,7 @@
                                 <td><%= objs.getComentarios()%></td>
                                 
                                 <td align="center" ><a href="Solicitud.jsp?txtpara=M&id=<%= objs.getId()%>">
-                                     <img src="IMG/peticion.svg" width="25px" height="25px"> </td>
+                                     <img src="IMG/formato1.png" width="25px" height="25px"> </td>
                              </tr>
                                 <%}%>
                 </table>

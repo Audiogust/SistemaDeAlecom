@@ -44,7 +44,7 @@
         }
         
         h2{
-            font-family: 'Raleway, sans-serif';
+            
             font-size: 1.6rem;
             line-height: 2;
         }
@@ -55,12 +55,12 @@
     </div>
         <div class="container alinear"  align="center">    
             <button class="redondo btn btn-primary btn-lg boton" name="opcion" onclick="location.href='Wisp.jsp'"> 
-                <font color="#ffffff"> <h2>WISP GAL</h2></font>
+                <font color="#ffffff"> <h1>WISP GAL</h1></font>
             </button>
             
             <button class="redondo btn btn-primary btn-lg boton" name="opcion" onclick="location.href='MenuPrincipal.jsp'"> 
-                <font color="#ffffff"> <h2>FULL SWAP 
-                    5G </h2></font>
+                <font color="#ffffff"> <h1>FULL SWAP 
+                    5G </h1></font>
             </button>
         </div>
     </body>

@@ -100,12 +100,14 @@ public class ControlClientes extends HttpServlet {
                 String id = request.getParameter("id_wisp");
                 Material m = new Material();
                 Material m1 = new Material();
+                Clientes cl1 = new Clientes();
 
                 for (int i = 0; i < codigo.length; i++) {
                     if (codigo[i].length() > 0) {
 
                         String material = m.Descripcion(codigo[i]);
                         String mat = m1.Wisp(id, material, cantidad[i]);
+                        String c = cl1.Status(id);
 
                         System.out.println(codigo[i] + " " + cantidad[i] + " " + material);
 
@@ -114,6 +116,11 @@ public class ControlClientes extends HttpServlet {
 
                 request.getRequestDispatcher("Wisp.jsp").forward(request, response);
             }
+            
+             if (opcion.equals("BuscarClientesW")) {
+                 
+                  request.getRequestDispatcher("MaterialesSolicitados.jsp").forward(request, response);
+              }
 
              
         }

@@ -12,6 +12,10 @@
         <servlet-name>ControlFullSwap</servlet-name>
         <servlet-class>Control.ControlFullSwap</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ControlFull</servlet-name>
+        <servlet-class>Control.ControlFull</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Control</servlet-name>
         <url-pattern>/control.do</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>ControlFullSwap</servlet-name>
         <url-pattern>/controlFullSwap.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ControlFull</servlet-name>
+        <url-pattern>/controlFull.do</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

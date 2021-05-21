@@ -16,7 +16,7 @@
     </head>
     <body>
        
-        <form align="center" action="controlFullSwap.do">
+        <form align="center" action="controlFull.do">
         <div class="form-group d-flex">
             <div class="col-sm-6 ">
                 <div class="container" align="center">
