@@ -42,19 +42,11 @@ public class ControlFullSwap extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-  String opcion = request.getParameter("opcion");
+              String opcion = request.getParameter("opcion");
             
             /*
-              if (opcion.equals("BuscarMaterial")) {
-              
-                 String id = request.getParameter("codigo");
-                 System.out.println(id);
-                 m.setCodigo(id);
-                 m.buscarMaterial(id);
-                 request.setAttribute("c", m);
-                 System.out.println(m.buscarMaterial(id));
-                 request.getRequestDispatcher("Consulta.jsp").forward(request, response);  
-            }*/
+                 PREOC-21/05/21-A0001
+            */
             
             if (opcion.equals("BuscarSolicitud")) {
                 MaterialSolicitado ms = new MaterialSolicitado();
@@ -82,7 +74,23 @@ public class ControlFullSwap extends HttpServlet {
             request.getRequestDispatcher("MenuPrincipal.jsp").forward(request, response);
                 
             }
+            
+              if (opcion.equals("enviarDevolucion")) {
+               String devolucion[] = request.getParameterValues("devoluciones");
+               String codigodev[] = request.getParameterValues("codigosDev");
+               MaterialSolicitado ma = new MaterialSolicitado();
+               
+                  for (int i = 0; i < devolucion.length; i++) {
+                  ma.Devolver(codigodev[i],Integer.parseInt(devolucion[i]));
+                  }
+   
+               
+               
+              }
+              
             if (opcion.equals("enviarAlmacen")) {
+                String ot = request.getParameter("otiga_1");
+                Proyecto pr = new Proyecto();
                 MaterialSolicitado mat = new MaterialSolicitado();
                 String soli[] = request.getParameterValues("solicitudes");
                 String nombres[] = request.getParameterValues("codigosS");
@@ -90,6 +98,9 @@ public class ControlFullSwap extends HttpServlet {
                     mat.Operacion(nombres[i],Integer.parseInt(soli[i]));                    
                     System.out.println(soli[i]+" "+nombres[i]);
                 }
+                System.out.println(ot);
+                pr.cambioStatusDevolver(ot);
+                
                  request.getRequestDispatcher("MenuPrincipal.jsp").forward(request, response);
             }
               

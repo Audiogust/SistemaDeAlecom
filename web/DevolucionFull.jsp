@@ -1,11 +1,10 @@
 <%-- 
-    Document   : consultaSolicitud
-    Created on : 21-abr-2021, 10:32:25
+    Document   : DevolucionFull
+    Created on : 22-may-2021, 23:52:46
     Author     : Hp
 --%>
 
 <%@page import="Modelo.Proyecto"%>
-<%@page import="Modelo.Material"%>
 <%@page import="java.util.Vector"%>
 <%@page import="Modelo.MaterialSolicitado"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,11 +13,9 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-      
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     </head>
     <body>
-        
         <%
             HttpSession sesion=request.getSession();
             Proyecto producto=(Proyecto)sesion.getAttribute("proyectos"); 
@@ -36,9 +33,8 @@
             }
             
         %>
-        <h1>Consultar solicitudes de Materiales</h1>
-        
-    <center>
+        <h1>DEVUELVEEEEELOOOOO!</h1>
+        <center>
         <form align="center" action="controlFullSwap.do">
         <td width="50%"><input type="text" size="53" name="otiga_1"  value="<%= otiga%>" id="textfield"></td>
             <div class="form-group d-flex">
@@ -56,7 +52,6 @@
                                 <th>Codigo</th>
                                 <th>Nombre</th>
                                 <th>Unidad</th>
-                                <th>Existencia</th>
                                 <th>Solicitado</th>                             
                                 <th>Salida</th>
                             </tr>
@@ -68,7 +63,7 @@
                             
                              
                              Vector usu = new Vector();
-                             usu=objs.mostrarBusqueda(otiga);                           
+                             usu=objs.mostrarDev(otiga);                           
                              
                              for(int i=0; i<usu.size();i++){
                                  objs=(MaterialSolicitado)usu.get(i);
@@ -77,21 +72,20 @@
                              <tr>
                                 <td><%= objs.getId() %></td>
                                 <td><%= objs.getOtiga()%></td>
-                                <td><input type="text" name="codigosS" value="<%= objs.getCodigo()%>" disable></td>
+                                <td><input type="text" name="codigosDev" value="<%= objs.getCodigo()%>" disable></td>
                                 <td><%= objs.getNombre()%></td>
-                                <td><%= objs.getUnidades()%></td>
-                                <td><%= objs.getExistencia()%></td>
+                                <td><%= objs.getUnidades()%></td>                                
                                 <td><%= objs.getSolicitado()%></td>                              
                              
-                                <td><input class="formulario__campo" type="number" name="solicitudes"   placeholder="Cantidad" min="0" max="<%= objs.getExistencia()%>" ></td>
+                                <td><input class="formulario__campo" type="number" name="devoluciones"   placeholder="Cantidad" min="0" max="" ></td>
                              </tr>
                                 <%}%>  
                    <input type="hidden" name="txtpara" value=<%=VPara%> />
                 </table>
-                            <button type="submit" name="opcion" value="enviarAlmacen" class="btn btn-success">Enviar</button>
+                            <button type="submit" name="opcion" value="enviarDevolucion" class="btn btn-success">Enviar</button>
              </div>
         </div>
  </form>
-                                </center>        
+                                </center>
     </body>
 </html>

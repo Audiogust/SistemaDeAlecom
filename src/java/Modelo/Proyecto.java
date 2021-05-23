@@ -140,7 +140,24 @@ public class Proyecto {
         this.tipo = tipo;
     }
     
-    
+    public static Vector mostrarTablaDevolucion() throws SQLException{
+        Vector proyectos = null; 
+        Connection c = Conexion.conectar();
+           if (c != null) {
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(" SELECT * FROM Proyectos WHERE status='E' ");
+             proyectos  = new Vector();
+             while(rs.next()){
+                       proyectos.add(new Proyecto(rs.getString("otiga"),rs.getString("nombre"),rs.getString("region"),
+                                                  rs.getString("direccion"),rs.getString("latitud"),rs.getString("longitud"),
+                                                  rs.getString("elevacion"),rs.getString("tecnologia"),rs.getString("ubicacion"),
+                                                  rs.getString("fecha"),rs.getString("autorizado"),rs.getString("tipo")));
+             }               
+              return proyectos;                
+           }else {
+            return null;
+        }
+    }
     
      public static Vector mostrarBusqueda(String busqueda) throws SQLException{
         Vector proyectos = null; 
@@ -276,5 +293,25 @@ public class Proyecto {
         return "error de conexion";
      }
     
+  public String cambioStatusDevolver(String otigaa) {
+        Connection c = Conexion.conectar();
+        String respuesta = "";
+        if (c != null) {
+            try {
+                PreparedStatement ps = c.prepareStatement("update Proyectos set status='E' where otiga = ?");
+                ps.setString(1, otigaa);
+                ps.execute();
+                respuesta = "Habilitado";
+                return respuesta;
+
+            } catch (Exception e) {
+                respuesta = "Error";
+                return respuesta;
+            }
+
+        } else {
+        }
+        return "error de conexion";
+     }
     
 }

@@ -23,6 +23,17 @@ private String solicitado;
         
     }
 
+    public MaterialSolicitado(int id, String otiga, String codigo, String nombre, String unidades, String solicitado) {
+        this.id = id;
+        this.otiga = otiga;
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.unidades = unidades;
+        this.solicitado = solicitado;
+    }
+    
+    
+
     public MaterialSolicitado(int id, String otiga, String codigo, String nombre, String unidades, int existencia, String solicitado) {
         this.id = id;
         this.otiga = otiga;
@@ -90,7 +101,24 @@ private String solicitado;
     }
 
    
-
+public static Vector mostrarDev(String busqueda) throws SQLException{
+        Vector proyectos = null; 
+        Connection c = Conexion.conectar();
+           if (c != null) {
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(" SELECT * FROM devolucionMat WHERE otiga  = '" + busqueda +"'");
+             proyectos  = new Vector();
+             while(rs.next()){
+                       proyectos.add(new MaterialSolicitado(rs.getInt("id"),
+                         rs.getString("otiga"),rs.getString("codigo"), rs.getString("nombre"),rs.getString("unidad"),
+                         rs.getString("solicitado")));                       
+             }               
+              return proyectos;                
+           }else {
+            return null;
+        }
+    }
+    
 public static Vector mostrarBusqueda(String busqueda) throws SQLException{
         Vector proyectos = null; 
         Connection c = Conexion.conectar();
@@ -115,6 +143,23 @@ public String Operacion(String material,int cantidad) {
         if (c != null) {
             try {
                 PreparedStatement ps = c.prepareStatement(" update Materiales set existencia = existencia + "+(-cantidad)+" where codigo = ? ");
+                ps.setString(1, material);   
+                ps.execute();   
+                return "Material Anexado";
+            } catch (Exception e) {
+                return "Error en guardar " + e;
+            }
+        } else {
+            return ("No hay conexion a la base");
+        }
+    }
+
+public String Devolver(String material,int cantidad) {
+        Connection c = Conexion.conectar();
+
+        if (c != null) {
+            try {
+                PreparedStatement ps = c.prepareStatement(" update Materiales set existencia = existencia + "+ cantidad +" where codigo = ? ");
                 ps.setString(1, material);   
                 ps.execute();   
                 return "Material Anexado";
