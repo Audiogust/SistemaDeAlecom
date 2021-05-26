@@ -7,10 +7,13 @@ package Control;
 
 import Modelo.Material;
 import Modelo.MaterialSolicitado;
+import Modelo.Precompra;
 import Modelo.Proyecto;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -39,19 +42,10 @@ public class ControlFull extends HttpServlet {
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
      /* TODO output your page here. You may use following sample code. */
-  String opcion = request.getParameter("opcion");
             
-            /*
-              if (opcion.equals("BuscarMaterial")) {
-              
-                 String id = request.getParameter("codigo");
-                 System.out.println(id);
-                 m.setCodigo(id);
-                 m.buscarMaterial(id);
-                 request.setAttribute("c", m);
-                 System.out.println(m.buscarMaterial(id));
-                 request.getRequestDispatcher("Consulta.jsp").forward(request, response);  
-            }*/
+     
+            String opcion = request.getParameter("opcion");
+            String numeroSerie;
             
             if (opcion.equals("BuscarSolicitud")) {
                 MaterialSolicitado ms = new MaterialSolicitado();
@@ -168,6 +162,58 @@ public class ControlFull extends HttpServlet {
             if (opcion.equals("BuscarMaterial")) {
                 request.getRequestDispatcher("Consulta.jsp").forward(request, response);
             }
+            
+            if (opcion.equals("botonPreorden")) {
+             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); 
+             Calendar cal = Calendar.getInstance();  
+             String fechaa = dateFormat.format(cal.getTime());    
+             String folio ="PREOC-";   
+             folio = folio+fechaa;
+             
+                Precompra pc = new Precompra();
+                Precompra pc1 = new Precompra();
+                numeroSerie = pc.GenerarSerie();
+                
+                if (numeroSerie == null) {
+                    numeroSerie = "0001";
+                    folio =folio + "-A"+numeroSerie;               
+                    request.setAttribute("folioo", folio);
+                    request.setAttribute("numeroS", numeroSerie);
+                }else{
+                    int incrementador = Integer.parseInt(numeroSerie);
+                    numeroSerie = pc1.numeros(incrementador);
+                    folio =folio + "-A"+numeroSerie;
+                    request.setAttribute("folioo", folio);
+                    request.setAttribute("numeroS", numeroSerie);
+                }
+                
+                request.getRequestDispatcher("Preorden.jsp").forward(request, response);
+            }
+            
+            if (opcion.equals("botonPreorden")) {
+             Material m = new Material();
+             Material m1 = new Material();
+             Precompra p = new Precompra();
+             String foliosito = request.getParameter("folioextraer");
+             String num = request.getParameter("folionumeros");
+             
+             p.precompra(num, foliosito);
+             
+             String sin_ceros="103";    
+             System.out.println(Long.valueOf(sin_ceros));
+             String codigos[] = request.getParameterValues("codC");
+             String numeros[] = request.getParameterValues("numerosC");
+             for (int i = 0; i < codigos.length; i++) {
+                    if (codigos[i].length() > 0) {
+                      String descripciones = m.Descripcion(codigos[i]);
+                      m1.precompra(foliosito, descripciones, numeros[i]);
+              
+                    }                    
+                }
+             
+             
+            }
+            
         }
     }
 
