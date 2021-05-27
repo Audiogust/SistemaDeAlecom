@@ -197,21 +197,28 @@ public class ControlFull extends HttpServlet {
              String foliosito = request.getParameter("folioextraer");
              String num = request.getParameter("folionumeros");
              
-             p.precompra(num, foliosito);
-             
-             String sin_ceros="103";    
-             System.out.println(Long.valueOf(sin_ceros));
              String codigos[] = request.getParameterValues("codC");
              String numeros[] = request.getParameterValues("numerosC");
-             for (int i = 0; i < codigos.length; i++) {
-                    if (codigos[i].length() > 0) {
-                      String descripciones = m.Descripcion(codigos[i]);
-                      m1.precompra(foliosito, descripciones, numeros[i]);
-              
-                    }                    
+             int c=0;
+                for (int i = 0; i < codigos.length; i++) {
+                    if (numeros[i].length() > 0) {
+                    c++;
+                    } 
+                }              
+                if (c > 0) {
+                    p.precompra(num, foliosito);
+                    System.out.println(c);
+                    for (int i = 0; i < codigos.length; i++) {
+                        if (numeros[i].length() > 0) {
+                            String descripciones = m.Descripcion(codigos[i]);
+                            m1.precompra(foliosito, descripciones, numeros[i]);
+                            System.out.println(descripciones + "sd" + numeros[i]);
+                        }
+                    }
                 }
-             
-             
+                else if(c ==0){
+                    request.getRequestDispatcher("Preorden.jsp").forward(request, response);
+                }
             }
             
         }

@@ -3,7 +3,9 @@ package Modelo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 
 
 public class Precompra {
@@ -44,7 +46,7 @@ public class Precompra {
     
     
     
-        public boolean buscarProyecto(String id){
+        public boolean buscarPre(String id){
         boolean res=false;
         try {
         Connection c = Conexion.conectar();
@@ -110,5 +112,24 @@ public class Precompra {
             return "Error al modificar " + e;
         }
      }
+        
+     public static Vector mostrartabla() throws SQLException{
+        Vector materiales = null; 
+        Connection c = Conexion.conectar();
+           if (c != null) {
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(" SELECT * FROM PreCompra ");
+             materiales  = new Vector();
+             while(rs.next()){
+                 materiales.add(new Precompra(rs.getString("numeroSerie"),rs.getString("folio")));
+             }
+               
+              return materiales; 
+               
+           }else {
+            return null;
+        }
+          
+    }
     
 }
