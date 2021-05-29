@@ -50,6 +50,9 @@
                         <li class="nav-item">
                             <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="MaterialesSolicitados.jsp" target="myFrame">Materiales Solicitados</a>
                         </li>
+                        <li class="nav-item">
+                            <a style="margin-left: 10px; border: none" class="btn btn-outline-light" href="SoliicitudDev.jsp" target="myFrame">Devolucion</a>
+                        </li>
                      </ul>
                     <br>
                 </div>

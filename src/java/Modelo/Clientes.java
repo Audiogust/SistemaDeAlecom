@@ -274,5 +274,49 @@ public class Clientes {
         }
         return "error de conexion";
      }
+       
+       
+           public String StatusDev(String id) {
+        Connection c = Conexion.conectar();
+        String respuesta = "";
+        if (c != null) {
+            try {
+                PreparedStatement ps = c.prepareStatement("update Clientes set status='E' where ID = ?");
+                ps.setString(1, id);
+                ps.execute();
+                respuesta = "Habilitado";
+                return respuesta;
+
+            } catch (Exception e) {
+                respuesta = "Error";
+                return respuesta;
+            }
+
+        } else {
+        }
+        return "error de conexion";
+    }
+           
+           
+          public static Vector mostrarMatDev() throws SQLException {
+        Vector clientes = null;
+        Connection c = Conexion.conectar();
+        if (c != null) {
+            Statement st = c.createStatement();
+            ResultSet rs = st.executeQuery(" SELECT * FROM Clientes WHERE status='E' ");
+            clientes = new Vector();
+            while (rs.next()) {
+               clientes.add(new Clientes(rs.getInt("Numero"), rs.getString("ID"), rs.getString("nombre"), rs.getString("direccion"), rs.getString("telefono"), rs.getString("correo"), rs.getString("tiempo"),
+                         rs.getString("megas"), rs.getString("tarifa"), rs.getString("fecha"), rs.getInt("grupo"), rs.getString("comentarios")));
+            }
+            return clientes;
+        } else {
+            return null;
+        }
+        
+    }
+          
+        
+
 }
 

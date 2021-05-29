@@ -45,6 +45,8 @@
                         <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='ingenieria.jsp'"><img src="IMG/ingenieria.svg" width="60" height="60"><br>Ingenieria</button> 
                         <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='Almacen.jsp'"><img src="IMG/almacen.svg" width="60" height="60"><br>Almacen</button>
                         <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='Compras.jsp'"><img src="IMG/compras.svg" width="60" height="60"><br>Compras</button>
+                        <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='ModificacionMateriales.jsp'"><img src="IMG/EditarMaterial.png" width="60" height="60"><br>Editar materiales</button>
+                        
                 
             </form>
         </div>

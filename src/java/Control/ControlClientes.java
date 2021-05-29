@@ -7,6 +7,7 @@ package Control;
 
 import Modelo.Clientes;
 import Modelo.Material;
+import Modelo.MaterialSolicitadoWisp;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -95,21 +96,22 @@ public class ControlClientes extends HttpServlet {
                   request.getRequestDispatcher("Instalacion.jsp").forward(request, response);
               }
             if (opcion.equals("guardarDatos")) {
-                String codigo[] = request.getParameterValues("codigo");
                 String cantidad[] = request.getParameterValues("cantidades");
+                String codigo[] = request.getParameterValues("codigo");  
                 String id = request.getParameter("id_wisp");
+                Clientes cl1 = new Clientes();
                 Material m = new Material();
                 Material m1 = new Material();
-                Clientes cl1 = new Clientes();
+                
 
                 for (int i = 0; i < codigo.length; i++) {
                     if (codigo[i].length() > 0) {
 
                         String material = m.Descripcion(codigo[i]);
-                        String mat = m1.Wisp(id, material, cantidad[i]);
+                        m1.Wisp(id, material, cantidad[i]);
                         String c = cl1.Status(id);
 
-                        System.out.println(codigo[i] + " " + cantidad[i] + " " + material);
+                        System.out.println(codigo[i] + " " + cantidad[i]);
 
                     }
                 }
@@ -120,6 +122,33 @@ public class ControlClientes extends HttpServlet {
              if (opcion.equals("BuscarClientesW")) {
                  
                   request.getRequestDispatcher("MaterialesSolicitados.jsp").forward(request, response);
+              }
+             if (opcion.equals("guardarAlmacen")) {
+                String id1 = request.getParameter("idt_1");
+                MaterialSolicitadoWisp wisp = new MaterialSolicitadoWisp();
+                Clientes cli = new Clientes();
+                String soli[] = request.getParameterValues("numeros");
+                String codigos[] = request.getParameterValues("codigoW");
+                for (int i = 0; i < soli.length; i++) {
+                    wisp.OperacionWisp(codigos[i],Integer.parseInt(soli[i]));                    
+                    System.out.println(soli[i]+" "+codigos[i]);
+                }
+                System.out.println(id1);
+                cli.StatusDev(id1);
+                
+                  request.getRequestDispatcher("Wisp.jsp").forward(request, response);
+              }
+               if (opcion.equals("guardarDevolucion")) {
+               String dev[] = request.getParameterValues("devolucionw");
+               String codev[] = request.getParameterValues("codigosw");
+               MaterialSolicitadoWisp mw = new MaterialSolicitadoWisp();
+               
+                  for (int i = 0; i < dev.length; i++) {
+                  mw.DevolverMaterial(codev[i],Integer.parseInt(dev[i]));
+                  }
+   
+               
+               
               }
 
              

@@ -203,5 +203,27 @@ public class Material {
             return "Error al modificar " + e;
         }
      }
+        
+        public String cambio() {
+        Connection c = Conexion.conectar();
+        try {
+            if (c != null) {
+                PreparedStatement ps = c.prepareStatement("update Materiales set descripcion=?, unidad=?, existencia=?, salida=? where codigo=?");    
+                ps.setString(1, descripcion);
+                ps.setString(2, unidad);
+                ps.setInt(3, existencia);
+                ps.setInt(4, salida);
+                ps.setString(5, codigo);
+                ps.execute();
+                return "modificacion realizada";
+            }
+            else{
+                return "no se realizo";
+            }
+        } catch (Exception e) {
+            return "Error al modificar " + e;
+        }
+    }
+      
     
 }

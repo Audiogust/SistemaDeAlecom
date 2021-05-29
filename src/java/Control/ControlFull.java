@@ -220,6 +220,19 @@ public class ControlFull extends HttpServlet {
                     request.getRequestDispatcher("Preorden.jsp").forward(request, response);
                 }
             }
+            if (opcion.equals("Modificar")) {
+               Material mt = new Material();
+              
+                mt.setCodigo(request.getParameter("n_codigo"));
+                mt.setDescripcion(request.getParameter("n_descripcion").toString());
+                mt.setUnidad(request.getParameter("n_unidad").toString());
+                mt.setExistencia(Integer.parseInt(request.getParameter("n_existencia").toString()));
+                mt.setSalida(Integer.parseInt(request.getParameter("n_salida").toString()));
+                mt.cambio();
+                request.getRequestDispatcher("ModificacionMateriales.jsp").forward(request, response);
+                        
+            }
+                
             
         }
     }
