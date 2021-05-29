@@ -35,7 +35,7 @@
         %>
         <h1>DEVUELVEEEEELOOOOO!</h1>
         <center>
-        <form align="center" action="controlFullSwap.do">
+        <form align="center" action="controlFull.do">
         <td width="50%"><input type="text" size="53" name="otiga_1"  value="<%= otiga%>" id="textfield"></td>
             <div class="form-group d-flex">
             <div class="col-sm-6 ">

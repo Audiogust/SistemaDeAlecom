@@ -123,7 +123,7 @@ public class Material {
                 this.unidad=rs.getString("unidad");
                 this.existencia=rs.getInt("existencia");
                 this.salida=rs.getInt("salida");
-                
+                System.out.println(codigo+descripcion+unidad+existencia);
                 res=true;
             }
         } catch (Exception e) {

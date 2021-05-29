@@ -17,7 +17,7 @@
         <center>
     <%
             
-           HttpSession sesion=request.getSession();
+            HttpSession sesion=request.getSession();
             Material producto=(Material)sesion.getAttribute("material"); 
             Material objs = new Material();
             String VPara = request.getParameter("txtpara");

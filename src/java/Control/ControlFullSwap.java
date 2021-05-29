@@ -82,10 +82,7 @@ public class ControlFullSwap extends HttpServlet {
                
                   for (int i = 0; i < devolucion.length; i++) {
                   ma.Devolver(codigodev[i],Integer.parseInt(devolucion[i]));
-                  }
-   
-               
-               
+                  }   
               }
               
             if (opcion.equals("enviarAlmacen")) {
