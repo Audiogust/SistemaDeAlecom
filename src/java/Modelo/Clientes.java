@@ -18,7 +18,7 @@ import java.util.Vector;
  */
 public class Clientes {
     
-      private int numero;
+    private int numero;
     private String id;
     private String nombre;
     private String direccion;
