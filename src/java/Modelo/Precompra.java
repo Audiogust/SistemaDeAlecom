@@ -78,8 +78,42 @@ public class Precompra {
         }
         return numeroSerie;
     }
+    public String GenerarSerieWisp(){
+        String numeroSerie="";
+        String sql="SELECT MAX(folio) from Clientes";
+        
+        try {
+            con =cn.conectar();
+            ps= con.prepareStatement(sql);
+            rs =ps.executeQuery();
+            while (rs.next()) {
+               numeroSerie = rs.getString(1);        
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return numeroSerie;
+    }
     
         public String numeros(int num){
+        num = num + 1;
+        String res="";
+        if (num >= 1000 && num < 10000) {
+            res =""+ num;
+        }
+        if (num >= 100 && num < 1000) {
+            res ="0"+ num;
+        }
+        if (num >= 10 && num < 100) {
+            res ="00"+ num;
+        }
+        if (num >= 1 && num < 10) {
+            res ="000"+ num;
+        }
+        return res;
+    }
+        
+        public String numerosWisp(int num){
         num = num + 1;
         String res="";
         if (num >= 1000 && num < 10000) {

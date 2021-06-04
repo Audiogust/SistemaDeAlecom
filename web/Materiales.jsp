@@ -55,8 +55,11 @@
                              
                              for(int i=0; i<usu.size();i++){
                                  objs=(Material)usu.get(i);
+                                 
+                              double r=((20*objs.getSalida()))/100;
                              %>
                              <tr>
+                                <tr <% if (objs.getExistencia() <= r) { %> class="table-danger" <%}%> >
                                 <td><%= objs.getCodigo()%></td>
                                 <td><%= objs.getDescripcion()%></td>
                                 <td><%= objs.getUnidad()%></td>

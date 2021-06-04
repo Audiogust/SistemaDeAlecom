@@ -50,10 +50,12 @@
             <table align="center" border="5" width="50%" class="table table-dark table-bordered table-hover table-responsive-sm">
   	                 <thead class="bg-info"> 
                             <tr>
+                                
+                                <th>FOLIO</th>
                                 <th>CODIGO</th>
                                 <th>MATERIAL</th>
-                                <th>UNIDAD</th>
-                                <th>SOLICITADO</th>                               
+                                <th>SOLICITADO</th>     
+                                <th>AITORIZAR</th>
                             </tr>
 		         </thead>
                             <%
@@ -64,13 +66,12 @@
                              for(int i=0; i<usu.size();i++){
                                  objs=(OrdenPrecompra)usu.get(i);
                              %>
-                             <tr>
-
-                                 <td><%=objs.getId()%></td>
+                             <tr>                            
                                  <td><%= objs.getFolio()%></td>
+                                 <td><input type="text" name="codigosEx" value="<%= objs.getCodigo()%>" disable></td>
                                  <td><%= objs.getNombre()%></td>
                                  <td><%= objs.getSolicitado()%></td>
-                                 <td><input class="formulario__campo" type="number" name="numeros"   placeholder="Cantidad" min="0"></td> 
+                                 <td><input class="formulario__campo" type="number" name="numeroExi"   placeholder="Cantidad" min="0" max="<%= objs.getSolicitado()%>"></td> 
                                
                              </tr>
                                 <%}%>
@@ -81,7 +82,7 @@
                         
                 </table>
                
-                 <button type="submit" name="opcion" value="enviarDatos" class="btn btn-success">validar Materiales</button>
+                 <button type="submit" name="opcion" value="autorizarExistencia" class="btn btn-success">validar Materiales</button>
           
         </form>
         </center>

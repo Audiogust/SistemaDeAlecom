@@ -116,7 +116,7 @@ public class Material {
         try {
         Connection c = Conexion.conectar();
         Statement st =c.createStatement();
-        ResultSet rs=st.executeQuery(" select * from Materiales WHERE codigo = '"+cod+"'");
+        ResultSet rs=st.executeQuery(" select * from Materiales WHERE codigo = '" + cod + "'");
             if (rs.next()) {
                 this.codigo=rs.getString("codigo");
                 this.descripcion=rs.getString("descripcion");
@@ -147,8 +147,6 @@ public class Material {
             return "No se pudo";
         }
     }
-    
-    
       
      public String Pedidos(String cod, String des, String cantidad) {
         Connection c = Conexion.conectar();
@@ -224,6 +222,28 @@ public class Material {
             return "Error al modificar " + e;
         }
     }
+        
+        
+         public String registrar() {
+        
+         Connection c = Conexion.conectar();
+        if (c != null) {
+            try {
+                PreparedStatement ps = c.prepareStatement("insert into Materiales(codigo, descripcion, unidad, existencia, salida) values(?,?,?,?,?)");
+                ps.setString(1, codigo);
+                ps.setString(2, descripcion);
+                ps.setString(3, unidad);
+                ps.setInt(4, existencia);
+                ps.setInt(5, salida);
+                ps.execute();
+                return "Se han guardado los datos correctamente";
+            } catch (Exception e) {
+                return "Error en guardar " + e;
+            }
+        } else {
+            return ("No hay conexion a la base");
+        }
+        }
       
     
 }

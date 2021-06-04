@@ -38,7 +38,7 @@
                       }
    </style>
     <body>
-        <h1>Hello World!</h1>
+       
         <div>
             
             <form align="center" action="controlFull.do">

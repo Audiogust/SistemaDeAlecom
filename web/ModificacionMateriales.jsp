@@ -42,7 +42,7 @@
                                 <td><%= objs.getUnidad()%></td>
                                 <td><%= objs.getExistencia()%></td>
                                 <td><%= objs.getSalida()%></td>
-                                 <td align="center" ><a href="EditarMat.jsp?txtpara=M&id=<%= objs.getCodigo()%>">
+                                 <td align="center" ><a href="EditarMat.jsp?txtpara=M&id=<%=objs.getCodigo()%>">
                                      <img src="IMG/editar.svg" width="25px" height="25px"> </td>
                                 
                                             

@@ -8,6 +8,7 @@ package Control;
 import Modelo.Clientes;
 import Modelo.Material;
 import Modelo.MaterialSolicitadoWisp;
+import Modelo.Precompra;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -36,8 +37,11 @@ public class ControlClientes extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
+             String numeroSerie="";
              String opcion = request.getParameter("opcion");
 
+             
+             
             if (opcion.equals("v_registrar_clientes")) {
 
                 String id = request.getParameter("id");
@@ -51,7 +55,9 @@ public class ControlClientes extends HttpServlet {
                 String fecha = request.getParameter("n_fecha");
                 int grupo = Integer.parseInt(request.getParameter("n_grupo"));
                 String comentarios = request.getParameter("n_comentarios");
-
+                
+                
+                
                 if (id.equals("") || nombre.equals("") || direccion.equals("") || telefono.equals("") || correo.equals("")
                         || tiempo.equals("") || megas.equals("") || tarifa.equals("") || fecha.equals("")) {
                     Clientes cl1 = new Clientes();
@@ -59,7 +65,7 @@ public class ControlClientes extends HttpServlet {
                     HttpSession sesion = request.getSession(true);
                     sesion.setAttribute("res0", x);
                     request.getRequestDispatcher("Clientes_error.jsp").forward(request, response);
-                } else {
+                } else {                                       
                     Clientes cl1 = new Clientes();
                     cl1.setId(id);
                     cl1.setNombre(nombre);

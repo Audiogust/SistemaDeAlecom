@@ -7,6 +7,7 @@ package Control;
 
 import Modelo.Material;
 import Modelo.MaterialSolicitado;
+import Modelo.OrdenPrecompra;
 import Modelo.Precompra;
 import Modelo.Proyecto;
 import java.io.IOException;
@@ -73,16 +74,43 @@ public class ControlFull extends HttpServlet {
             request.getRequestDispatcher("MenuPrincipal.jsp").forward(request, response);
                 
             }
-            if (opcion.equals("enviarAlmacen")) {
+            if (opcion.equals("enviarAlmacen")) {   
+                
+                Proyecto pr = new Proyecto();
+                String idProyecto=request.getParameter("otiga_1");
                 MaterialSolicitado mat = new MaterialSolicitado();
                 String soli[] = request.getParameterValues("solicitudes");
-                String nombres[] = request.getParameterValues("nombresM");
+                String nombres[] = request.getParameterValues("codigosS");
                 for (int i = 0; i < soli.length; i++) {
+                    if (soli[i].length() > 0) {
                     mat.Operacion(nombres[i],Integer.parseInt(soli[i]));                    
                     System.out.println(soli[i]+" "+nombres[i]);
+                        System.out.println("hoooola");
+                    }
+                pr.cambioStatusDevolver(idProyecto);
+                    
+                    
                 }
+                
+                
                  request.getRequestDispatcher("MenuPrincipal.jsp").forward(request, response);
             }
+            
+             if (opcion.equals("autorizarExistencia")) {
+                 
+                String idProyecto=request.getParameter("otiga_1");
+                OrdenPrecompra op = new OrdenPrecompra();
+                String codigoe[] = request.getParameterValues("codigosEx");
+                String numeros[] = request.getParameterValues("numeroExi");
+                for (int i = 0; i < codigoe.length; i++) {    
+                    op.Autorizar(codigoe[i],Integer.parseInt(numeros[i]));                    
+                    System.out.println(codigoe[i]+" "+numeros[i]);                   
+                }
+                
+                
+                request.getRequestDispatcher("Compras.jsp").forward(request, response);  
+             }  
+            
               
              if (opcion.equals("BuscarProyecto")) {
                  request.getRequestDispatcher("ingenieria.jsp").forward(request, response);  
@@ -190,7 +218,7 @@ public class ControlFull extends HttpServlet {
                 request.getRequestDispatcher("Preorden.jsp").forward(request, response);
             }
             
-            if (opcion.equals("botonPreorden")) {
+            if (opcion.equals("botonPreordenAccion")) {
              Material m = new Material();
              Material m1 = new Material();
              Precompra p = new Precompra();
@@ -215,6 +243,7 @@ public class ControlFull extends HttpServlet {
                             System.out.println(descripciones + "sd" + numeros[i]);
                         }
                     }
+                    request.getRequestDispatcher("Compras.jsp").forward(request, response);
                 }
                 else if(c ==0){
                     request.getRequestDispatcher("Preorden.jsp").forward(request, response);
@@ -232,8 +261,66 @@ public class ControlFull extends HttpServlet {
                 request.getRequestDispatcher("ModificacionMateriales.jsp").forward(request, response);
                         
             }
+               if (opcion.equals("enviarDevolucion")) {
+                Material m = new Material();
+                Proyecto p = new Proyecto();
+                String otiga = request.getParameter("otiga_1");
+                String devolucion[] = request.getParameterValues("devoluciones");
+                String codigodev[] = request.getParameterValues("codigosDev");
+                MaterialSolicitado ma = new MaterialSolicitado();
+
+                for (int i = 0; i < devolucion.length; i++) {
+                    if (devolucion[i].length() > 0) {
+
+                        ma.Devolver(codigodev[i], Integer.parseInt(devolucion[i]));
+                    }
+                }
+
+                p.cambioStatusDevolucionA(otiga);
+                request.getRequestDispatcher("SolicitudMaterial.jsp").forward(request, response);
+
+            }
+                if (opcion.equals("registrarMaterial")) {
+
+                String codigo = request.getParameter("codigo");
+                String descripcion = request.getParameter("descripcion");
+                String unidad = request.getParameter("unidad");
+                String existencia = request.getParameter("existencia");
+                String tope = request.getParameter("tope");
                 
-            
+                
+                
+                
+                if (codigo.equals("") || descripcion.equals("") || unidad.equals("") || existencia.equals("")
+                     || tope.equals("")   ) {
+                    Material m = new Material();
+                    String x = m.registrar();
+                    HttpSession sesion = request.getSession(true);
+                    sesion.setAttribute("res0", x);
+                    request.getRequestDispatcher("Material_error.jsp").forward(request, response);
+                } else {                                       
+                    Material m = new Material();
+                    m.setCodigo(codigo);
+                    m.setDescripcion(descripcion);
+                    m.setUnidad(unidad);
+                    m.setExistencia(Integer.parseInt(existencia));
+                    m.setSalida(Integer.parseInt(tope));
+                   
+
+                    String x = m.registrar();
+                    HttpSession sesion = request.getSession(true);
+                    sesion.setAttribute("res0", codigo);
+                    sesion.setAttribute("res1", descripcion);
+                    sesion.setAttribute("res2", unidad);
+                    sesion.setAttribute("res3", existencia);
+                    sesion.setAttribute("res4", tope);
+                   
+                    request.getRequestDispatcher("ExitoM.jsp").forward(request, response);
+
+                }
+
+            }
+
         }
     }
 

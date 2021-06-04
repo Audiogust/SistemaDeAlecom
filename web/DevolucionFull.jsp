@@ -33,21 +33,19 @@
             }
             
         %>
-        <h1>DEVUELVEEEEELOOOOO!</h1>
-        <center>
+        <h1>DEVOLUCION</h1>
+        <div class="table-responsive">
         <form align="center" action="controlFull.do">
         <td width="50%"><input type="text" size="53" name="otiga_1"  value="<%= otiga%>" id="textfield"></td>
-            <div class="form-group d-flex">
-            <div class="col-sm-6 ">
-                
              <!--   <input type="text" name="codigo" value="" class="form-control" placeholder="OTIGA"> 
                     <button type="submit" name="opcion" value="BuscarSolicitud" class="btn btn-outline-info">Buscar</button>
              -->
            <br>
+           <div  class="table-responsive">
            <table align="right" border="5" width="50%" class="table table-dark table-bordered table-hover">
   	                 <thead class="bg-info"> 
                             <tr>
-                                <th>id</th>
+                              
                                 <th>otiga</th>
                                 <th>Codigo</th>
                                 <th>Nombre</th>
@@ -70,22 +68,23 @@
                                
                              %>
                              <tr>
-                                <td><%= objs.getId() %></td>
-                                <td><%= objs.getOtiga()%></td>
+                                
+                                <td ><%= objs.getOtiga()%></td>
                                 <td><input type="text" name="codigosDev" value="<%= objs.getCodigo()%>" disable></td>
                                 <td><%= objs.getNombre()%></td>
                                 <td><%= objs.getUnidades()%></td>                                
                                 <td><%= objs.getSolicitado()%></td>                              
                              
-                                <td><input class="formulario__campo" type="number" name="devoluciones"   placeholder="Cantidad" min="0" max="" ></td>
+                                <td><input class="formulario__campo" type="number"  name="devoluciones"   placeholder="Cantidad" min="0" max="<%= objs.getSolicitado() %>" ></td>
                              </tr>
                                 <%}%>  
                    <input type="hidden" name="txtpara" value=<%=VPara%> />
                 </table>
+                <div>
                             <button type="submit" name="opcion" value="enviarDevolucion" class="btn btn-success">Enviar</button>
              </div>
         </div>
  </form>
-                                </center>
+                                
     </body>
 </html>

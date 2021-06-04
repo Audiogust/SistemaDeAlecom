@@ -313,5 +313,25 @@ public class Proyecto {
         }
         return "error de conexion";
      }
+  public String cambioStatusDevolucionA(String otigaa) {
+        Connection c = Conexion.conectar();
+        String respuesta = "";
+        if (c != null) {
+            try {
+                PreparedStatement ps = c.prepareStatement("update Proyectos set status='A' where otiga = ?");
+                ps.setString(1, otigaa);
+                ps.execute();
+                respuesta = "Habilitado";
+                return respuesta;
+
+            } catch (Exception e) {
+                respuesta = "Error";
+                return respuesta;
+            }
+
+        } else {
+        }
+        return "error de conexion";
+     }
     
 }

@@ -29,7 +29,7 @@
             </div>
             
           
-            <table align="center" border="5" width="50%" class="table table-dark table-bordered table-hover table-responsive-sm">
+            <table align="center" border="5" width="50%" class="table table-light table-bordered table-hover table-responsive-sm">
   	                 <thead class="bg-info"> 
                             <tr>
                                 <th>CODIGO</th>
@@ -45,10 +45,12 @@
                              
                              for(int i=0; i<usu.size();i++){
                                  objs=(Material)usu.get(i);
+                                 
+                               double r=((20*objs.getSalida()))/100;
                              %>
-                             <tr>
-
-                                 <td><input class="table-dark" type="text" value="<%= objs.getCodigo()%>" name="codC"></td>
+                             <tr <% if (objs.getExistencia() <= r) { %> class="table-danger" <%}%> >
+                                 
+                                 <td><input  type="text" value="<%= objs.getCodigo()%>" name="codC"></td>
                                  <td><%= objs.getDescripcion()%></td>
                                  <td><%= objs.getUnidad()%></td>
                                  <td><input class="formulario__campo" type="number" name="numerosC"   placeholder="Cantidad" min="0"></td> 
@@ -59,7 +61,7 @@
                         
                 </table>
                
-                 <button type="submit" name="opcion" value="botonPreorden" class="btn btn-success">Generar</button>
+                 <button type="submit" name="opcion" value="botonPreordenAccion" class="btn btn-success">Generar</button>
           
         </form>
         </center>

@@ -38,6 +38,7 @@
    </style>
     <body>
         <form align="center" action="controlClientes.do">
+            
             <table border="0" cellpadding="0" cellspacing="0" width="40%"  align="center">
                 <tr>
                     <td width="70%"><b>ID:</b> </td>
@@ -72,17 +73,23 @@
                     <td width="50%"><input type="text" size="53" name="n_tarifa"></td>
                 </tr>
                 <tr>
-                    <td width="70%"><b>Fecha:</b> </td>
-                    <td width="50%"><input type="text" size="53" name="n_fecha"></td>
+                <td width="70%"><b>Fecha:</b> </td>	
+                <td width="50%"><input type="date" name="n_fecha"></td>
+                
                 </tr>
-                <p><label>Grupo:</label>
-                    <select name="n_grupo" id="grupo">
+                <tr>
+                    
+                <td width="70%"><b>Grupo:</b> </td>
+                    <td width="50%"><select name="n_grupo" id="grupo">
                         <option value="0"></option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
                         <option value="4">4</option>
                     </select>
+                </td>
+                    
+                </tr>
                 <tr>
                     <td width="70%"><b>Comentarios:</b> </td>
                     <td width="60%"><input type="text" size="53" name="n_comentarios"></td>
