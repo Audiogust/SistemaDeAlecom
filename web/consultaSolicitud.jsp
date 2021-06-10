@@ -38,60 +38,57 @@
         %>
         <h1>Consultar solicitudes de Materiales</h1>
         
-    <center>
-        <form align="center" action="controlFull.do">
+   
+        <form align="center" action="controlFull.do" method="post">
         <td width="50%"><input type="text" size="53" name="otiga_1"  value="<%= otiga%>" id="textfield"></td>
-            <div class="form-group d-flex">
-            <div class="col-sm-6 ">
+            
                 
              <!--   <input type="text" name="codigo" value="" class="form-control" placeholder="OTIGA"> 
                     <button type="submit" name="opcion" value="BuscarSolicitud" class="btn btn-outline-info">Buscar</button>
              -->
            <br>
-           <table align="right" border="5" width="50%" class="table table-dark table-bordered table-hover">
-  	                 <thead class="bg-info"> 
-                            <tr>
-                                <th>id</th>
-                                <th>otiga</th>
-                                <th>Codigo</th>
-                                <th>Nombre</th>
-                                <th>Unidad</th>
-                                <th>Existencia</th>
-                                <th>Solicitado</th>                             
-                                <th>Salida</th>
-                            </tr>
-		         </thead>
-                            <%
-                                
-                             String n=request.getParameter("codigo");
-                             MaterialSolicitado objs = new MaterialSolicitado();                
-                            
-                             
-                             Vector usu = new Vector();
-                             usu=objs.mostrarBusqueda(otiga);                           
-                             
-                             for(int i=0; i<usu.size();i++){
-                                 objs=(MaterialSolicitado)usu.get(i);
-                               
-                             %>
-                             <tr>
-                                <td><%= objs.getId() %></td>
-                                <td><%= objs.getOtiga()%></td>
-                                <td><input type="text" name="codigosS" value="<%= objs.getCodigo()%>" disable></td>
-                                <td><%= objs.getNombre()%></td>
-                                <td><%= objs.getUnidades()%></td>
-                                <td><%= objs.getExistencia()%></td>
-                                <td><%= objs.getSolicitado()%></td>                              
-                             
-                                <td><input class="formulario__campo" type="number" name="solicitudes"   placeholder="Cantidad" min="0" max="<%= objs.getExistencia()%>" ></td>
-                             </tr>
-                                <%}%>  
-                   <input type="hidden" name="txtpara" value=<%=VPara%> />
-                </table>
-                            <button type="submit" name="opcion" value="enviarAlmacen" class="btn btn-success">Enviar</button>
-             </div>
-        </div>
- </form>
-                                </center>        
+           <table align="right" border="5" width="50%" class="table table-light table-bordered table-hover">
+               <thead class="bg-info"> 
+                   <tr>
+                       <th>id</th>
+                       <th>otiga</th>
+                       <th>Codigo</th>
+                       <th>Nombre</th>
+                       <th>Unidad</th>
+                       <th>Existencia</th>
+                       <th>Solicitado</th>                             
+                       <th>Salida</th>
+                   </tr>
+               </thead>
+               <%
+
+                   String n = request.getParameter("codigo");
+                   MaterialSolicitado objs = new MaterialSolicitado();
+
+                   Vector usu = new Vector();
+                   usu = objs.mostrarBusqueda(otiga);
+
+                   for (int i = 0; i < usu.size(); i++) {
+                       objs = (MaterialSolicitado) usu.get(i);
+
+               %>
+
+               <tr <% if (Integer.parseInt(objs.getSolicitado()) > objs.getExistencia()) { %> class="table-danger" <%}%>>
+                   <td><%= objs.getId()%></td>
+                   <td><%= objs.getOtiga()%></td>
+                   <td><input type="text" name="codigosS" value="<%= objs.getCodigo()%>" disable></td>
+                   <td><%= objs.getNombre()%></td>
+                   <td><%= objs.getUnidades()%></td>
+                   <td><%= objs.getExistencia()%></td>
+                   <td><%= objs.getSolicitado()%></td>                                                           
+                   <td><input class="formulario__campo" type="number" name="solicitudes"   placeholder="Cantidad" min="0" max="<%= objs.getExistencia()%>" ></td>
+               </tr>
+               <%}%>  
+               <input type="hidden" name="txtpara" value=<%=VPara%> />
+           </table>
+           <button type="submit" name="opcion" value="enviarAlmacen" class="btn btn-success">Enviar</button>
+           <button type="submit" name="opcion" value="enviarPrecompra" class="btn btn-primary">Generar Precompra</button>
+           
+ </form> 
     </body>
 </html>

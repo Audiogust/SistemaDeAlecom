@@ -60,7 +60,7 @@
         %>
         <h1>DEVOLUCION MATERIALES</h1>
     <center>
-        <form align="center" action="controlClientes.do">
+        <form align="center" action="controlClientes.do" method="post">
             <td width="50%"><input type="text" size="53" name="idt_1"  value="<%= id%>" id="textfield"></td>
             <div class="form-group d-flex">
                 <div class="col-sm-6 ">

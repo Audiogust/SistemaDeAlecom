@@ -134,12 +134,46 @@ public class Material {
     public String Descripcion(String des){
         Connection c = Conexion.conectar();
        
-        try {
+        try{
             PreparedStatement ps = c.prepareStatement("SELECT  descripcion from Materiales where codigo=? ");
             ps.setString(1, des);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 String descripcion = rs.getString("descripcion");
+                return descripcion;
+            }
+            return "No hay datos";
+        } catch (Exception e) {
+            return "No se pudo";
+        }
+    }
+    
+    public String Existencia(String exi){
+        Connection c = Conexion.conectar();
+       
+        try{
+            PreparedStatement ps = c.prepareStatement("SELECT  existencia from Materiales where codigo=? ");
+            ps.setString(1, exi);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                String descripcion = rs.getString("existencia");
+                return descripcion;
+            }
+            return "No hay datos";
+        } catch (Exception e) {
+            return "No se pudo";
+        }
+    }
+    
+      public String Solicitado(String soli){
+        Connection c = Conexion.conectar();
+       
+        try{
+            PreparedStatement ps = c.prepareStatement("SELECT  solicitado from solicitudMat where codigo=? ");
+            ps.setString(1, soli);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                String descripcion = rs.getString("solicitado");
                 return descripcion;
             }
             return "No hay datos";

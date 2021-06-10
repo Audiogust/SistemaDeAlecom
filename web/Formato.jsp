@@ -61,7 +61,7 @@
             
         %>
         <center>
-        <form action="controlClientes.do">
+        <form action="controlClientes.do" method="post">
             
             <div>
             <td width="50%"><input type="text" size="53" name="id_wisp"  value="<%= id%>" id="textfield"></td>

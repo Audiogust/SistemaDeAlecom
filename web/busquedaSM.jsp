@@ -16,7 +16,7 @@
     </head>
     <body>
        
-        <form align="center" action="controlFull.do">
+        <form align="center" action="controlFull.do" method="post">
         <div class="form-group d-flex">
             <div class="col-sm-6 ">
                 <div class="container" align="center">

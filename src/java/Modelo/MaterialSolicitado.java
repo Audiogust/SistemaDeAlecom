@@ -170,6 +170,25 @@ public String Devolver(String material,int cantidad) {
             return ("No hay conexion a la base");
         }
     }
+public boolean buscarSolicitudPrecompra(String id){
+        boolean res=false;
+        try {
+        Connection c = Conexion.conectar();
+        Statement st =c.createStatement();
+        ResultSet rs=st.executeQuery("select * from solicitudMat where otiga='"+id+"' and solicitado > existencia");
+            if (rs.next()) {
+                this.otiga=rs.getString("otiga");
+                this.codigo =rs.getString("codigo");
+                this.nombre=rs.getString("nombre");
+                this.unidades=rs.getString("unidad");
+                this.existencia=rs.getInt("existencia");
+                this.solicitado=rs.getString("solicitado");
+                res=true;
+            }
+        } catch (Exception e) {
+        }
+        return res;
+    }
 
     
 }

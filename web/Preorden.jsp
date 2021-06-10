@@ -20,7 +20,7 @@
         <h1>Preorden</h1>
         
         <center>
-        <form action="controlFull.do">
+            <form action="controlFull.do" method="post">
             
             <div>
             <td width="50%"><input type="text" size="53" name="folioextraer"  value="${folioo}" id="textfield"></td>

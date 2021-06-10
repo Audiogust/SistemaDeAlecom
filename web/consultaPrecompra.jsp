@@ -38,7 +38,7 @@
         %>
         
         <center>
-        <form action="controlFull.do">
+        <form action="controlFull.do" method="post">
             
             <div>
             <td width="50%"><input type="text" size="53" name="otiga"  value="<%= folio %>" id="textfield"></td>

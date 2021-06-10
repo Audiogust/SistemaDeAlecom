@@ -37,7 +37,7 @@
                       }
    </style>
     <body>
-         <form align="center" action="controlClientes.do">
+         <form align="center" action="controlClientes.do" method="post">
              
                 <p><label>Grupo:</label>
                         <select name="grupo_consultar" id="grupo">

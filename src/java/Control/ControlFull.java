@@ -73,29 +73,7 @@ public class ControlFull extends HttpServlet {
            
             request.getRequestDispatcher("MenuPrincipal.jsp").forward(request, response);
                 
-            }
-            if (opcion.equals("enviarAlmacen")) {   
-                
-                Proyecto pr = new Proyecto();
-                String idProyecto=request.getParameter("otiga_1");
-                MaterialSolicitado mat = new MaterialSolicitado();
-                String soli[] = request.getParameterValues("solicitudes");
-                String nombres[] = request.getParameterValues("codigosS");
-                for (int i = 0; i < soli.length; i++) {
-                    if (soli[i].length() > 0) {
-                    mat.Operacion(nombres[i],Integer.parseInt(soli[i]));                    
-                    System.out.println(soli[i]+" "+nombres[i]);
-                        System.out.println("hoooola");
-                    }
-                pr.cambioStatusDevolver(idProyecto);
-                    
-                    
-                }
-                
-                
-                 request.getRequestDispatcher("MenuPrincipal.jsp").forward(request, response);
-            }
-            
+            }                       
              if (opcion.equals("autorizarExistencia")) {
                  
                 String idProyecto=request.getParameter("otiga_1");
@@ -189,66 +167,9 @@ public class ControlFull extends HttpServlet {
 
             if (opcion.equals("BuscarMaterial")) {
                 request.getRequestDispatcher("Consulta.jsp").forward(request, response);
-            }
+            }                       
             
-            if (opcion.equals("botonPreorden")) {
-             DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy"); 
-             Calendar cal = Calendar.getInstance();  
-             String fechaa = dateFormat.format(cal.getTime());    
-             String folio ="PREOC-";   
-             folio = folio+fechaa;
-             
-                Precompra pc = new Precompra();
-                Precompra pc1 = new Precompra();
-                numeroSerie = pc.GenerarSerie();
-                
-                if (numeroSerie == null) {
-                    numeroSerie = "0001";
-                    folio =folio + "-A"+numeroSerie;               
-                    request.setAttribute("folioo", folio);
-                    request.setAttribute("numeroS", numeroSerie);
-                }else{
-                    int incrementador = Integer.parseInt(numeroSerie);
-                    numeroSerie = pc1.numeros(incrementador);
-                    folio =folio + "-A"+numeroSerie;
-                    request.setAttribute("folioo", folio);
-                    request.setAttribute("numeroS", numeroSerie);
-                }
-                
-                request.getRequestDispatcher("Preorden.jsp").forward(request, response);
-            }
             
-            if (opcion.equals("botonPreordenAccion")) {
-             Material m = new Material();
-             Material m1 = new Material();
-             Precompra p = new Precompra();
-             String foliosito = request.getParameter("folioextraer");
-             String num = request.getParameter("folionumeros");
-             
-             String codigos[] = request.getParameterValues("codC");
-             String numeros[] = request.getParameterValues("numerosC");
-             int c=0;
-                for (int i = 0; i < codigos.length; i++) {
-                    if (numeros[i].length() > 0) {
-                    c++;
-                    } 
-                }              
-                if (c > 0) {
-                    p.precompra(num, foliosito);
-                    System.out.println(c);
-                    for (int i = 0; i < codigos.length; i++) {
-                        if (numeros[i].length() > 0) {
-                            String descripciones = m.Descripcion(codigos[i]);
-                            m1.precompra(foliosito, descripciones, numeros[i]);
-                            System.out.println(descripciones + "sd" + numeros[i]);
-                        }
-                    }
-                    request.getRequestDispatcher("Compras.jsp").forward(request, response);
-                }
-                else if(c ==0){
-                    request.getRequestDispatcher("Preorden.jsp").forward(request, response);
-                }
-            }
             if (opcion.equals("Modificar")) {
                Material mt = new Material();
               
@@ -319,6 +240,126 @@ public class ControlFull extends HttpServlet {
 
                 }
 
+            }
+            if (opcion.equals("botonPreorden")) {
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                Calendar cal = Calendar.getInstance();
+                String fechaa = dateFormat.format(cal.getTime());
+                String folio = "PREOC-";
+                folio = folio + fechaa;
+
+                Precompra pc = new Precompra();
+                Precompra pc1 = new Precompra();
+                numeroSerie = pc.GenerarSerie();
+
+                if (numeroSerie == null) {
+                    numeroSerie = "0001";
+                    folio = folio + "-A" + numeroSerie;
+                    request.setAttribute("folioo", folio);
+                    request.setAttribute("numeroS", numeroSerie);
+                } else {
+                    int incrementador = Integer.parseInt(numeroSerie);
+                    numeroSerie = pc1.numeros(incrementador);
+                    folio = folio + "-A" + numeroSerie;
+                    request.setAttribute("folioo", folio);
+                    request.setAttribute("numeroS", numeroSerie);
+                }
+
+                request.getRequestDispatcher("Preorden.jsp").forward(request, response);
+            }
+            if (opcion.equals("botonPreordenAccion")) {
+             Material m = new Material();
+             Material m1 = new Material();
+             Precompra p = new Precompra();
+             String foliosito = request.getParameter("folioextraer");
+             String num = request.getParameter("folionumeros");
+             
+             String codigos[] = request.getParameterValues("codC");
+             String numeros[] = request.getParameterValues("numerosC");
+             int c=0;
+                for (int i = 0; i < codigos.length; i++) {
+                    if (numeros[i].length() > 0) {
+                    c++;
+                    } 
+                }              
+                if (c > 0) {
+                    p.precompra(num, foliosito);
+                    System.out.println(c);
+                    for (int i = 0; i < codigos.length; i++) {
+                        if (numeros[i].length() > 0) {
+                            String descripciones = m.Descripcion(codigos[i]);
+                            m1.precompra(foliosito, descripciones, numeros[i]);
+                            System.out.println(descripciones + "sd" + numeros[i]);
+                        }
+                    }
+                    request.getRequestDispatcher("Compras.jsp").forward(request, response);
+                }
+                else if(c ==0){
+                    request.getRequestDispatcher("Preorden.jsp").forward(request, response);
+                }
+            }
+            if (opcion.equals("enviarAlmacen")) {   
+                
+                Proyecto pr = new Proyecto();
+                String idProyecto=request.getParameter("otiga_1");
+                MaterialSolicitado mat = new MaterialSolicitado();
+                String soli[] = request.getParameterValues("solicitudes");
+                String nombres[] = request.getParameterValues("codigosS");
+                for (int i = 0; i < soli.length; i++) {
+                    if (soli[i].length() > 0) {
+                    mat.Operacion(nombres[i],Integer.parseInt(soli[i]));                    
+                    System.out.println(soli[i]+" "+nombres[i]);
+                        System.out.println("hoooola");
+                    }
+                pr.cambioStatusDevolver(idProyecto);
+                    
+                    
+                }
+                
+                
+                 request.getRequestDispatcher("MenuPrincipal.jsp").forward(request, response);
+            }
+                
+            if (opcion.equals("enviarPrecompra")) {
+
+                String otiga = request.getParameter("otiga_1");
+
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                Calendar cal = Calendar.getInstance();
+                String fechaa = dateFormat.format(cal.getTime());
+                String folio = "PREOC-";
+                folio = folio + fechaa;
+                Precompra p = new Precompra();
+                Precompra pc = new Precompra();
+                Precompra pc1 = new Precompra();
+                numeroSerie = pc.GenerarSerie();
+
+                if (numeroSerie == null) {
+                    numeroSerie = "0001";
+                    folio = folio + "-A" + numeroSerie;
+                    request.setAttribute("folioo", folio);
+                    request.setAttribute("numeroS", numeroSerie);
+                } else {
+                    int incrementador = Integer.parseInt(numeroSerie);
+                    numeroSerie = pc1.numeros(incrementador);
+                    folio = folio + "-A" + numeroSerie;
+                    request.setAttribute("folioo", folio);
+                    request.setAttribute("numeroS", numeroSerie);
+                }
+                Material m = new Material();
+                Material m1 = new Material();
+                String soli[] = request.getParameterValues("solicitudes");
+                String codigos[] = request.getParameterValues("codigosS");
+               p.precompra(numeroSerie, folio);
+                for (int i = 0; i < soli.length; i++) {
+                    String existencia = m.Existencia(codigos[i]);
+                    String solicitado = m.Solicitado(codigos[i]);
+                    String descripciones = m.Descripcion(codigos[i]);
+                    System.out.println(existencia+" "+solicitado+descripciones);
+                    if (Integer.parseInt(solicitado) > Integer.parseInt(existencia)) {
+                        m1.precompra(folio, descripciones, String.valueOf(Integer.parseInt(solicitado) - Integer.parseInt(existencia)));
+                    }
+                }
             }
 
         }

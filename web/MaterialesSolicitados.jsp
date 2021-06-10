@@ -16,7 +16,7 @@
     </head>
     <body>
         <h1>Materiales Solicitados</h1>
-        <form action="controlClientes.do">
+        <form action="controlClientes.do" method="post">
             <div class="container" align="center">
                 <input type="text" name="nombre" value="" class="form-control" placeholder="Nombre"> 
                 <button type="submit" name="opcion" value="BuscarClientesW" class="btn btn-outline-info">Buscar</button>
