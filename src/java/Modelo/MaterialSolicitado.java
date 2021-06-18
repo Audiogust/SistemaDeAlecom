@@ -17,7 +17,9 @@ private String nombre;
 private String unidades;
 private int existencia;
 private String solicitado;
-
+private String fecha;
+private String hora;
+private int existenciaant;
 
     public MaterialSolicitado(){
         
@@ -44,6 +46,53 @@ private String solicitado;
         this.solicitado = solicitado;
     }
 
+    public MaterialSolicitado(int id, String otiga, String codigo, String nombre, String unidades, int existencia, String solicitado, String fecha, String hora) {
+        this.id = id;
+        this.otiga = otiga;
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.unidades = unidades;
+        this.existencia = existencia;
+        this.solicitado = solicitado;
+        this.fecha = fecha;
+        this.hora = hora;
+    }
+
+    public MaterialSolicitado(int id, String otiga, String codigo, String nombre,
+                              String unidades, int existencia, String solicitado, 
+                              String fecha, String hora, int existenciaant) {
+        this.id = id;
+        this.otiga = otiga;
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.unidades = unidades;
+        this.existencia = existencia;
+        this.solicitado = solicitado;
+        this.fecha = fecha;
+        this.hora = hora;
+        this.existenciaant = existenciaant;
+    }
+    
+    
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public String getHora() {
+        return hora;
+    }
+
+    public void setHora(String hora) {
+        this.hora = hora;
+    }
+
+    
+    
     public int getId() {
         return id;
     }
@@ -100,6 +149,16 @@ private String solicitado;
         this.solicitado = solicitado;
     }
 
+    public int getExistenciaant() {
+        return existenciaant;
+    }
+
+    public void setExistenciaant(int existenciaant) {
+        this.existenciaant = existenciaant;
+    }
+    
+    
+
    
 public static Vector mostrarDev(String busqueda) throws SQLException{
         Vector proyectos = null; 
@@ -118,7 +177,64 @@ public static Vector mostrarDev(String busqueda) throws SQLException{
             return null;
         }
     }
-    
+
+public static Vector mostrarHisto(String busqueda) throws SQLException{
+        Vector proyectos = null; 
+        Connection c = Conexion.conectar();
+           if (c != null) {
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(" SELECT * FROM historialSolicitado WHERE otiga  = '" + busqueda +"'");
+             proyectos  = new Vector();
+             while(rs.next()){
+                       proyectos.add(new MaterialSolicitado(rs.getInt("id"),
+                         rs.getString("otiga"),rs.getString("codigo"), rs.getString("nombre"),rs.getString("unidad"),
+                         rs.getInt("existencia"),rs.getString("solicitado"),rs.getString("fecha"),rs.getString("hora") ));                       
+             }               
+              return proyectos;                
+           }else {
+            return null;
+        }
+    }
+public static Vector mostrarHistoW(String busqueda) throws SQLException{
+        Vector proyectos = null; 
+        Connection c = Conexion.conectar();
+           if (c != null) {
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(" SELECT * FROM historialSolicitadoW WHERE otiga  = '" + busqueda +"'");
+             proyectos  = new Vector();
+             while(rs.next()){
+                       proyectos.add(new MaterialSolicitado(rs.getInt("id"),
+                         rs.getString("otiga"),rs.getString("codigo"), rs.getString("nombre"),rs.getString("unidad"),
+                         rs.getInt("existencia"),rs.getString("solicitado"),rs.getString("fecha"),rs.getString("hora") ));                       
+             }               
+              return proyectos;                
+           }else {
+            return null;
+        }
+    }
+
+public static Vector mostrarHistoSalidas(String busqueda) throws SQLException{
+        Vector proyectos = null; 
+        Connection c = Conexion.conectar();
+           if (c != null) {
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(" SELECT * FROM historialSalida WHERE otiga  = '" + busqueda +"'");
+             proyectos  = new Vector();
+             while(rs.next()){
+                       proyectos.add(new MaterialSolicitado(
+                         rs.getInt("id"),rs.getString("otiga"),rs.getString("codigo"), 
+                         rs.getString("nombre"),rs.getString("unidad"),rs.getInt("existencia_ant"),
+                         rs.getString("solicitado"),rs.getString("fecha"),rs.getString("hora"),
+                         rs.getInt("existencia_act")));                       
+             }               
+              return proyectos;                
+           }else {
+            return null;
+        }
+    }
+
+
+
 public static Vector mostrarBusqueda(String busqueda) throws SQLException{
         Vector proyectos = null; 
         Connection c = Conexion.conectar();

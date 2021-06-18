@@ -91,7 +91,7 @@
                                 objs = (MaterialSolicitadoWisp) usu.get(i);
 
                         %>
-                        <tr>
+                        <tr <% if (objs.getSolicitado() > objs.getExistencia()) { %> class="table-danger" <%}%>>
                             <td><%= objs.getIde()%></td>
                             <td><%= objs.getID()%></td>
                             <td><input type="text" name="codigoW" value="<%= objs.getCodigo()%>" disable></td>
@@ -100,12 +100,13 @@
                             <td><%= objs.getExistencia()%></td>
                             <td><%= objs.getSolicitado()%></td>                              
 
-                            <td><input class="formulario__campo" type="number" name="numeros"   placeholder="Cantidad" min="0" max="<%= objs.getExistencia()%>" ></td>
+                            <td><input class="formulario__campo" type="number" name="numerosW"   placeholder="Cantidad" min="0" max="<%= objs.getExistencia()%>" ></td>
                         </tr>
                         <%}%>  
                         <input type="hidden" name="txtpara" value=<%=VPara%> />
                     </table>
                     <button type="submit" name="opcion" value="guardarAlmacen" class="btn btn-success">Enviar</button>
+                    <button type="submit" name="opcion" value="guardarPrecompra" class="btn btn-primary">Generar Precompra</button>
                 </div>
             </div>
         </form>

@@ -15,12 +15,15 @@ import java.io.PrintWriter;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.apache.tomcat.jni.Local;
 
 /**
  *
@@ -59,14 +62,22 @@ public class ControlFull extends HttpServlet {
                Proyecto pr = new Proyecto();
                Material m = new Material();
                Material m1 = new Material();
+               Material m2 = new Material();
                String ar[] = request.getParameterValues("numeros");
                String arr[] = request.getParameterValues("cod");
-               String otiga = request.getParameter("otiga");               
+               String otiga = request.getParameter("otiga");  
+               DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy ");
+               DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm:ss");
                pr.cambioStatus(otiga);
                for (int i = 0; i < ar.length; i++) {
                     if (ar[i].length() > 0) {
                     String descripciones = m.Descripcion(arr[i]);
+                    String unidad =m.Unidades(arr[i]);
+                    String existencias = m.Existencia(arr[i]);
+                    String fecha = dtf.format(LocalDateTime.now());
+                    String hora = dtf1.format(LocalDateTime.now());
                     m1.Pedidos(otiga, descripciones, ar[i]);
+                    m2.insertarHisto(otiga, arr[i] , descripciones, unidad,Integer.parseInt(existencias) ,Integer.parseInt(ar[i]), fecha, hora);
                     System.out.println(arr[i]+"  || "+ar[i]);    
                     }                    
                 }
@@ -299,17 +310,25 @@ public class ControlFull extends HttpServlet {
                 }
             }
             if (opcion.equals("enviarAlmacen")) {   
-                
+                Material ms = new Material();
                 Proyecto pr = new Proyecto();
                 String idProyecto=request.getParameter("otiga_1");
                 MaterialSolicitado mat = new MaterialSolicitado();
                 String soli[] = request.getParameterValues("solicitudes");
                 String nombres[] = request.getParameterValues("codigosS");
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm:ss");
                 for (int i = 0; i < soli.length; i++) {
                     if (soli[i].length() > 0) {
-                    mat.Operacion(nombres[i],Integer.parseInt(soli[i]));                    
+                    String nombre = ms.Descripcion(nombres[i]);
+                    
+                    String unidad =ms.Unidades(nombres[i]);
+                    String existencias = ms.Existencia(nombres[i]);
+                    String fecha = dtf.format(LocalDateTime.now());
+                    String hora = dtf1.format(LocalDateTime.now());
+                    mat.Operacion(nombres[i],Integer.parseInt(soli[i]));
+                    ms.insertarHistoSalida(idProyecto, nombres[i], nombre, unidad,Integer.parseInt(existencias),Integer.parseInt(soli[i]),Integer.parseInt(existencias)-Integer.parseInt(soli[i]) , fecha, hora);
                     System.out.println(soli[i]+" "+nombres[i]);
-                        System.out.println("hoooola");
                     }
                 pr.cambioStatusDevolver(idProyecto);
                     
@@ -321,7 +340,19 @@ public class ControlFull extends HttpServlet {
             }
                 
             if (opcion.equals("enviarPrecompra")) {
-
+                Material mat = new Material();
+                String soli[] = request.getParameterValues("solicitudes");
+                String codigos[] = request.getParameterValues("codigosS");
+                int con=0;
+                for (int i = 0; i < soli.length; i++) {
+                    String existencias = mat.Existencia(codigos[i]);
+                    String solicitados = mat.Solicitado(codigos[i]);
+                    if (Integer.parseInt(solicitados) > Integer.parseInt(existencias)) {
+                        con++;
+                    }
+                }
+                
+                if (con>0) {
                 String otiga = request.getParameter("otiga_1");
 
                 DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -347,10 +378,8 @@ public class ControlFull extends HttpServlet {
                     request.setAttribute("numeroS", numeroSerie);
                 }
                 Material m = new Material();
-                Material m1 = new Material();
-                String soli[] = request.getParameterValues("solicitudes");
-                String codigos[] = request.getParameterValues("codigosS");
-               p.precompra(numeroSerie, folio);
+                Material m1 = new Material();                
+                p.precompra(numeroSerie, folio);
                 for (int i = 0; i < soli.length; i++) {
                     String existencia = m.Existencia(codigos[i]);
                     String solicitado = m.Solicitado(codigos[i]);
@@ -359,7 +388,13 @@ public class ControlFull extends HttpServlet {
                     if (Integer.parseInt(solicitado) > Integer.parseInt(existencia)) {
                         m1.precompra(folio, descripciones, String.valueOf(Integer.parseInt(solicitado) - Integer.parseInt(existencia)));
                     }
+                    request.getRequestDispatcher("Almacen.jsp").forward(request, response);
+                }    
+                }else{
+                    request.getRequestDispatcher("consultaSolicitud.jsp").forward(request, response);
                 }
+                
+                
             }
 
         }

@@ -24,13 +24,15 @@
             
             <form align="center" action="">
                 <font color="#ffffff"><h2>MENU Almacen</h2></font>
-                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='Consulta.jsp'"><img src="IMG/almacen.svg" width="60" height="60"><br>Consulta por codigo </button>
+                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='MenuHistoriales.jsp'"><img src="IMG/historial.png" width="60" height="60"><br>Historial de Materiales solicitados</button>
 
                 <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='Tabla.jsp'"><img src="IMG/almacen.svg" width="60" height="60"><br>Tabla</button>
 
                 <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='busquedaSM.jsp'"><img src="IMG/solicitud.svg" width="60" height="60"><br>Consultar Solicitud de Materiales</button>
 
                 <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='SolicitudMaterial.jsp'"><img src="IMG/solicitud.svg" width="60" height="60"><br>Devolucion de Materiales</button>                
+                
+                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='SolicitudMaterial.jsp'"><img src="IMG/solicitud.svg" width="60" height="60"><br>Historial de Materiales Solicitados</button>                
             </form>
         </div>
     </body>

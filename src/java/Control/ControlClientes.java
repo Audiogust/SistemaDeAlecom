@@ -11,6 +11,11 @@ import Modelo.MaterialSolicitadoWisp;
 import Modelo.Precompra;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -108,8 +113,9 @@ public class ControlClientes extends HttpServlet {
                 Clientes cl1 = new Clientes();
                 Material m = new Material();
                 Material m1 = new Material();
-                
-
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm:ss");
+                Material ms = new Material();
                 for (int i = 0; i < codigo.length; i++) {
                     if (codigo[i].length() > 0) {
 
@@ -117,6 +123,13 @@ public class ControlClientes extends HttpServlet {
                         m1.Wisp(id, material, cantidad[i]);
                         String c = cl1.Status(id);
 
+                      
+                        String unidad = ms.Unidades(codigo[i]);
+                        String existencias = ms.Existencia(codigo[i]);
+                        String fecha = dtf.format(LocalDateTime.now());
+                        String hora = dtf1.format(LocalDateTime.now());
+                       
+                        ms.insertarHistoW(id, codigo[i], material, unidad, Integer.parseInt(existencias), Integer.parseInt(cantidad[i]), fecha, hora);
                         System.out.println(codigo[i] + " " + cantidad[i]);
 
                     }
@@ -133,7 +146,7 @@ public class ControlClientes extends HttpServlet {
                 String id1 = request.getParameter("idt_1");
                 MaterialSolicitadoWisp wisp = new MaterialSolicitadoWisp();
                 Clientes cli = new Clientes();
-                String soli[] = request.getParameterValues("numeros");
+                String soli[] = request.getParameterValues("numerosW");
                 String codigos[] = request.getParameterValues("codigoW");
                 for (int i = 0; i < soli.length; i++) {
                     wisp.OperacionWisp(codigos[i],Integer.parseInt(soli[i]));                    
@@ -156,6 +169,48 @@ public class ControlClientes extends HttpServlet {
                
                
               }
+                
+               if (opcion.equals("guardarPrecompra")) {
+
+                String otiga = request.getParameter("idt_1");
+
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                Calendar cal = Calendar.getInstance();
+                String fechaa = dateFormat.format(cal.getTime());
+                String folio = "PREOC-";
+                folio = folio + fechaa;
+                Precompra p = new Precompra();
+                Precompra pc = new Precompra();
+                Precompra pc1 = new Precompra();
+                numeroSerie = pc.GenerarSerie();
+
+                if (numeroSerie == null) {
+                    numeroSerie = "0001";
+                    folio = folio + "-A" + numeroSerie;
+                    request.setAttribute("folioo", folio);
+                    request.setAttribute("numeroS", numeroSerie);
+                } else {
+                    int incrementador = Integer.parseInt(numeroSerie);
+                    numeroSerie = pc1.numeros(incrementador);
+                    folio = folio + "-A" + numeroSerie;
+                    request.setAttribute("folioo", folio);
+                    request.setAttribute("numeroS", numeroSerie);
+                }
+                Material m = new Material();
+                Material m1 = new Material();
+                String soli[] = request.getParameterValues("numerosW");
+                String codigos[] = request.getParameterValues("codigoW");
+               p.precompra(numeroSerie, folio);
+                for (int i = 0; i < soli.length; i++) {
+                    String existencia = m.Existencia(codigos[i]);
+                    String solicitado = m.SolicitadoWisp(codigos[i]);
+                    String descripciones = m.Descripcion(codigos[i]);
+                    System.out.println(existencia+" "+solicitado+descripciones);
+                    if (Integer.parseInt(solicitado) > Integer.parseInt(existencia)) {
+                        m1.precompra(folio, descripciones, String.valueOf(Integer.parseInt(solicitado) - Integer.parseInt(existencia)));
+                    }
+                }
+            }
 
              
         }

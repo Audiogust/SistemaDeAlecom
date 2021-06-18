@@ -148,6 +148,22 @@ public class Material {
         }
     }
     
+    public String Unidades(String des){
+        Connection c = Conexion.conectar();
+       
+        try{
+            PreparedStatement ps = c.prepareStatement("SELECT  unidad from Materiales where codigo=? ");
+            ps.setString(1, des);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                String descripcion = rs.getString("unidad");
+                return descripcion;
+            }
+            return "No hay datos";
+        } catch (Exception e) {
+            return "No se pudo";
+        }
+    }
     public String Existencia(String exi){
         Connection c = Conexion.conectar();
        
@@ -182,6 +198,23 @@ public class Material {
         }
     }
       
+        public String SolicitadoWisp(String soli){
+        Connection c = Conexion.conectar();
+       
+        try{
+            PreparedStatement ps = c.prepareStatement("SELECT  solicitado from solicitudWisp where codigo=? ");
+            ps.setString(1, soli);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                String descripcion = rs.getString("solicitado");
+                return descripcion;
+            }
+            return "No hay datos";
+        } catch (Exception e) {
+            return "No se pudo";
+        }
+    }
+      
      public String Pedidos(String cod, String des, String cantidad) {
         Connection c = Conexion.conectar();
         try {
@@ -199,7 +232,80 @@ public class Material {
             return "Error al modificar " + e;
         }
      }
+     public String insertarHisto(String ot, String cod, String nom,String uni,int exis,int sol,String fecha, String hora) {
+        Connection c = Conexion.conectar();
+        try {
+            if (c != null) {
+                PreparedStatement ps = c.prepareStatement(" INSERT INTO historialSolicitado(otiga,codigo,nombre,unidad,existencia,solicitado,fecha,hora)  values(?,?,?,?,?,?,?,?)");
+                ps.setString(1, ot);
+                ps.setString(2, cod);
+                ps.setString(3, nom);
+                ps.setString(4, uni);
+                ps.setInt(5,exis);
+                ps.setInt(6,sol);
+                ps.setString(7, fecha);
+                ps.setString(8, hora);
+
+
+                ps.execute();
+                return "Modificación realizada";
+            } else {
+                return "No hay conexion a la base ";
+            }
+        } catch (Exception e) {
+            return "Error al modificar " + e;
+        }
+     }
+     public String insertarHistoW(String ot, String cod, String nom,String uni,
+                                  int exis,int sol,String fecha, String hora) {
+        Connection c = Conexion.conectar();
+        try {
+            if (c != null) {
+                PreparedStatement ps = c.prepareStatement(" INSERT INTO historialSolicitadoW(otiga,codigo,nombre,unidad,existencia,solicitado,fecha,hora)  values(?,?,?,?,?,?,?,?)");
+                ps.setString(1, ot);
+                ps.setString(2, cod);
+                ps.setString(3, nom);
+                ps.setString(4, uni);
+                ps.setInt(5,exis);
+                ps.setInt(6,sol);
+                ps.setString(7, fecha);
+                ps.setString(8, hora);
+
+                ps.execute();
+                return "Modificación realizada";
+            } else {
+                return "No hay conexion a la base ";
+            }
+        } catch (Exception e) {
+            return "Error al modificar " + e;
+        }
+     }
      
+       public String insertarHistoSalida(String ot, String cod, String nom,String uni,
+                                         int exis, int sol, int ea, String fecha, String hora) {
+        Connection c = Conexion.conectar();
+        try {
+            if (c != null) {
+                PreparedStatement ps = c.prepareStatement(" INSERT INTO historialSalida(otiga,codigo,nombre,unidad,"
+                                    + "existencia_ant,solicitado,existencia_act,fecha,hora)  values(?,?,?,?,?,?,?,?,?)");
+                ps.setString(1, ot);
+                ps.setString(2, cod);
+                ps.setString(3, nom);
+                ps.setString(4, uni);
+                ps.setInt(5,exis);
+                ps.setInt(6,sol);
+                ps.setInt(7,ea);
+                ps.setString(8, fecha);
+                ps.setString(9, hora);
+                ps.execute();
+                return "Modificación realizada";
+            } else {
+                return "No hay conexion a la base ";
+            }
+        } catch (Exception e) {
+            return "Error al modificar " + e;
+        }
+     }
      public String precompra(String fol, String nom, String cantidad) {
         Connection c = Conexion.conectar();
         try {

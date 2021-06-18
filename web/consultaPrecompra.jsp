@@ -71,7 +71,7 @@
                                  <td><input type="text" name="codigosEx" value="<%= objs.getCodigo()%>" disable></td>
                                  <td><%= objs.getNombre()%></td>
                                  <td><%= objs.getSolicitado()%></td>
-                                 <td><input class="formulario__campo" type="number" name="numeroExi"   placeholder="Cantidad" min="0" max="<%= objs.getSolicitado()%>"></td> 
+                                 <td><input class="formulario__campo" type="number" name="numeroExi"   placeholder="Cantidad" min="0" ></td> 
                                
                              </tr>
                                 <%}%>

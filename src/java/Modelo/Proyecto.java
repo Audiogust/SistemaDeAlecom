@@ -159,6 +159,25 @@ public class Proyecto {
         }
     }
     
+    public static Vector mostrarTablaProyectos() throws SQLException{
+        Vector proyectos = null; 
+        Connection c = Conexion.conectar();
+           if (c != null) {
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(" SELECT * FROM Proyectos");
+             proyectos  = new Vector();
+             while(rs.next()){
+                       proyectos.add(new Proyecto(rs.getString("otiga"),rs.getString("nombre"),rs.getString("region"),
+                                                  rs.getString("direccion"),rs.getString("latitud"),rs.getString("longitud"),
+                                                  rs.getString("elevacion"),rs.getString("tecnologia"),rs.getString("ubicacion"),
+                                                  rs.getString("fecha"),rs.getString("autorizado"),rs.getString("tipo")));
+             }               
+              return proyectos;                
+           }else {
+            return null;
+        }
+    }
+    
      public static Vector mostrarBusqueda(String busqueda) throws SQLException{
         Vector proyectos = null; 
         Connection c = Conexion.conectar();
