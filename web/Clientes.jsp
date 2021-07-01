@@ -12,10 +12,11 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <link rel="stylesheet" href="IMG/style.css">
         <title>JSP Page</title>
     </head>
             <style>
-           body {
+                body {
                 background-image: url("IMG/fondo_4.jpg");
                 background-position: center;
                 background-size: cover;
@@ -29,7 +30,7 @@
                  margin-right:600px!important;
                       }
                       .derecha   { float: right; }
-.izquierda { float: left;  }
+                .izquierda { float: left;  }
                 
                 
                 table {
@@ -41,8 +42,8 @@
             
             <table border="0" cellpadding="0" cellspacing="0" width="40%"  align="center">
                 <tr>
-                    <td width="70%"><b>ID:</b> </td>
-                    <td  width="50%"><input type="text" size="53" name="id"></td>
+                    <td width="70%"><b>Folio:</b> </td>
+                    <td  width="50%"><input type="text" size="53" name="id" value="${numeritow}"></td>
                 </tr>
                 <tr>
                     <td width="70%"><b>Nombre:</b> </td>
@@ -50,7 +51,13 @@
                 </tr>
                 <tr>
                     <td width="70%"><b>Direccion:</b> </td>
-                    <td width="50%"><input type="text" size="53" name="n_direccion"></td>
+                    
+                    <td width="50%"><select name="direccion">
+                            <option value="VLLAGX">Villas de Guadalupe Xalostoc </option>
+                            <option value="OJAG">Ojo de Agua</option>
+                            <option value="SGR">Sagitario</option>
+                            <option value="BE">Barrio de España</option>
+                        </select></td>
                 </tr>
                 <tr>
                     <td width="70%"><b>Telefono:</b> </td>
@@ -80,8 +87,7 @@
                 <tr>
                     
                 <td width="70%"><b>Grupo:</b> </td>
-                    <td width="50%"><select name="n_grupo" id="grupo">
-                        <option value="0"></option>
+                    <td width="50%"><select name="n_grupo" id="grupo">                        
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>

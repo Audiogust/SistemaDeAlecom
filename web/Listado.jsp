@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     </head>
     <body>
-        <h1>Solicitar Materiales</h1>
+        <h1 align="center">Solicitar Materiales</h1>
         <%
             HttpSession sesion=request.getSession();
             Proyecto producto=(Proyecto)sesion.getAttribute("proyectos"); 
@@ -39,15 +39,11 @@
         %>
         <center>
         <form action="controlFull.do" method="post">
-            
             <div>
             <td width="50%"><input type="text" size="53" name="otiga"  value="<%= otiga%>" id="textfield"></td>
             <td width="50%"><input type="text" size="53"  value="<%= nombre%>" id="textfield"></td>          
-            <td width="50%"><input type="text" size="53"  value="FECHA" id="textfield"></td>
-            <td width="50%"><input type="text" size="53"  value="HORA" id="textfield"></td>
             </div>
             
-          
             <table align="center" border="5" width="50%" class="table table-dark table-bordered table-hover table-responsive-sm">
   	                 <thead class="bg-info"> 
                             <tr>

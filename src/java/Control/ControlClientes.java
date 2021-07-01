@@ -12,10 +12,14 @@ import Modelo.Precompra;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -38,7 +42,7 @@ public class ControlClientes extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -48,10 +52,10 @@ public class ControlClientes extends HttpServlet {
              
              
             if (opcion.equals("v_registrar_clientes")) {
-
+                String iden="WISP-";
                 String id = request.getParameter("id");
                 String nombre = request.getParameter("n_nombre");
-                String direccion = request.getParameter("n_direccion");
+                String direccion = request.getParameter("direccion");
                 String telefono = request.getParameter("n_telefono");
                 String correo = request.getParameter("n_correo");
                 String tiempo = request.getParameter("n_tiempo");
@@ -61,7 +65,21 @@ public class ControlClientes extends HttpServlet {
                 int grupo = Integer.parseInt(request.getParameter("n_grupo"));
                 String comentarios = request.getParameter("n_comentarios");
                 
+                String OLD_FORMAT = "yyyy-MM-dd"; 
+                String NEW_FORMAT = "dd/MM/yyyy";
+
+                String oldDateString = fecha;
+                String newDateString;
+                SimpleDateFormat sdf = new SimpleDateFormat(OLD_FORMAT);
+                java.util.Date d = sdf.parse(oldDateString);
+                sdf.applyPattern(NEW_FORMAT);
+                newDateString = sdf.format(d);
+  
+                iden=iden+direccion;
+                iden=iden+"-"+newDateString+"/";
+                iden=iden+id;
                 
+                System.out.println(iden+" "+id+" "+direccion+" "+newDateString );
                 
                 if (id.equals("") || nombre.equals("") || direccion.equals("") || telefono.equals("") || correo.equals("")
                         || tiempo.equals("") || megas.equals("") || tarifa.equals("") || fecha.equals("")) {
@@ -72,7 +90,8 @@ public class ControlClientes extends HttpServlet {
                     request.getRequestDispatcher("Clientes_error.jsp").forward(request, response);
                 } else {                                       
                     Clientes cl1 = new Clientes();
-                    cl1.setId(id);
+                    cl1.setId(iden);
+                    cl1.setNumeroSerie(id);
                     cl1.setNombre(nombre);
                     cl1.setDireccion(direccion);
                     cl1.setTelefono(telefono);
@@ -80,7 +99,7 @@ public class ControlClientes extends HttpServlet {
                     cl1.setTiempo(tiempo);
                     cl1.setMegas(megas);
                     cl1.setTarifa(tarifa);
-                    cl1.setFecha(fecha);
+                    cl1.setFecha(newDateString);
                     cl1.setGrupo(grupo);
                     cl1.setComentarios(comentarios);
 
@@ -102,6 +121,23 @@ public class ControlClientes extends HttpServlet {
                 }
 
             }
+            if (opcion.equals("GenerarNumeroW")) {
+                    Clientes pc = new Clientes();
+                    Clientes pc1 = new Clientes();
+                    numeroSerie = pc.GenerarSerieCliente();
+
+                    if (numeroSerie == null) {
+                        numeroSerie = "0001";                                        
+                        request.setAttribute("numeritow", numeroSerie);
+                    } else {
+                        int incrementador = Integer.parseInt(numeroSerie);
+                        numeroSerie = pc1.numeros(incrementador);
+                    
+                        request.setAttribute("numeritow", numeroSerie);
+                    }
+                    request.getRequestDispatcher("Clientes.jsp").forward(request, response);
+                
+            }
             if (opcion.equals("BuscarGrupo")) {
                  
                   request.getRequestDispatcher("Instalacion.jsp").forward(request, response);
@@ -116,22 +152,18 @@ public class ControlClientes extends HttpServlet {
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm:ss");
                 Material ms = new Material();
-                for (int i = 0; i < codigo.length; i++) {
-                    if (codigo[i].length() > 0) {
-
+                Material jeje = new Material();
+                String c = cl1.Status(id);
+                for (int i = 0; i < cantidad.length; i++) {
+                    if (cantidad[i].length() > 0) {
                         String material = m.Descripcion(codigo[i]);
-                        m1.Wisp(id, material, cantidad[i]);
-                        String c = cl1.Status(id);
-
-                      
                         String unidad = ms.Unidades(codigo[i]);
                         String existencias = ms.Existencia(codigo[i]);
                         String fecha = dtf.format(LocalDateTime.now());
                         String hora = dtf1.format(LocalDateTime.now());
-                       
-                        ms.insertarHistoW(id, codigo[i], material, unidad, Integer.parseInt(existencias), Integer.parseInt(cantidad[i]), fecha, hora);
+                        m1.Wisp(id, material, cantidad[i]);
+                        jeje.insertarHistoW(id, codigo[i] , material, unidad,Integer.parseInt(existencias) ,Integer.parseInt(cantidad[i]), fecha, hora);
                         System.out.println(codigo[i] + " " + cantidad[i]);
-
                     }
                 }
 
@@ -228,7 +260,11 @@ public class ControlClientes extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(ControlClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -242,7 +278,11 @@ public class ControlClientes extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(ControlClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

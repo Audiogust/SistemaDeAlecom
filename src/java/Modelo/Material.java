@@ -181,12 +181,13 @@ public class Material {
         }
     }
     
-      public String Solicitado(String soli){
+      public String Solicitado(String soli,String ot){
         Connection c = Conexion.conectar();
        
         try{
-            PreparedStatement ps = c.prepareStatement("SELECT  solicitado from solicitudMat where codigo=? ");
+            PreparedStatement ps = c.prepareStatement("SELECT  solicitado from solicitudMat where codigo=? and otiga=? ");
             ps.setString(1, soli);
+            ps.setString(2, ot);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 String descripcion = rs.getString("solicitado");
@@ -232,7 +233,8 @@ public class Material {
             return "Error al modificar " + e;
         }
      }
-     public String insertarHisto(String ot, String cod, String nom,String uni,int exis,int sol,String fecha, String hora) {
+     public String insertarHisto(String ot, String cod, String nom,String uni,
+             int exis,int sol,String fecha, String hora) {
         Connection c = Conexion.conectar();
         try {
             if (c != null) {
@@ -306,11 +308,36 @@ public class Material {
             return "Error al modificar " + e;
         }
      }
+       public String insertarHistoDevolucion(String ot, String cod, String nom,String uni,
+                                         int exis, int sol, int ea, String fecha, String hora) {
+        Connection c = Conexion.conectar();
+        try {
+            if (c != null) {
+                PreparedStatement ps = c.prepareStatement(" INSERT INTO historialDevolucion(otiga,codigo,nombre,unidad,"
+                                    + "existencia_ant,solicitado,existencia_act,fecha,hora)  values(?,?,?,?,?,?,?,?,?)");
+                ps.setString(1, ot);
+                ps.setString(2, cod);
+                ps.setString(3, nom);
+                ps.setString(4, uni);
+                ps.setInt(5,exis);
+                ps.setInt(6,sol);
+                ps.setInt(7,ea);
+                ps.setString(8, fecha);
+                ps.setString(9, hora);
+                ps.execute();
+                return "Modificación realizada";
+            } else {
+                return "No hay conexion a la base ";
+            }
+        } catch (Exception e) {
+            return "Error al modificar " + e;
+        }
+     }
      public String precompra(String fol, String nom, String cantidad) {
         Connection c = Conexion.conectar();
         try {
             if (c != null) {
-                PreparedStatement ps = c.prepareStatement(" INSERT INTO OrdenPreCompra(folio,nombre,solicitado)  values(?,?,?)");
+                PreparedStatement ps = c.prepareStatement(" INSERT INTO OrdenPreCompra(folio,nombre,solicitado) values(?,?,?)");
                 ps.setString(1, fol);
                 ps.setString(2, nom);
                 ps.setInt(3,Integer.parseInt(cantidad));

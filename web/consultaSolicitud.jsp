@@ -76,11 +76,11 @@
                <tr <% if (Integer.parseInt(objs.getSolicitado()) > objs.getExistencia()) { %> class="table-danger" <%}%>>
                    <td><%= objs.getId()%></td>
                    <td><%= objs.getOtiga()%></td>
-                   <td><input type="text" name="codigosS" value="<%= objs.getCodigo()%>" disable></td>
+                   <td><input type="text" name="codigosS" value="<%= objs.getCodigo()%>" ></td>
                    <td><%= objs.getNombre()%></td>
                    <td><%= objs.getUnidades()%></td>
                    <td><%= objs.getExistencia()%></td>
-                   <td><%= objs.getSolicitado()%></td>                                                           
+                   <td><input type="text" name="solicitadoF" value="<%= objs.getSolicitado()%>"></td>                                                          
                    <td><input class="formulario__campo" type="number" name="solicitudes"   placeholder="Cantidad" min="0" max="<%= objs.getExistencia()%>" ></td>
                </tr>
                <%}%>  

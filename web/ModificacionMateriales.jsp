@@ -15,39 +15,43 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <div align="center">
+            <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20">    
+        </div>
+        <br>
         <h1>Modificar</h1>
-         <table align="center" border="5" width="50%" class="table table-dark table-bordered table-hover">
-  	                 <thead class="bg-info"> 
-                            <tr>
-                                <th>CODIGO</th>
-                                <th>DESCRIPCION</th>
-                                <th>UNIDAD</th>
-                                <th>EXISTENCIA</th>
-                                <th>SALIDA</th>
-                                <th>EDITAR</th>
-                                
-                            </tr>
-		         </thead>
-                            <%
-                             Material objs = new Material();
-                             Vector usu = new Vector();
-                             usu=objs.mostrar();
-                             
-                             for(int i=0; i<usu.size();i++){
-                                 objs=(Material)usu.get(i);
-                             %>
-                             <tr>
-                                <td><%= objs.getCodigo()%></td>
-                                <td><%= objs.getDescripcion()%></td>
-                                <td><%= objs.getUnidad()%></td>
-                                <td><%= objs.getExistencia()%></td>
-                                <td><%= objs.getSalida()%></td>
-                                 <td align="center" ><a href="EditarMat.jsp?txtpara=M&id=<%=objs.getCodigo()%>">
-                                     <img src="IMG/editar.svg" width="25px" height="25px"> </td>
-                                
-                                            
-                             </tr>
-                                <%}%>
-                </table> 
+        <table align="center" border="5" width="50%" class="table table-dark table-bordered table-hover">
+            <thead class="bg-info"> 
+                <tr>
+                    <th>CODIGO</th>
+                    <th>DESCRIPCION</th>
+                    <th>UNIDAD</th>
+                    <th>EXISTENCIA</th>
+                    <th>SALIDA</th>
+                    <th>EDITAR</th>
+
+                </tr>
+            </thead>
+            <%
+                Material objs = new Material();
+                Vector usu = new Vector();
+                usu = objs.mostrar();
+
+                for (int i = 0; i < usu.size(); i++) {
+                    objs = (Material) usu.get(i);
+            %>
+            <tr>
+                <td><%= objs.getCodigo()%></td>
+                <td><%= objs.getDescripcion()%></td>
+                <td><%= objs.getUnidad()%></td>
+                <td><%= objs.getExistencia()%></td>
+                <td><%= objs.getSalida()%></td>
+                <td align="center" ><a href="EditarMat.jsp?txtpara=M&id=<%=objs.getCodigo()%>">
+                        <img src="IMG/editar.svg" width="25px" height="25px"> </td>
+
+
+                        </tr>
+                        <%}%>
+        </table> 
     </body>
 </html>

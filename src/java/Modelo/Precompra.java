@@ -78,6 +78,22 @@ public class Precompra {
         }
         return numeroSerie;
     }
+    public String GenerarSerieProyecto(){
+        String numeroSerie="";
+        String sql="SELECT MAX(numeroSerie) from Proyectos";
+        
+        try {
+            con =cn.conectar();
+            ps= con.prepareStatement(sql);
+            rs =ps.executeQuery();
+            while (rs.next()) {
+               numeroSerie = rs.getString(1);        
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return numeroSerie;
+    }
     public String GenerarSerieWisp(){
         String numeroSerie="";
         String sql="SELECT MAX(folio) from Clientes";

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Modelo;
 
 import java.sql.Connection;
@@ -12,14 +8,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Vector;
 
-/**
- *
- * @author Vane
- */
+
 public class Clientes {
     
     private int numero;
     private String id;
+    private String numeroSerie;
     private String nombre;
     private String direccion;
     private String telefono;
@@ -67,6 +61,16 @@ public class Clientes {
     public void setId(String id) {
         this.id = id;
     }
+
+    public String getNumeroSerie() {
+        return numeroSerie;
+    }
+
+    public void setNumeroSerie(String numeroSerie) {
+        this.numeroSerie = numeroSerie;
+    }
+    
+    
 
     public String getNombre() {
         return nombre;
@@ -153,18 +157,19 @@ public class Clientes {
          Connection c = Conexion.conectar();
         if (c != null) {
             try {
-                PreparedStatement ps = c.prepareStatement("insert into Clientes(ID,nombre, direccion, telefono, correo, tiempo, megas , tarifa, fecha, grupo, comentarios) values(?,?,?,?,?,?,?,?,?,?,?)");
+                PreparedStatement ps = c.prepareStatement("insert into Clientes(ID,numeroSerie,nombre, direccion, telefono, correo, tiempo, megas , tarifa, fecha, grupo, comentarios) values(?,?,?,?,?,?,?,?,?,?,?,?)");
                 ps.setString(1, id);
-                ps.setString(2, nombre);
-                ps.setString(3, direccion);
-                ps.setString(4, telefono);
-                ps.setString(5, correo);
-                ps.setString(6, tiempo);
-                ps.setString(7, megas);
-                ps.setString(8, tarifa);
-                ps.setString(9, fecha);
-                ps.setInt(10, grupo);
-                ps.setString(11, comentarios);
+                ps.setString(2, numeroSerie);
+                ps.setString(3, nombre);
+                ps.setString(4, direccion);
+                ps.setString(5, telefono);
+                ps.setString(6, correo);
+                ps.setString(7, tiempo);
+                ps.setString(8, megas);
+                ps.setString(9, tarifa);
+                ps.setString(10, fecha);
+                ps.setInt(11, grupo);
+                ps.setString(12, comentarios);
                 ps.execute();
                 return "Se han guardado los datos correctamente";
             } catch (Exception e) {
@@ -316,7 +321,46 @@ public class Clientes {
         
     }
           
-        
-
+    
+    Connection con;
+    Conexion cn = new Conexion();
+    PreparedStatement ps;
+    ResultSet rs;
+          
+          
+    public String GenerarSerieCliente() {
+        String numeroSerie = "";
+        String sql = "SELECT MAX(numeroSerie) from Clientes";
+        try {
+            con = cn.conectar();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                numeroSerie = rs.getString(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return numeroSerie;
+    }
+    
+    public String numeros(int num){
+        num = num + 1;
+        String res="";
+        if (num >= 1000 && num < 10000) {
+            res =""+ num;
+        }
+        if (num >= 100 && num < 1000) {
+            res ="0"+ num;
+        }
+        if (num >= 10 && num < 100) {
+            res ="00"+ num;
+        }
+        if (num >= 1 && num < 10) {
+            res ="000"+ num;
+        }
+        return res;
+    }
+     
 }
 

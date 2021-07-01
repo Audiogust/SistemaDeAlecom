@@ -51,7 +51,7 @@
                                 <th>Nombre</th>
                                 <th>Unidad</th>
                                 <th>Solicitado</th>                             
-                                <th>Salida</th>
+                                <th>Devolucion</th>
                             </tr>
 		         </thead>
                             <%
@@ -81,7 +81,7 @@
                    <input type="hidden" name="txtpara" value=<%=VPara%> />
                 </table>
                 <div>
-                            <button type="submit" name="opcion" value="enviarDevolucion" class="btn btn-success">Enviar</button>
+                   <button type="submit" name="opcion" value="enviarDevolucion" class="btn btn-success">Enviar</button>
              </div>
         </div>
  </form>

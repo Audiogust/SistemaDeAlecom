@@ -31,22 +31,25 @@
                  background-position:center;
                  margin-right:14px!important;
                  }
+                 .letra{
+                     font-size: 19px;
+                 }
     </style>
     <body>
         <div align="center">
-        <img src="IMG/logotipo.png" width="150" height="80" HSPACE="20">    
+        <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20">    
         </div>
         <br><br>
         <div>
             
-            <form align="center" action="">
+            <form align="center" action="controlFull.do">
             <font color="#ffffff"><h2>MENU PRINCIPAL ADMINISTRADOR</h2></font><br>
-                        <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='Proyectos.jsp'"><img src="IMG/trabajar.svg" width="60" height="60"><br>Proyectos </button>
-                        <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='ingenieria.jsp'"><img src="IMG/ingenieria.svg" width="60" height="60"><br>Ingenieria</button> 
-                        <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='Almacen.jsp'"><img src="IMG/almacen.svg" width="60" height="60"><br>Almacen</button>
-                        <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='Compras.jsp'"><img src="IMG/compras.svg" width="60" height="60"><br>Compras</button>
-                        <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='ModificacionMateriales.jsp'"><img src="IMG/EditarMaterial.png" width="60" height="60"><br>Editar materiales</button>
-                        <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='RegistroMateriales.jsp'"><img src="IMG/RegistroM.png" width="60" height="60"><br>Registrar material</button>
+                        <button type="submit" name="opcion" value="botonGenerarNumero" class="btn btn-primary btn-lg boton letra" ><img src="IMG/trabajar.svg" width="60" height="60"><br>Proyectos </button>
+                        <button type="button" name="enviar" class="btn btn-primary btn-lg boton letra" onclick="location.href='ingenieria.jsp'"><img src="IMG/ingenieria.svg" width="60" height="60"><br>Ingenieria</button> 
+                        <button type="button" name="enviar" class="btn btn-primary btn-lg boton letra" onclick="location.href='Almacen.jsp'"><img src="IMG/almacen.svg" width="60" height="60"><br>Almacen</button>
+                        <button type="button" name="enviar" class="btn btn-primary btn-lg boton letra" onclick="location.href='Compras.jsp'"><img src="IMG/compra.png" width="60" height="60"><br>Compras</button>
+                        <button type="button" name="enviar" class="btn btn-primary btn-lg boton letra" onclick="location.href='ModificacionMateriales.jsp'"><img src="IMG/EditarMaterial.png" width="60" height="60"><br>Editar materiales</button>
+                        <button type="button" name="enviar" class="btn btn-primary btn-lg boton letra" onclick="location.href='RegistroMateriales.jsp'"><img src="IMG/RegistroM.png" width="60" height="60"><br>Registrar material</button>
                         
                 
             </form>

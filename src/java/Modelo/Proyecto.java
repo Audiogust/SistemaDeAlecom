@@ -12,6 +12,7 @@ import java.util.Vector;
 public class Proyecto {
     
     private String otiga;
+    private String numSerie;
     private String nombre;
     private String region;
     private String direccion;
@@ -43,6 +44,15 @@ public class Proyecto {
         this.autorizado = autorizado;
         this.tipo = tipo;
     }
+
+    public String getNumSerie() {
+        return numSerie;
+    }
+
+    public void setNumSerie(String numSerie) {
+        this.numSerie = numSerie;
+    }
+    
 
     public String getOtiga() {
         return otiga;
@@ -244,20 +254,21 @@ public class Proyecto {
          Connection c = Conexion.conectar();
         if (c != null) {
             try {
-                PreparedStatement ps = c.prepareStatement(" INSERT INTO Proyectos (otiga, nombre, region, direccion,"
-                    + " latitud, longitud, elevacion, tecnologia, ubicacion,fecha,autorizado, tipo) values(?,?,?,?,?,?,?,?,?,?,?,?)");
+                PreparedStatement ps = c.prepareStatement(" INSERT INTO Proyectos (otiga, numeroSerie, nombre, region, direccion,"
+                    + " latitud, longitud, elevacion, tecnologia, ubicacion,fecha,autorizado, tipo) values(?,?,?,?,?,?,?,?,?,?,?,?,?)");
                 ps.setString(1, otiga);
-                ps.setString(2, nombre);
-                ps.setString(3, region);
-                ps.setString(4, direccion);
-                ps.setString(5, latitud);
-                ps.setString(6, longitud);
-                ps.setString(7, elevacion);
-                ps.setString(8, tecnologia);
-                ps.setString(9, ubicacion);
-                ps.setString(10, fecha);
-                ps.setString(11, autorizado);
-                ps.setString(12, tipo);
+                ps.setString(2, numSerie);
+                ps.setString(3, nombre);
+                ps.setString(4, region);
+                ps.setString(5, direccion);
+                ps.setString(6, latitud);
+                ps.setString(7, longitud);
+                ps.setString(8, elevacion);
+                ps.setString(9, tecnologia);
+                ps.setString(10, ubicacion);
+                ps.setString(11, fecha);
+                ps.setString(12, autorizado);
+                ps.setString(13, tipo);
                 ps.execute();
                 return "Se han guardado los datos Correctamente";
             } catch (Exception e) {
@@ -352,5 +363,43 @@ public class Proyecto {
         }
         return "error de conexion";
      }
+  
+    Connection con;
+    Conexion cn = new Conexion();
+    PreparedStatement ps;
+    ResultSet rs;
+
+    public String GenerarSerieProyecto() {
+        String numeroSerie = "";
+        String sql = "SELECT MAX(numeroSerie) from Proyectos";
+        try {
+            con = cn.conectar();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                numeroSerie = rs.getString(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return numeroSerie;
+    }
     
+    public String numeros(int num){
+        num = num + 1;
+        String res="";
+        if (num >= 1000 && num < 10000) {
+            res =""+ num;
+        }
+        if (num >= 100 && num < 1000) {
+            res ="0"+ num;
+        }
+        if (num >= 10 && num < 100) {
+            res ="00"+ num;
+        }
+        if (num >= 1 && num < 10) {
+            res ="000"+ num;
+        }
+        return res;
+    }
 }

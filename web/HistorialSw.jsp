@@ -36,7 +36,6 @@
         %>
         <h1>Historial Materiales solicitados</h1>
         <div class="table-responsive">
-        <form align="center" action="controlFull.do" method="post">
         <td width="50%"><input type="text" size="53" name="otiga_1"  value="<%= otiga%>" id="textfield"></td>
              <!--   <input type="text" name="codigo" value="" class="form-control" placeholder="OTIGA"> 
                     <button type="submit" name="opcion" value="BuscarSolicitud" class="btn btn-outline-info">Buscar</button>
@@ -85,6 +84,5 @@
                 <div>
              </div>
         </div>
- </form>
     </body>
 </html>

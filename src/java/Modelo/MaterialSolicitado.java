@@ -233,7 +233,25 @@ public static Vector mostrarHistoSalidas(String busqueda) throws SQLException{
         }
     }
 
-
+public static Vector mostrarHistoDevolucion(String busqueda) throws SQLException{
+        Vector proyectos = null; 
+        Connection c = Conexion.conectar();
+           if (c != null) {
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(" SELECT * FROM historialDevolucion WHERE otiga  = '" + busqueda +"'");
+             proyectos  = new Vector();
+             while(rs.next()){
+                       proyectos.add(new MaterialSolicitado(
+                         rs.getInt("id"),rs.getString("otiga"),rs.getString("codigo"), 
+                         rs.getString("nombre"),rs.getString("unidad"),rs.getInt("existencia_ant"),
+                         rs.getString("solicitado"),rs.getString("fecha"),rs.getString("hora"),
+                         rs.getInt("existencia_act")));                       
+             }               
+              return proyectos;                
+           }else {
+            return null;
+        }
+    }
 
 public static Vector mostrarBusqueda(String busqueda) throws SQLException{
         Vector proyectos = null; 

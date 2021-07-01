@@ -14,10 +14,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Date;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -41,7 +44,7 @@ public class ControlFull extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
@@ -99,7 +102,7 @@ public class ControlFull extends HttpServlet {
                 
                 request.getRequestDispatcher("Compras.jsp").forward(request, response);  
              }  
-            
+             
               
              if (opcion.equals("BuscarProyecto")) {
                  request.getRequestDispatcher("ingenieria.jsp").forward(request, response);  
@@ -125,6 +128,16 @@ public class ControlFull extends HttpServlet {
                 String otigon = request.getParameter("otigon");
                 String tipo = request.getParameter("tipoPro");
 
+                String OLD_FORMAT = "yyyy-MM-dd"; 
+                String NEW_FORMAT = "dd/MM/yyyy";
+
+                String oldDateString = fecha;
+                String newDateString;
+                SimpleDateFormat sdf = new SimpleDateFormat(OLD_FORMAT);
+                java.util.Date d = sdf.parse(oldDateString);
+                sdf.applyPattern(NEW_FORMAT);
+                newDateString = sdf.format(d);
+  
                 if (nombre.equals("") || region.equals("") || region.equals("")
                         || direccion.equals("") || latitud.equals("") || longitud.equals("")
                         || elevacion.equals("") || tecnologia.equals("") || ubicacion.equals("")
@@ -139,20 +152,20 @@ public class ControlFull extends HttpServlet {
                         otiga += "Fs";
                     }
                     otiga += "_" + nombre;
-                    otiga += fecha;
+                    otiga += newDateString;
                     otiga += otigon;
 
                     System.out.println(tipo);
                     /* DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");          
-         LocalDate ahora = LocalDate.now();
-       
+                       LocalDate ahora = LocalDate.now();       
                      */
 
                     Date fechad = new Date(Calendar.getInstance().getTimeInMillis());
 
                     Proyecto p = new Proyecto();
-
+                    
                     p.setOtiga(otiga);
+                    p.setNumSerie(otigon);
                     p.setNombre(nombre);
                     p.setRegion(region);
                     p.setDireccion(direccion);
@@ -161,7 +174,7 @@ public class ControlFull extends HttpServlet {
                     p.setElevacion(elevacion);
                     p.setTecnologia(tecnologia);
                     p.setUbicacion(ubicacion);
-                    p.setFecha(fecha);
+                    p.setFecha(newDateString);
                     p.setAutorizado(autoriza);
                     p.setTipo(tipo);
                     
@@ -200,11 +213,17 @@ public class ControlFull extends HttpServlet {
                 String devolucion[] = request.getParameterValues("devoluciones");
                 String codigodev[] = request.getParameterValues("codigosDev");
                 MaterialSolicitado ma = new MaterialSolicitado();
-
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm:ss");
                 for (int i = 0; i < devolucion.length; i++) {
                     if (devolucion[i].length() > 0) {
-
+                        String descripciones = m.Descripcion(codigodev[i]);
+                        String unidad =m.Unidades(codigodev[i]);
+                        String existencias = m.Existencia(codigodev[i]);
+                        String fecha = dtf.format(LocalDateTime.now());
+                        String hora = dtf1.format(LocalDateTime.now());
                         ma.Devolver(codigodev[i], Integer.parseInt(devolucion[i]));
+                        m.insertarHistoDevolucion(otiga, codigodev[i], descripciones, unidad,Integer.parseInt(existencias),Integer.parseInt(devolucion[i]),Integer.parseInt(existencias)+Integer.parseInt(devolucion[i]) , fecha, hora);                   
                     }
                 }
 
@@ -251,6 +270,23 @@ public class ControlFull extends HttpServlet {
 
                 }
 
+            }
+            if (opcion.equals("botonGenerarNumero")) {
+                
+                    Proyecto pc = new Proyecto();
+                    Proyecto pc1 = new Proyecto();
+                    numeroSerie = pc.GenerarSerieProyecto();
+
+                    if (numeroSerie == null) {
+                        numeroSerie = "0001";                                        
+                        request.setAttribute("numerito", numeroSerie);
+                    } else {
+                        int incrementador = Integer.parseInt(numeroSerie);
+                        numeroSerie = pc1.numeros(incrementador);
+                    
+                        request.setAttribute("numerito", numeroSerie);
+                    }
+                    request.getRequestDispatcher("Proyectos.jsp").forward(request, response);
             }
             if (opcion.equals("botonPreorden")) {
                 DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -341,18 +377,9 @@ public class ControlFull extends HttpServlet {
                 
             if (opcion.equals("enviarPrecompra")) {
                 Material mat = new Material();
-                String soli[] = request.getParameterValues("solicitudes");
-                String codigos[] = request.getParameterValues("codigosS");
-                int con=0;
-                for (int i = 0; i < soli.length; i++) {
-                    String existencias = mat.Existencia(codigos[i]);
-                    String solicitados = mat.Solicitado(codigos[i]);
-                    if (Integer.parseInt(solicitados) > Integer.parseInt(existencias)) {
-                        con++;
-                    }
-                }
                 
-                if (con>0) {
+                String codigos[] = request.getParameterValues("codigosS");
+                String solicitado[] = request.getParameterValues("solicitadoF");
                 String otiga = request.getParameter("otiga_1");
 
                 DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -380,21 +407,21 @@ public class ControlFull extends HttpServlet {
                 Material m = new Material();
                 Material m1 = new Material();                
                 p.precompra(numeroSerie, folio);
-                for (int i = 0; i < soli.length; i++) {
+                for(int i = 0; i < codigos.length; i++) {
+                    
                     String existencia = m.Existencia(codigos[i]);
-                    String solicitado = m.Solicitado(codigos[i]);
+                    //String solicitado = m.Solicitado(codigos[i],otiga);    
                     String descripciones = m.Descripcion(codigos[i]);
-                    System.out.println(existencia+" "+solicitado+descripciones);
-                    if (Integer.parseInt(solicitado) > Integer.parseInt(existencia)) {
-                        m1.precompra(folio, descripciones, String.valueOf(Integer.parseInt(solicitado) - Integer.parseInt(existencia)));
-                    }
-                    request.getRequestDispatcher("Almacen.jsp").forward(request, response);
-                }    
-                }else{
-                    request.getRequestDispatcher("consultaSolicitud.jsp").forward(request, response);
+                    
+                    System.out.println(descripciones+"  "+ existencia+" "+solicitado[i]);
+                    
+                    if (Integer.parseInt(solicitado[i]) > Integer.parseInt(existencia)) {
+                        System.out.println("jeje "+descripciones);
+                        m1.precompra(folio, descripciones, String.valueOf(Integer.parseInt(solicitado[i]) - Integer.parseInt(existencia)));
+                    }                   
+                    
                 }
-                
-                
+                request.getRequestDispatcher("OrdenCompra.jsp").forward(request, response);         
             }
 
         }
@@ -412,7 +439,11 @@ public class ControlFull extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(ControlFull.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -426,7 +457,11 @@ public class ControlFull extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(ControlFull.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

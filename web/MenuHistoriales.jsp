@@ -29,7 +29,7 @@
 
                 <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='tablaHistorialSalida.jsp'"><img src="IMG/historial.png" width="60" height="60"><br>Historial de Salida de Materiales</button>
 
-                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='historialDevolucion.jsp'"><img src="IMG/historial.png" width="60" height="60"><br>Historial de Devoluciones de Materiales</button> 
+                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='tablaHistorialDevolucion.jsp'"><img src="IMG/historial.png" width="60" height="60"><br>Historial de Devoluciones de Materiales</button> 
             </form>
         </div>
     </body>
