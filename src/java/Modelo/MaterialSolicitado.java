@@ -213,22 +213,63 @@ public static Vector mostrarHistoW(String busqueda) throws SQLException{
         }
     }
 
-public static Vector mostrarHistoSalidas(String busqueda) throws SQLException{
-        Vector proyectos = null; 
+public static Vector mostrarHSW(String busqueda) throws SQLException {
+        Vector proyectos = null;
         Connection c = Conexion.conectar();
-           if (c != null) {
-             Statement st = c.createStatement();
-             ResultSet rs = st.executeQuery(" SELECT * FROM historialSalida WHERE otiga  = '" + busqueda +"'");
-             proyectos  = new Vector();
-             while(rs.next()){
-                       proyectos.add(new MaterialSolicitado(
-                         rs.getInt("id"),rs.getString("otiga"),rs.getString("codigo"), 
-                         rs.getString("nombre"),rs.getString("unidad"),rs.getInt("existencia_ant"),
-                         rs.getString("solicitado"),rs.getString("fecha"),rs.getString("hora"),
-                         rs.getInt("existencia_act")));                       
-             }               
-              return proyectos;                
-           }else {
+        if (c != null) {
+            Statement st = c.createStatement();
+            ResultSet rs = st.executeQuery(" SELECT * FROM historialSalidaW WHERE otiga  = '" + busqueda + "'");
+            proyectos = new Vector();
+            while (rs.next()) {
+                proyectos.add(new MaterialSolicitado(
+                        rs.getInt("id"), rs.getString("otiga"), rs.getString("codigo"),
+                        rs.getString("nombre"), rs.getString("unidad"), rs.getInt("existencia_ant"),
+                        rs.getString("solicitado"), rs.getString("fecha"), rs.getString("hora"),
+                        rs.getInt("existencia_act")));
+            }
+            return proyectos;
+        } else {
+            return null;
+        }
+    }
+
+
+    public static Vector mostrarHDW(String busqueda) throws SQLException {
+        Vector proyectos = null;
+        Connection c = Conexion.conectar();
+        if (c != null) {
+            Statement st = c.createStatement();
+            ResultSet rs = st.executeQuery(" SELECT * FROM historialDevolucionW WHERE otiga  = '" + busqueda + "'");
+            proyectos = new Vector();
+            while (rs.next()) {
+                proyectos.add(new MaterialSolicitado(
+                        rs.getInt("id"), rs.getString("otiga"), rs.getString("codigo"),
+                        rs.getString("nombre"), rs.getString("unidad"), rs.getInt("existencia_ant"),
+                        rs.getString("solicitado"), rs.getString("fecha"), rs.getString("hora"),
+                        rs.getInt("existencia_act")));
+            }
+            return proyectos;
+        } else {
+            return null;
+        }
+    }
+
+    public static Vector mostrarHistoSalidas(String busqueda) throws SQLException {
+        Vector proyectos = null;
+        Connection c = Conexion.conectar();
+        if (c != null) {
+            Statement st = c.createStatement();
+            ResultSet rs = st.executeQuery(" SELECT * FROM historialSalida WHERE otiga  = '" + busqueda + "'");
+            proyectos = new Vector();
+            while (rs.next()) {
+                proyectos.add(new MaterialSolicitado(
+                        rs.getInt("id"), rs.getString("otiga"), rs.getString("codigo"),
+                        rs.getString("nombre"), rs.getString("unidad"), rs.getInt("existencia_ant"),
+                        rs.getString("solicitado"), rs.getString("fecha"), rs.getString("hora"),
+                        rs.getInt("existencia_act")));
+            }
+            return proyectos;
+        } else {
             return null;
         }
     }

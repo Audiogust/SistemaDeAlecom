@@ -175,32 +175,63 @@ public class ControlClientes extends HttpServlet {
                   request.getRequestDispatcher("MaterialesSolicitados.jsp").forward(request, response);
               }
              if (opcion.equals("guardarAlmacen")) {
+                Material ms = new Material();
+                MaterialSolicitadoWisp mts = new MaterialSolicitadoWisp();
                 String id1 = request.getParameter("idt_1");
                 MaterialSolicitadoWisp wisp = new MaterialSolicitadoWisp();
                 Clientes cli = new Clientes();
                 String soli[] = request.getParameterValues("numerosW");
                 String codigos[] = request.getParameterValues("codigoW");
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm:ss");
+                int cont=0;
                 for (int i = 0; i < soli.length; i++) {
+                    if (soli[i].length() > 0) {
+                    cont++;
+                    String nombre = ms.Descripcion(codigos[i]);
+                    String unidad =ms.Unidades(codigos[i]);
+                    String existencias = ms.Existencia(codigos[i]);
+                    String fecha = dtf.format(LocalDateTime.now());
+                    String hora = dtf1.format(LocalDateTime.now());
                     wisp.OperacionWisp(codigos[i],Integer.parseInt(soli[i]));                    
+                    mts.insertarHistoSalida(id1, codigos[i], nombre, unidad,Integer.parseInt(existencias),Integer.parseInt(soli[i]),Integer.parseInt(existencias)-Integer.parseInt(soli[i]) , fecha, hora);
                     System.out.println(soli[i]+" "+codigos[i]);
+                    }
                 }
-                System.out.println(id1);
-                cli.StatusDev(id1);
+                 if (cont > 0 ) {
+                     cli.StatusDev(id1);
+                    request.getRequestDispatcher("MaterialesSolicitados.jsp").forward(request, response);
+                 }
                 
                   request.getRequestDispatcher("Wisp.jsp").forward(request, response);
               }
-               if (opcion.equals("guardarDevolucion")) {
-               String dev[] = request.getParameterValues("devolucionw");
-               String codev[] = request.getParameterValues("codigosw");
-               MaterialSolicitadoWisp mw = new MaterialSolicitadoWisp();
-               
-                  for (int i = 0; i < dev.length; i++) {
-                  mw.DevolverMaterial(codev[i],Integer.parseInt(dev[i]));
-                  }
-   
-               
-               
-              }
+             
+                if(opcion.equals("guardarDevolucion")) {
+                Material m = new Material();
+                String id = request.getParameter("idt_1");
+                Clientes cl1 = new Clientes();
+                String dev[] = request.getParameterValues("devolucionw");
+                String codev[] = request.getParameterValues("codigosw");
+                MaterialSolicitadoWisp mw = new MaterialSolicitadoWisp();
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm:ss");
+                int cont=0;
+                for (int i = 0; i < dev.length; i++) {
+                    if (dev[i].length() > 0) {
+                    String descripciones = m.Descripcion(codev[i]);
+                    String unidad =m.Unidades(codev[i]);
+                    String existencias = m.Existencia(codev[i]);
+                    String fecha = dtf.format(LocalDateTime.now());
+                    String hora = dtf1.format(LocalDateTime.now());
+                    mw.DevolverMaterial(codev[i], Integer.parseInt(dev[i]));
+                    m.insertarHistoDevolucionW(id, codev[i], descripciones, unidad,Integer.parseInt(existencias),Integer.parseInt(dev[i]),Integer.parseInt(existencias)+Integer.parseInt(dev[i]), fecha, hora);              
+                    cont = cont+1;
+                    }
+                }
+                cl1.CambioSw(id);
+                
+
+            }
                 
                if (opcion.equals("guardarPrecompra")) {
 

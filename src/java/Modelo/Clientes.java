@@ -321,7 +321,28 @@ public class Clientes {
         
     }
           
-    
+
+    public String CambioSw(String id) {
+        Connection c = Conexion.conectar();
+        String respuesta = "";
+        if (c != null) {
+            try {
+                PreparedStatement ps = c.prepareStatement("update Clientes set status='A' where ID = ?");
+                ps.setString(1, id);
+                ps.execute();
+                respuesta = "Habilitado";
+                return respuesta;
+
+            } catch (Exception e) {
+                respuesta = "Error";
+                return respuesta;
+            }
+
+        } else {
+        }
+        return "error de conexion";
+    }
+          
     Connection con;
     Conexion cn = new Conexion();
     PreparedStatement ps;

@@ -239,9 +239,6 @@ public class ControlFull extends HttpServlet {
                 String existencia = request.getParameter("existencia");
                 String tope = request.getParameter("tope");
                 
-                
-                
-                
                 if (codigo.equals("") || descripcion.equals("") || unidad.equals("") || existencia.equals("")
                      || tope.equals("")   ) {
                     Material m = new Material();
@@ -366,8 +363,7 @@ public class ControlFull extends HttpServlet {
                     ms.insertarHistoSalida(idProyecto, nombres[i], nombre, unidad,Integer.parseInt(existencias),Integer.parseInt(soli[i]),Integer.parseInt(existencias)-Integer.parseInt(soli[i]) , fecha, hora);
                     System.out.println(soli[i]+" "+nombres[i]);
                     }
-                pr.cambioStatusDevolver(idProyecto);
-                    
+                    pr.cambioStatusDevolver(idProyecto);
                     
                 }
                 
@@ -408,13 +404,10 @@ public class ControlFull extends HttpServlet {
                 Material m1 = new Material();                
                 p.precompra(numeroSerie, folio);
                 for(int i = 0; i < codigos.length; i++) {
-                    
                     String existencia = m.Existencia(codigos[i]);
                     //String solicitado = m.Solicitado(codigos[i],otiga);    
                     String descripciones = m.Descripcion(codigos[i]);
-                    
                     System.out.println(descripciones+"  "+ existencia+" "+solicitado[i]);
-                    
                     if (Integer.parseInt(solicitado[i]) > Integer.parseInt(existencia)) {
                         System.out.println("jeje "+descripciones);
                         m1.precompra(folio, descripciones, String.valueOf(Integer.parseInt(solicitado[i]) - Integer.parseInt(existencia)));
