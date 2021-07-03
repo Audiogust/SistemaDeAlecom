@@ -38,7 +38,7 @@
    </style>
     <body>
          <form align="center" action="controlClientes.do" method="post">
-             
+             <h1>Consultar Grupo</h1>
                 <p><label>Grupo:</label>
                         <select name="grupo_consultar" id="grupo">
                                         <option value="0"></option>
@@ -55,10 +55,12 @@
                             <tr>
                                 
                                 <th>ID</th>
+                                <th>NOMBRE</th>
                                 <th>DIRECCION</th>
                                 <th>MEGAS</th> 
                                 <th>FORMATO</th>
                             </tr>
+                           
 		         </thead>
                            <%
                              String n=request.getParameter("grupo_consultar");
@@ -72,6 +74,7 @@
                              <tr>
                             
                                 <td><%= objs.getId()%></td> 
+                                <td><%= objs.getNombre()%></td> 
                                 <td><%= objs.getDireccion()%></td>
                                 <td><%= objs.getMegas()%></td>
                            

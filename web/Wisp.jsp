@@ -44,7 +44,7 @@
                 <font color="#1D049B"><h2>MENU PRINCIPAL</h2></font>
                         <button type="submit" name="opcion" value="GenerarNumeroW" class="btn btn-success btn-sm  boton letra" onclick="location.href='Clientes.jsp'"><img src="IMG/clientes1.svg" width="60" height="60"><br>Clientes </button>
                         <button type="button" name="enviar" class="btn btn-success btn-sm  boton letra" onclick="location.href='Instalacion.jsp'"><img src="IMG/orden.svg" width="60" height="60"><br>Orden de instalacion</button>
-                        <button type="button" name="enviar" class="btn btn-dark btn-sm boton letra" onclick="location.href='navAlmacen.jsp'"><img src="IMG/almacen1.svg" width="60" height="60"><br>Almacen</button>
+                        <button type="button" name="enviar" class="btn btn-dark btn-sm boton letra" onclick="location.href='MenuAlmacen.jsp'"><img src="IMG/almacen1.svg" width="60" height="60"><br>Almacen</button>
                         <button type="button" name="enviar" class="btn btn-success btn-sm  boton letra" onclick="location.href='Historiales.jsp'"><img src="IMG/historial.png" width="60" height="60"><br>Historiales</button>
                         <br><br><br><br><br><br><br><button type="button" name="enviar" class="btn btn btn-success btn-sm boton letra" onclick="location.href='ComprasW.jsp'"><img src="IMG/compras.svg" width="60" height="60"><br>Compras</button>
                         <button type="button" name="enviar" class="btn btn btn-success btn-sm boton letra" onclick="location.href='Orden2.jsp'"><img src="IMG/reporte1.svg" width="60" height="60"><br>Orden de servicio</button>

@@ -39,7 +39,10 @@
    </style>
     <body>
         <form align="center" action="controlClientes.do">
-            
+            <h1>Registro Clientes</h1>
+            <div align="center">
+                <img src="IMG/clientes.svg" width="250" height="100" HSPACE="20">    
+            </div>
             <table border="0" cellpadding="0" cellspacing="0" width="40%"  align="center">
                 <tr>
                     <td width="70%"><b>Folio:</b> </td>

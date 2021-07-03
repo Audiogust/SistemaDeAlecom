@@ -15,8 +15,9 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     </head>
     <body>
-        <h1>Materiales Solicitados</h1>
-        <form action="controlClientes.do" method="post">
+        
+        <form action="controlClientes.do" method="post" align="center">
+            <h1>Materiales Solicitados</h1>
             <div class="container" align="center">
                 <input type="text" name="nombre" value="" class="form-control" placeholder="Nombre"> 
                 <button type="submit" name="opcion" value="BuscarClientesW" class="btn btn-outline-info">Buscar</button>

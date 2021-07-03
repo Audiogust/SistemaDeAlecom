@@ -40,7 +40,8 @@
                      }
     </style>
     <body>
-        <h1>Hello World!</h1>
+        <form align="center">
+        <h1>DEVOLUCION MATERIALES</h1>
         <table align="center" border="5" width="50%" class="table table-dark table-bordered table-hover">
   	                 <thead class="bg-info"> 
                             <tr>
@@ -86,5 +87,6 @@
                                   </tr>
                                 <%}%>
                 </table> 
+        </form>
     </body>
 </html>

@@ -13,9 +13,32 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>HISTORIALES</h1>
+         <style>
+                body {
+                background-image: url("IMG/fondo_4.jpg");
+                background-position: center;
+                background-size: cover;
+                height: 100vh;
+                min-height: 600px;
+                }
+                 .input{
+                       background-repeat:no-repeat;
+                 
+                 background-position:right;
+                 margin-right:600px!important;
+                      }
+                      .derecha   { float: right; }
+                .izquierda { float: left;  }
+                
+                
+                table {
+                      background-color: #3F9FEA;
+                      }
+   </style>
+        
                 <div>
             <div align="center">
+                <h1>HISTORIALES</h1>
                 <img src="IMG/imagen 1.png" width="150" height="80" HSPACE="20">    
             </div>
             
