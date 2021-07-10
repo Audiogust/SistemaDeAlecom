@@ -44,7 +44,7 @@
                                 <th>DESCRIPCION</th>
                                 <th>UNIDAD</th>
                                 <th>EXISTENCIA</th>
-                                <th>SALIDA</th>
+                                <th>TOPE</th>
                                 
                             </tr>
 		         </thead>

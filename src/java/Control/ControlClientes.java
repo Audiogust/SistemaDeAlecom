@@ -275,6 +275,43 @@ public class ControlClientes extends HttpServlet {
                 }
             }
 
+            if (opcion.equals("MaterialR")) {
+
+                String codigo = request.getParameter("codigo");
+                String descripcion = request.getParameter("descripcion");
+                String unidad = request.getParameter("unidad");
+                String existencia = request.getParameter("existencia");
+                String tope = request.getParameter("tope");
+
+                if (codigo.equals("") || descripcion.equals("") || unidad.equals("") || existencia.equals("")
+                        || tope.equals("")) {
+                    Material mat = new Material();
+                    String x = mat.registrar();
+                    HttpSession sesion = request.getSession(true);
+                    sesion.setAttribute("res0", x);
+                    request.getRequestDispatcher("Material_error.jsp").forward(request, response);
+                } else {
+                    Material ma1 = new Material();
+                    ma1.setCodigo(codigo);
+                    ma1.setDescripcion(descripcion);
+                    ma1.setUnidad(unidad);
+                    ma1.setExistencia(Integer.parseInt(existencia));
+                    ma1.setSalida(Integer.parseInt(tope));
+
+                    String x = ma1.registrar();
+                    HttpSession sesion = request.getSession(true);
+                    sesion.setAttribute("res0", codigo);
+                    sesion.setAttribute("res1", descripcion);
+                    sesion.setAttribute("res2", unidad);
+                    sesion.setAttribute("res3", existencia);
+                    sesion.setAttribute("res4", tope);
+
+                    request.getRequestDispatcher("ExitoM.jsp").forward(request, response);
+
+                }
+
+            }
+
              
         }
     }

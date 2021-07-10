@@ -15,7 +15,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Folios de devoluciones</h1>
+        <h1>Folios</h1>
          <br><table align="center" border="5" width="50%" class="table thead-dark table-bordered table-hover">
   	                 <thead class="bg-info"> 
                             <tr>
