@@ -15,8 +15,8 @@
     <body>
         <style>
                   body{
-                       background-color: #ffdd90;
-                       background-image: url("IMG/fondo_2.jpg");
+                       background-color:rgba(0,0,255, 0.3);
+                       
                        }
         </style>
                <form align="center"  method="post" action="control.do">
@@ -26,14 +26,14 @@
             </div>
             <br>
             <img src="IMG/login_1.svg" width="70" height="70" >
-            <font  face="Arial Black" color="100E0E"><h1>LOGIN</h1></font>
+            <font  face="Arial Black" color="100E0E"><h1>INICIO DE SESION</h1></font>
             <img src="IMG/usuario.svg" width="25" height="25" > <input type="text" name="usuario" placeholder="Usuario" >
             <br>
             <br>
             <img src="IMG/pass.svg" width="25" height="25" > <input type="password" name="password" placeholder="Contraseña" > 
             <br>
             <br>
-            <button type="submit" name="opcion"  value="enviar" class="btn btn-primary btn-lg">Ingresar</button>
+            <button type="submit" name="opcion"  value="enviar" class="btn btn-success">Ingresar</button>
         </form>
     </body>
 </html>

@@ -23,7 +23,7 @@
     </style>
     <body>
     <div align="center">
-        <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20">    
+        <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a>
         </div>
         <div class="container flexc">
         <form align="center" action="controlFull.do" method="post">
@@ -82,7 +82,7 @@
             </div>
             
             <div class="input-group">
-            <span class="input-group-text">Otiga</span>
+            <span class="input-group-text">Folio</span>
             <input type="text" aria-label="First name" class="form-control" name="otigon" value="${numerito}">
             </div>
             

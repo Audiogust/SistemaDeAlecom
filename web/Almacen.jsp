@@ -19,7 +19,7 @@
     <body>
         <div>
             <div align="center">
-                <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20">    
+                <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a> 
             </div>
             <br>
             
@@ -32,8 +32,6 @@
                 <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='busquedaSM.jsp'"><img src="IMG/solicitud.svg" width="60" height="60"><br>Consultar Solicitud de Materiales</button>
 
                 <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='SolicitudMaterial.jsp'"><img src="IMG/solicitud.svg" width="60" height="60"><br>Devolucion de Materiales</button>                
-                
-                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='SolicitudMaterial.jsp'"><img src="IMG/solicitud.svg" width="60" height="60"><br>Historial de Materiales Solicitados</button> 
                 
                 <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='MenuHistoriales.jsp'"><img src="IMG/historial.png" width="60" height="60"><br>Historial de Materiales solicitados</button>
             </form>

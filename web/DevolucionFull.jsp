@@ -70,7 +70,7 @@
                              <tr>
                                 
                                 <td ><%= objs.getOtiga()%></td>
-                                <td><input type="text" name="codigosDev" value="<%= objs.getCodigo()%>" disable></td>
+                                <td><label><input type="text" name="codigosDev" value="<%= objs.getCodigo()%>" disable></label></td>
                                 <td><%= objs.getNombre()%></td>
                                 <td><%= objs.getUnidades()%></td>                                
                                 <td><%= objs.getSolicitado()%></td>                              

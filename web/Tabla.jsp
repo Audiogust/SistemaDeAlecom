@@ -16,7 +16,7 @@
     </head>
     <body>
         <div align="center">
-            <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20">    
+            <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a>    
         </div>
         <br>
         <div  class="table-responsive">

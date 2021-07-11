@@ -135,7 +135,7 @@ public class Material {
         Connection c = Conexion.conectar();
        
         try{
-            PreparedStatement ps = c.prepareStatement("SELECT  descripcion from Materiales where codigo=? ");
+            PreparedStatement ps = c.prepareStatement("SELECT  descripcion from Materiales where codigo=?");
             ps.setString(1, des);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
@@ -393,6 +393,39 @@ public class Material {
             return "Error al modificar " + e;
         }
      }
+        public String eliminarPedido(String ot) {
+        Connection c = Conexion.conectar();
+        try {
+            if (c != null) {
+                PreparedStatement ps = c.prepareStatement("delete from MaterialSolicitado WHERE otiga=?");    
+                ps.setString(1, ot);
+                ps.execute();
+                return "modificacion realizada";
+            }
+            else{
+                return "no se realizo";
+            }
+        } catch (Exception e) {
+            return "Error al modificar " + e;
+        }
+    }
+        
+        public String eliminarPedidoWisp(String id) {
+        Connection c = Conexion.conectar();
+        try {
+            if (c != null) {
+                PreparedStatement ps = c.prepareStatement("delete from MaterialSolicitadoWisp WHERE ID=?");    
+                ps.setString(1, id);
+                ps.execute();
+                return "modificacion realizada";
+            }
+            else{
+                return "no se realizo";
+            }
+        } catch (Exception e) {
+            return "Error al modificar " + e;
+        }
+    }
         
         public String cambio() {
         Connection c = Conexion.conectar();

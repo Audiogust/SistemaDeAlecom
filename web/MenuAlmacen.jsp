@@ -36,6 +36,9 @@
         }
         </style>
     <body>
+        <div align="center">
+        <a href="Wisp.jsp"> <img src="IMG/imagen 1.png" width="150" height="150" HSPACE="20"></a>
+        </div>
         <form align="center" action="">
         <h1>MENU ALMACEN </h1>
          <form align="center" action="">

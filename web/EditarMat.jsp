@@ -10,10 +10,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Editar Material</h1>
+        <h1 align="center">Editar Material</h1>
         <center>
     <%
             
@@ -27,13 +28,14 @@
             String unidad = "";
             int existencia = 0;
             int salida = 0;
-           
+            Material m = new Material();
 
             if (VPara.equals("N") == false) {
                 objs.buscarMaterial(idd);
-                codigo = objs.getCodigo();
-                descripcion = objs.getDescripcion();
-                unidad = objs.getUnidad();
+                codigo = idd;
+                descripcion = m.Descripcion(idd);
+                System.out.println("prueba"+descripcion);
+                unidad = m.Unidades(idd);
                 existencia = objs.getExistencia();
                 salida = objs.getSalida();
             }
@@ -43,7 +45,7 @@
         <form action="controlFull.do" method="POST">
              
             
-            <table border="0" cellpadding="0" cellspacing="0" width="40%"  align="center">                                         
+            <table border="0" cellpadding="0" cellspacing="0" width="40%"  align="center" class=" thead-dark table-bordered table-hover">                                         
 
                 <tr>
                     <td width="90%"><b>Codigo:</b> </td>

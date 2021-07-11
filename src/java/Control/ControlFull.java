@@ -223,10 +223,10 @@ public class ControlFull extends HttpServlet {
                         String fecha = dtf.format(LocalDateTime.now());
                         String hora = dtf1.format(LocalDateTime.now());
                         ma.Devolver(codigodev[i], Integer.parseInt(devolucion[i]));
-                        m.insertarHistoDevolucion(otiga, codigodev[i], descripciones, unidad,Integer.parseInt(existencias),Integer.parseInt(devolucion[i]),Integer.parseInt(existencias)+Integer.parseInt(devolucion[i]) , fecha, hora);                   
+                        m.insertarHistoDevolucion(otiga, codigodev[i], descripciones, unidad,Integer.parseInt(existencias),Integer.parseInt(devolucion[i]),Integer.parseInt(existencias)+Integer.parseInt(devolucion[i]) , fecha, hora);                        
                     }
                 }
-
+                m.eliminarPedido(otiga);
                 p.cambioStatusDevolucionA(otiga);
                 request.getRequestDispatcher("SolicitudMaterial.jsp").forward(request, response);
 

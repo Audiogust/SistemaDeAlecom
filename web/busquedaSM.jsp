@@ -15,12 +15,12 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     </head>
     <body>
-       
+       <h1 align="center">Busqueda Proyectos</h1>
         <form align="center" action="controlFull.do" method="post">
         <div class="form-group d-flex">
             <div class="col-sm-6 ">
                 <div class="container" align="center">
-                <input type="text" name="nombre" value="" class="form-control" placeholder="Nombre Material"> 
+                <input align="center" type="text" name="nombre" value="" class="form-control" placeholder="Nombre Material"> 
                 <button type="submit" name="opcion" value="BuscarProyectoS" class="btn btn-outline-info">Buscar</button>
                 </div>
            <br><table align="center" border="5" width="50%" class="table thead-dark table-bordered table-hover">

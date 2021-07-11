@@ -228,8 +228,9 @@ public class ControlClientes extends HttpServlet {
                     cont = cont+1;
                     }
                 }
+                m.eliminarPedidoWisp(id);
                 cl1.CambioSw(id);
-                
+                request.getRequestDispatcher("MenuAlmacen.jsp").forward(request, response);
 
             }
                 

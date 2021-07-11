@@ -63,7 +63,7 @@
                              %>
                              <tr>
 
-                                 <td><input class="table-dark" type="text" value="<%= objs.getCodigo()%>" name="cod"></td>
+                                 <td><label><input class="table-dark" type="text" value="<%= objs.getCodigo()%>" name="cod"></label></td>
                                  <td><%= objs.getDescripcion()%></td>
                                  <td><%= objs.getUnidad()%></td>
                                  <td><input class="formulario__campo" type="number" name="numeros"   placeholder="Cantidad" min="0"></td> 

@@ -13,7 +13,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>REGISTRO</h1>
         <div align="center">
         <img src="IMG/logotipo.png" width="150" height="80" HSPACE="20">    
         </div>

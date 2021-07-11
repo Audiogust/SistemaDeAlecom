@@ -16,7 +16,7 @@
     </head>
     <body>
         <div align="center">
-            <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20">    
+            <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a>
         </div>
         <br>
         <h1>Modificar</h1>
@@ -27,7 +27,7 @@
                     <th>DESCRIPCION</th>
                     <th>UNIDAD</th>
                     <th>EXISTENCIA</th>
-                    <th>SALIDA</th>
+                    <th>TOPE</th>
                     <th>EDITAR</th>
 
                 </tr>
@@ -48,9 +48,7 @@
                 <td><%= objs.getSalida()%></td>
                 <td align="center" ><a href="EditarMat.jsp?txtpara=M&id=<%=objs.getCodigo()%>">
                         <img src="IMG/editar.svg" width="25px" height="25px"> </td>
-
-
-                        </tr>
+            </tr>
                         <%}%>
         </table> 
     </body>
