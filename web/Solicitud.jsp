@@ -55,15 +55,15 @@
             }
             
         %>
-        <h1>Consultar Solicitud</h1>
+        
     <center>
         <form align="center" action="controlClientes.do" method="post">
+            <h1>Consultar Solicitud</h1>
             <td width="50%"><input type="text" size="53" name="idt_1"  value="<%= id%>" id="textfield"></td>
              
             <div class="form-group d-flex">
                 <div class="col-sm-6 ">
 
-                   
                     <br>
                     <table align="center" border="5" width=
                            "50%" class="table table-dark table-bordered table-hover">

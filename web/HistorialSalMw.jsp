@@ -33,7 +33,10 @@
             }
             
         %>
+        <form align="center" method="post">
+        
         <h1>Historial Materiales Salida</h1>
+        
         <div class="table-responsive">
         <td width="50%"><input type="text" size="53" name="otiga_1"  value="<%= otiga%>" id="textfield"></td>
              <!--   <input type="text" name="codigo" value="" class="form-control" placeholder="OTIGA"> 

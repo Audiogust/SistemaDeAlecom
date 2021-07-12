@@ -15,12 +15,22 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     </head>
     <body>
+        <style>
+               body {
+               background-color: #8BADC4;
+               background-position: center;
+               background-size: cover;
+               height: 100vh;
+               min-height: 600px;
+               }
+    </style>
         
         <form action="controlClientes.do" method="post" align="center">
             <h1>Materiales Solicitados</h1>
             <div class="container" align="center">
-                <input type="text" name="nombre" value="" class="form-control" placeholder="Nombre"> 
-                <button type="submit" name="opcion" value="BuscarClientesW" class="btn btn-outline-info">Buscar</button>
+                <input type="text" name="nombre" value="" class="form-control" placeholder="Material"> 
+                <br>
+                <button type="submit" name="opcion" value="BuscarClientesW" class="btn btn-info">Buscar</button>
             </div>
             <br><table align="center" border="5" width="50%" class="table thead-dark table-bordered table-hover">
   	                 <thead class="bg-info"> 

@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     </head>
     <body>
-        <h1>Hello World!</h1>
+        
         <%
             HttpSession sesion=request.getSession();
             Clientes producto=(Clientes)sesion.getAttribute("clientes"); 
@@ -34,6 +34,7 @@
             }
             
         %>
+        <form   align="center" method="post"">
         <h1>Historial Materiales solicitados</h1>
         <div class="table-responsive">
         <td width="50%"><input type="text" size="53" name="otiga_1"  value="<%= otiga%>" id="textfield"></td>
@@ -80,9 +81,14 @@
                              </tr>
                                 <%}%>  
                    <input type="hidden" name="txtpara" value=<%=VPara%> />
-                </table>
-                <div>
-             </div>
-        </div>
+           </table>
+
+           <div>
+           </div>
+
+           </div>
+        </form>
+
     </body>
+
 </html>

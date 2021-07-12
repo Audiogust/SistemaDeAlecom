@@ -43,11 +43,11 @@
         <h1>MENU ALMACEN </h1>
          <form align="center" action="">
              <br>
-                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='Materiales.jsp'"><img src="IMG/historial.png" width="60" height="60"><br>MATERIALES</button>
+                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='Materiales.jsp'"><img src="IMG/Listam.png" width="60" height="60"><br>MATERIALES</button>
 
-                    <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='MaterialesSolicitados.jsp'"><img src="IMG/historial.png" width="60" height="60"><br>Materiales Solicitados</button>
+                    <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='MaterialesSolicitados.jsp'"><img src="IMG/Materials.png" width="60" height="60"><br>Materiales Solicitados</button>
 
-                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='SoliicitudDev.jsp'"><img src="IMG/historial.png" width="60" height="60"><br>Devolucion de Materiales</button> 
+                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='SoliicitudDev.jsp'"><img src="IMG/Devolucion.png" width="60" height="60"><br>Devolucion de Materiales</button> 
                 
                 <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='MaterialRegistro.jsp'"><img src="IMG/RegistroM.png" width="60" height="60"><br>Registro de Material</button> 
             </form>
