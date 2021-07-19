@@ -15,8 +15,8 @@
     <body>
         <style>
                   body{
-                       background-color:rgba(0,0,255, 0.3);
-                       
+                          background-color:rgba(0,0,255, 0.3);
+                            
                        }
         </style>
                <form align="center"  method="post" action="control.do">

@@ -14,6 +14,15 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
+            <style>
+               body {
+               background-color: #B2D0EE;
+               background-position: center;
+               background-size: cover;
+               height: 100vh;
+               min-height: 600px;
+               }
+    </style>
     <body>
         
         <h1>Historiales</h1>
