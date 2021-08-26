@@ -17,7 +17,7 @@
     </head>
     <body>
         
-        <h1>consulta preorden</h1>
+        <h1>Consulta Folio Preorden</h1>
         <%
             HttpSession sesion = request.getSession();
             Precompra producto = (Precompra) sesion.getAttribute("precompra");
