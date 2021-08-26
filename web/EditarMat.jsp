@@ -13,6 +13,13 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <title>JSP Page</title>
     </head>
+    <style>
+       body {
+       background-color:rgba(0,0,255, 0.3);
+       background-position: center;
+       
+       }
+    </style>
     <body>
         <h1 align="center">Editar Material</h1>
         <center>

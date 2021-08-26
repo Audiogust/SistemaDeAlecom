@@ -21,6 +21,7 @@
                background-size: cover;
                height: 100vh;
                min-height: 600px;
+               background-color:rgba(0,0,255, 0.3);
                }
     </style>
     <body>
@@ -30,7 +31,7 @@
             <div>
                 <div class="container" align="center">
                 <input align="center" type="text" name="nombre" value="" class="form-control" placeholder="Nombre de Proyecto"> 
-                <button type="submit" name="opcion" value="BuscarProyectoS" class="btn btn-outline-info">Buscar</button>
+                <button type="submit" name="opcion" value="BuscarProyectoS" class="btn btn-primary">Buscar</button>
                 </div>
            <br><table align="center" border="5" width="50%" class="table thead-dark table-bordered table-hover">
   	                 <thead class="bg-info"> 

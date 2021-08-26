@@ -11,6 +11,11 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
     </head>
+    <style>
+       body {
+       background-color:rgba(0,0,255, 0.3);
+       }
+    </style>
     <body>
         <h1>Error!</h1>
               

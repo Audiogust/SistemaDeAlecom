@@ -44,8 +44,7 @@
            <div  class="table-responsive">
            <table align="right" border="5" width="50%" class="table table-dark table-bordered table-hover">
   	                 <thead class="bg-info"> 
-                            <tr>
-                              
+                            <tr> 
                                 <th>otiga</th>
                                 <th>Codigo</th>
                                 <th>Nombre</th>

@@ -13,6 +13,15 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
   
     </head>
+                <style>
+               body {
+               background-color: #8BADC4;
+               background-position: center;
+               background-size: cover;
+               height: 100vh;
+               min-height: 600px;
+               }
+    </style>
     
     <style>
         .flexc {
@@ -98,7 +107,7 @@
                     </label>                    
                 </fieldset>
             </div>
-            <button type="submit" name="opcion" value="enviarProyecto" class="btn btn-outline-info">Registrar</button>
+            <button type="submit" name="opcion" value="enviarProyecto" class="btn btn-primary">Registrar</button>
         </form>
         </div>       
         

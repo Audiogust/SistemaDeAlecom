@@ -1,13 +1,12 @@
 <%-- 
-    Document   : consultaPrecompra
-    Created on : 26-may-2021, 13:42:22
+    Document   : consultaFolioPrecompra
+    Created on : 23-ago-2021, 22:43:24
     Author     : Hp
 --%>
 
 <%@page import="java.util.Vector"%>
 <%@page import="Modelo.OrdenPrecompra"%>
 <%@page import="Modelo.Precompra"%>
-<%@page import="Modelo.Proyecto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,6 +16,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+        
         <h1>consulta preorden</h1>
         <%
             HttpSession sesion = request.getSession();
@@ -42,9 +42,7 @@
             <div>
                 <td width="50%"><input type="text" size="53" name="otiga"  value="<%= folio%>" id="textfield"></td>
                 <td width="50%"><input type="text" size="53"  value="<%= serie%>" id="textfield"></td>          
-
             </div>
-
 
             <table align="center" border="5" width="50%" class="table table-dark table-bordered table-hover table-responsive-sm">
                 <thead class="bg-info"> 
@@ -67,10 +65,10 @@
                 %>
                 <tr>                            
                     <td><%= objs.getFolio()%></td>
-                    <td><input type="text" name="codigosOrd" value="<%= objs.getCodigo()%>" disable></td>
+                    <td><input type="text" name="codigosSolP" value="<%= objs.getCodigo()%>" disable></td>
                     <td><%= objs.getNombre()%></td>
                     <td><%= objs.getSolicitado()%></td>
-                    <td><input class="formulario__campo" type="number" name="solicitadoOrd"   placeholder="Cantidad" min="0" ></td> 
+                    <td><input class="formulario__campo" type="number" name="numeroSolP"  value="<%= objs.getSolicitado()%>" placeholder="Cantidad" min="0" ></td> 
 
                 </tr>
                 <%}%>
@@ -79,10 +77,9 @@
 
             </table>
 
-            <button type="submit" name="opcion" value="autorizarExistencia" class="btn btn-success">validar Materiales</button>
+            <button type="submit" name="opcion" value="cambiarEstadoPrecompra" class="btn btn-success">validar Materiales</button>
 
         </form>
     </center>
-        
     </body>
 </html>

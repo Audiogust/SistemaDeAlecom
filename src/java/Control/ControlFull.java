@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Control;
 
 import Modelo.Material;
@@ -28,10 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.apache.tomcat.jni.Local;
 
-/**
- *
- * @author Vane
- */
+
 public class ControlFull extends HttpServlet {
 
     /**
@@ -47,9 +39,6 @@ public class ControlFull extends HttpServlet {
             throws ServletException, IOException, ParseException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-     /* TODO output your page here. You may use following sample code. */
-            
      
             String opcion = request.getParameter("opcion");
             String numeroSerie;
@@ -89,21 +78,20 @@ public class ControlFull extends HttpServlet {
                 
             }                       
              if (opcion.equals("autorizarExistencia")) {
-                 
-                String idProyecto=request.getParameter("otiga_1");
+                Precompra p = new Precompra();
+                String idProyecto=request.getParameter("otiga");
                 OrdenPrecompra op = new OrdenPrecompra();
-                String codigoe[] = request.getParameterValues("codigosEx");
-                String numeros[] = request.getParameterValues("numeroExi");
+                String codigoe[] = request.getParameterValues("codigosOrd");
+                String numeros[] = request.getParameterValues("solicitadoOrd");
                 for (int i = 0; i < codigoe.length; i++) {    
                     op.Autorizar(codigoe[i],Integer.parseInt(numeros[i]));                    
                     System.out.println(codigoe[i]+" "+numeros[i]);                   
                 }
-                
+                p.cambioStatusOrden(idProyecto);
                 
                 request.getRequestDispatcher("Compras.jsp").forward(request, response);  
-             }  
+             }
              
-              
              if (opcion.equals("BuscarProyecto")) {
                  request.getRequestDispatcher("ingenieria.jsp").forward(request, response);  
              }  
@@ -354,7 +342,6 @@ public class ControlFull extends HttpServlet {
                 for (int i = 0; i < soli.length; i++) {
                     if (soli[i].length() > 0) {
                     String nombre = ms.Descripcion(nombres[i]);
-                    
                     String unidad =ms.Unidades(nombres[i]);
                     String existencias = ms.Existencia(nombres[i]);
                     String fecha = dtf.format(LocalDateTime.now());
@@ -364,12 +351,9 @@ public class ControlFull extends HttpServlet {
                     System.out.println(soli[i]+" "+nombres[i]);
                     }
                     pr.cambioStatusDevolver(idProyecto);
-                    
                 }
-                
-                
                  request.getRequestDispatcher("MenuPrincipal.jsp").forward(request, response);
-            }
+            }           
                 
             if (opcion.equals("enviarPrecompra")) {
                 Material mat = new Material();
@@ -415,6 +399,22 @@ public class ControlFull extends HttpServlet {
                     
                 }
                 request.getRequestDispatcher("OrdenCompra.jsp").forward(request, response);         
+            }
+            
+            if (opcion.equals("cambiarEstadoPrecompra")) {
+                Precompra p = new Precompra();
+                String idProyecto=request.getParameter("otiga");
+                String codigos[] = request.getParameterValues("codigosSolP");
+                String solicitado[] = request.getParameterValues("numeroSolP");
+                
+                for (int i = 0; i < codigos.length; i++) {
+                    p.cambioCantidadSolicitada(codigos[i], Integer.parseInt(solicitado[i]));                   
+                }
+                
+                p.cambioStatusPrecompra(idProyecto);
+                
+               request.getRequestDispatcher("Compras.jsp").forward(request, response);         
+                
             }
 
         }

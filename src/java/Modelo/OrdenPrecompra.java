@@ -59,12 +59,12 @@ public class OrdenPrecompra {
     
     
  
-      public static Vector mostrar(String f) throws SQLException{
+      public static Vector mostrarPre(String f) throws SQLException{
         Vector materiales = null; 
         Connection c = Conexion.conectar();
            if (c != null) {
              Statement st = c.createStatement();
-             ResultSet rs = st.executeQuery("select * from autorizarCompra where folio = '"+f+"'");
+             ResultSet rs = st.executeQuery("select * from precompraVista where folio = '"+f+"'");
              materiales  = new Vector();
              while(rs.next()){
                  materiales.add(new OrdenPrecompra(rs.getString("folio"), rs.getString("codigo"), rs.getString("nombre"),rs.getInt("solicitado")));

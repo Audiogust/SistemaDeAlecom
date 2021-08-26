@@ -168,7 +168,7 @@ public class Precompra {
         Connection c = Conexion.conectar();
            if (c != null) {
              Statement st = c.createStatement();
-             ResultSet rs = st.executeQuery(" SELECT * FROM PreCompra ");
+             ResultSet rs = st.executeQuery(" SELECT * FROM PreCompra WHERE status = 'A' ");
              materiales  = new Vector();
              while(rs.next()){
                  materiales.add(new Precompra(rs.getString("numeroSerie"),rs.getString("folio")));
@@ -182,6 +182,86 @@ public class Precompra {
           
     }
      
+   public static Vector mostrartablaOrd() throws SQLException{
+        Vector materiales = null; 
+        Connection c = Conexion.conectar();
+           if (c != null) {
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(" SELECT * FROM PreCompra WHERE status = 'D' ");
+             materiales  = new Vector();
+             while(rs.next()){
+                 materiales.add(new Precompra(rs.getString("numeroSerie"),rs.getString("folio")));
+             }
+               
+              return materiales; 
+               
+           }else {
+            return null;
+        }
+          
+    }
    
+   public String cambioStatusPrecompra(String otigaa) {
+        Connection c = Conexion.conectar();
+        String respuesta = "";
+        if (c != null) {
+            try {
+                PreparedStatement ps = c.prepareStatement("update PreCompra set status='D' where folio = ?");
+                ps.setString(1, otigaa);
+                ps.execute();
+                respuesta = "Habilitado";
+                return respuesta;
+
+            } catch (Exception e) {
+                respuesta = "Error";
+                return respuesta;
+            }
+
+        } else {
+        }
+        return "error de conexion";
+     }
+   public String cambioStatusOrden(String otigaa) {
+        Connection c = Conexion.conectar();
+        String respuesta = "";
+        if (c != null) {
+            try {
+                PreparedStatement ps = c.prepareStatement("update PreCompra set status='E' where folio = ?");
+                ps.setString(1, otigaa);
+                ps.execute();
+                respuesta = "Habilitado";
+                return respuesta;
+
+            } catch (Exception e) {
+                respuesta = "Error";
+                return respuesta;
+            }
+
+        } else {
+        }
+        return "error de conexion";
+     }
+   
+   public String cambioCantidadSolicitada(String cod, int sol) {
+        Connection c = Conexion.conectar();
+        String respuesta = "";
+        if (c != null) {
+            try {
+                PreparedStatement ps = c.prepareStatement("update precompraVista set solicitado = ?  where codigo = ?");
+                ps.setInt(1, sol);
+                ps.setString(2, cod);
+                ps.execute();
+                respuesta = "Habilitado";
+                return respuesta;
+
+            } catch (Exception e) {
+                respuesta = "Error";
+                return respuesta;
+            }
+
+        } else {
+        }
+        return "error de conexion";
+     }
     
 }

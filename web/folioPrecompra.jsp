@@ -1,11 +1,11 @@
 <%-- 
-    Document   : OrdenCompra
-    Created on : 24-may-2021, 15:14:34
+    Document   : folioPrecompra
+    Created on : 23-ago-2021, 19:27:33
     Author     : Hp
 --%>
 
-<%@page import="Modelo.Precompra"%>
 <%@page import="java.util.Vector"%>
+<%@page import="Modelo.Precompra"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,7 +21,7 @@
        }
     </style>
     <body>
-        <h1>Folios de Orden de compra</h1>
+        <h1>Folios de precompra</h1>
          <br><table align="center" border="5" width="50%" class="table thead-dark table-bordered table-hover">
   	                 <thead class="bg-info"> 
                             <tr>                             
@@ -30,11 +30,10 @@
                                 <th>Consulta de materiales</th>    
                             </tr>
 		         </thead>
-                            <%
-                                                            
+                            <%                         
                              Precompra objs = new Precompra();
                              Vector usu = new Vector();
-                             usu=objs.mostrartablaOrd();
+                             usu=objs.mostrartabla();
                              
                              for(int i=0; i<usu.size();i++){
                                  objs=(Precompra)usu.get(i);
@@ -43,7 +42,7 @@
                              <tr>
                                 <td><%= objs.getNumeroSerie()%></td>
                                 <td><%= objs.getFolio()%></td>
-                                <td align="center" ><a href="consultaPrecompra.jsp?txtpara=M&id=<%= objs.getFolio()%>">
+                                <td align="center" ><a href="consultaFolioPrecompra.jsp?txtpara=M&id=<%= objs.getFolio()%>">
                                      <img src="IMG/peticion.svg" width="25px" height="25px"> </td>
                              </tr>
                                 <%}%>

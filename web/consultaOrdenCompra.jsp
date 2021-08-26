@@ -1,13 +1,12 @@
 <%-- 
-    Document   : consultaPrecompra
-    Created on : 26-may-2021, 13:42:22
+    Document   : consultaOrdenCompra
+    Created on : 24-ago-2021, 9:43:39
     Author     : Hp
 --%>
 
 <%@page import="java.util.Vector"%>
 <%@page import="Modelo.OrdenPrecompra"%>
 <%@page import="Modelo.Precompra"%>
-<%@page import="Modelo.Proyecto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,6 +16,7 @@
         <title>JSP Page</title>
     </head>
     <body>
+
         <h1>consulta preorden</h1>
         <%
             HttpSession sesion = request.getSession();
@@ -67,10 +67,10 @@
                 %>
                 <tr>                            
                     <td><%= objs.getFolio()%></td>
-                    <td><input type="text" name="codigosOrd" value="<%= objs.getCodigo()%>" disable></td>
+                    <td><input type="text" name="codigosPre" value="<%= objs.getCodigo()%>" disable></td>
                     <td><%= objs.getNombre()%></td>
                     <td><%= objs.getSolicitado()%></td>
-                    <td><input class="formulario__campo" type="number" name="solicitadoOrd"   placeholder="Cantidad" min="0" ></td> 
+                    <td><input class="formulario__campo" type="number" name="solicitadoPre"   placeholder="Cantidad" min="0" ></td> 
 
                 </tr>
                 <%}%>
@@ -79,10 +79,9 @@
 
             </table>
 
-            <button type="submit" name="opcion" value="autorizarExistencia" class="btn btn-success">validar Materiales</button>
+            <button type="submit" name="opcion" value="hacerPrecompra" class="btn btn-success">validar Materiales</button>
 
         </form>
     </center>
-        
     </body>
 </html>

@@ -12,6 +12,13 @@
          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <title>JSP Page</title>
     </head>
+    <style>
+       body {
+       background-color:rgba(0,0,255, 0.3);
+       background-position: center;
+       
+       }
+    </style>
     <body>
         <div align="center">
         <img src="IMG/logotipo.png" width="150" height="80" HSPACE="20">    
@@ -47,7 +54,7 @@
             <input type="text" aria-label="First name" class="form-control" name="tope">
             </div>
             
-            <button type="submit" name="opcion" value="registrarMaterial" class="btn btn-outline-info">Registrar</button>
+            <button type="submit" name="opcion" value="registrarMaterial" class="btn btn-primary">Registrar</button>
         
         </form>
             </div>

@@ -16,7 +16,7 @@
     </head>
     <style>
        body {
-       background-color: #8BADC4;
+       background-color:rgba(0,0,255, 0.3);
        background-position: center;
        background-size: cover;
        height: 100vh;

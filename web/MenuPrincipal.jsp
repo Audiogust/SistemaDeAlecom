@@ -17,7 +17,7 @@
         <title>Proyecto full-swap</title>
     </head>
     <style>
-        body {
+            body {
                 background-image: url("Imagenes/Fondo2.jpg");
                 background-position: center;
                 background-size: cover;
@@ -32,7 +32,7 @@
                  margin-right:14px!important;
                  }
                  .letra{
-                     font-size: 19px;
+                     font-size: 20px;
                  }
     </style>
     <body>

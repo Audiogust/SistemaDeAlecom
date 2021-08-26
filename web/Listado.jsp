@@ -17,6 +17,12 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     </head>
+    <style>
+        body{
+        background-color:rgba(0,0,255, 0.3);    
+        }
+        
+    </style>
     <body>
         <h1 align="center">Solicitar Materiales</h1>
         <%
@@ -50,6 +56,7 @@
                                 <th>CODIGO</th>
                                 <th>MATERIAL</th>
                                 <th>UNIDAD</th>
+                                <th>EXISTENCIA</th>
                                 <th>SOLICITADO</th>                               
                             </tr>
 		         </thead>
@@ -66,19 +73,17 @@
                                  <td><label><input class="table-dark" type="text" value="<%= objs.getCodigo()%>" name="cod"></label></td>
                                  <td><%= objs.getDescripcion()%></td>
                                  <td><%= objs.getUnidad()%></td>
+                                 <td><%= objs.getExistencia()%></td>
                                  <td><input class="formulario__campo" type="number" name="numeros"   placeholder="Cantidad" min="0"></td> 
                                
                              </tr>
                                 <%}%>
-                                
                                   
                      <input type="hidden" name="txtpara" value=<%=VPara%> />
                      
-                        
                 </table>
                
                  <button type="submit" name="opcion" value="enviarDatos" class="btn btn-success">Solicitar Materiales</button>
-          
         </form>
         </center>
     </body>
