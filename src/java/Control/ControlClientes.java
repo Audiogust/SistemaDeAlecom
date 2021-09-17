@@ -6,7 +6,9 @@
 package Control;
 
 import Modelo.Clientes;
+import Modelo.EquipamientoSolicitado;
 import Modelo.Material;
+import Modelo.Material1;
 import Modelo.MaterialSolicitadoWisp;
 import Modelo.Precompra;
 import java.io.IOException;
@@ -170,9 +172,46 @@ public class ControlClientes extends HttpServlet {
                 request.getRequestDispatcher("Wisp.jsp").forward(request, response);
             }
             
+              if (opcion.equals("guardarEquipamiento")) {
+                String cantidad[] = request.getParameterValues("cantidades");
+                String marca[] = request.getParameterValues("marca");  
+                String id = request.getParameter("id_wisp");
+                Clientes cl1 = new Clientes();
+                Material m = new Material();
+                Material m1 = new Material();
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm:ss");
+                Material ms = new Material();
+                Material1 mat1 = new Material1();
+                Material1 ms1 = new Material1();
+                Material jeje = new Material();
+                Material1 mt= new Material1();
+                String c = cl1.Status(id);
+                for (int i = 0; i < cantidad.length; i++) {
+                    if (cantidad[i].length() > 0) {
+                        String material = mat1.Tipo(marca[i]);
+                        String disp = ms1.Dispo(marca[i]);
+                        String existencias = ms1.Existencia(marca[i]);
+                        String fecha = dtf.format(LocalDateTime.now());
+                        String hora = dtf1.format(LocalDateTime.now());
+                        m1.Wisp(id, material, cantidad[i]);
+                        mat1.Equi(id, disp, cantidad[i]);
+                        mt.insertarHistoE(id, marca[i] , material, disp,Integer.parseInt(existencias) ,Integer.parseInt(cantidad[i]), fecha, hora);
+                        System.out.println(marca[i] + " " + cantidad[i]);
+                    }
+                }
+
+                request.getRequestDispatcher("Wisp.jsp").forward(request, response);
+            }
+            
              if (opcion.equals("BuscarClientesW")) {
                  
                   request.getRequestDispatcher("MaterialesSolicitados.jsp").forward(request, response);
+              }
+             
+              if (opcion.equals("BuscarClientesS")) {
+                 
+                  request.getRequestDispatcher("EquipamientosSolicitados.jsp").forward(request, response);
               }
              if (opcion.equals("guardarAlmacen")) {
                 Material ms = new Material();
@@ -201,6 +240,40 @@ public class ControlClientes extends HttpServlet {
                  if (cont > 0 ) {
                      cli.StatusDev(id1);
                     request.getRequestDispatcher("MaterialesSolicitados.jsp").forward(request, response);
+                 }
+                
+                  request.getRequestDispatcher("Wisp.jsp").forward(request, response);
+              }
+             
+             if (opcion.equals("guardarAlmacenE")) {
+                Material ms = new Material();
+                Material1 ma1 = new Material1();
+                MaterialSolicitadoWisp mts = new MaterialSolicitadoWisp();
+                String id1 = request.getParameter("idt_1");
+                MaterialSolicitadoWisp wisp = new MaterialSolicitadoWisp();
+                EquipamientoSolicitado eqs = new EquipamientoSolicitado();
+                Clientes cli = new Clientes();
+                String soli[] = request.getParameterValues("numerosW");
+                String marcas[] = request.getParameterValues("marcas");
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm:ss");
+                int cont=0;
+                for (int i = 0; i < soli.length; i++) {
+                    if (soli[i].length() > 0) {
+                    cont++;
+                    String tipo = ma1.Tipo(marcas[i]);
+                    String dispositivos =ma1.Dispo(marcas[i]);
+                    String existencias = ma1.Existencia(marcas[i]);
+                    String fecha = dtf.format(LocalDateTime.now());
+                    String hora = dtf1.format(LocalDateTime.now());
+                    eqs.OperacionE(marcas[i],Integer.parseInt(soli[i]));                    
+                    
+                    System.out.println(soli[i]+" "+marcas[i]);
+                    }
+                }
+                 if (cont > 0 ) {
+                     cli.StatusDev(id1);
+                    request.getRequestDispatcher("EquipamientosSolicitados.jsp").forward(request, response);
                  }
                 
                   request.getRequestDispatcher("Wisp.jsp").forward(request, response);
