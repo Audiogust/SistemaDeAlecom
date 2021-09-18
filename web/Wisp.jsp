@@ -20,10 +20,10 @@
     <style>
         h2{
             font-size: 40px;
-            color: white;
+            
         }
         body {
-            background-image: url("IMG/imagen 1.png");
+            background-image: url("IMG/fondo_4.jpg");
             background-position: center;
             height: 100vh;                
             min-height: 600px;
@@ -40,13 +40,16 @@
         }
         </style>
     <body>
+            <div align="center">
+         <img src="IMG/img.png" width="200" height="200" HSPACE="50">
+        </div>
             <form align="center" action="controlClientes.do">
                 <font color="#1D049B"><h2>MENU PRINCIPAL</h2></font>
                         <button type="submit" name="opcion" value="GenerarNumeroW" class="btn btn-success btn-sm  boton letra" onclick="location.href='Clientes.jsp'"><img src="IMG/clientes1.svg" width="60" height="60"><br>Clientes </button>
                         <button type="button" name="enviar" class="btn btn-success btn-sm  boton letra" onclick="location.href='Instalacion.jsp'"><img src="IMG/orden.svg" width="60" height="60"><br>Orden de instalacion</button>
                         <button type="button" name="enviar" class="btn btn-dark btn-sm boton letra" onclick="location.href='MenuAlmacen.jsp'"><img src="IMG/almacen1.svg" width="60" height="60"><br>Almacen</button>
-                        <button type="button" name="enviar" class="btn btn-success btn-sm  boton letra" onclick="location.href='Historiales.jsp'"><img src="IMG/historial.png" width="60" height="60"><br>Historiales</button>
-                        <br><br><br><br><br><br><br><button type="button" name="enviar" class="btn btn btn-success btn-sm boton letra" onclick="location.href='ComprasW.jsp'"><img src="IMG/compras.svg" width="60" height="60"><br>Compras</button>
+                        <button type="button" name="enviar" class="btn btn-success btn-sm  boton letra" onclick="location.href='MenuHistorial.jsp'"><img src="IMG/historial.png" width="60" height="60"><br>Historiales</button>
+                        <br><br><br><br><br><button type="button" name="enviar" class="btn btn btn-success btn-sm boton letra" onclick="location.href='ComprasW.jsp'"><img src="IMG/compras.svg" width="60" height="60"><br>Compras</button>
                         <button type="button" name="enviar" class="btn btn btn-success btn-sm boton letra" onclick="location.href='Orden2.jsp'"><img src="IMG/reporte1.svg" width="60" height="60"><br>Orden de servicio</button>
                         <button type="button" name="enviar" class="btn btn-success btn-sm boton letra"  onclick="location.href='Calidad.jsp'"><img src="IMG/graficas.svg" width="50" height="50"/><br>Control de calidad de servicio</button>  
             </form> 

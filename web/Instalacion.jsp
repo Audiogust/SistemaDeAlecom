@@ -58,7 +58,8 @@
                                 <th>NOMBRE</th>
                                 <th>DIRECCION</th>
                                 <th>MEGAS</th> 
-                                <th>FORMATO</th>
+                                <th>MATERIALES</th>
+                                <th>EQUIPAMIENTO</th>
                             </tr>
                            
 		         </thead>
@@ -79,6 +80,9 @@
                                 <td><%= objs.getMegas()%></td>
                            
                              <td align="center" ><a href="Formato.jsp?txtpara=M&id=<%= objs.getId()%>">
+                                     <img src="IMG/formato1.png" width="25px" height="25px"> </td>
+                                     
+                            <td align="center" ><a href="Equipamiento.jsp?txtpara=M&id=<%= objs.getId()%>">
                                      <img src="IMG/formato1.png" width="25px" height="25px"> </td>
                                 
                              </tr>

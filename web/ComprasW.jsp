@@ -38,13 +38,11 @@
                       }
    </style>
     <body>
-       
         <div>
-            
             <form align="center" action="controlFull.do">
             <h2>MENU PRINCIPAL DE COMPRAS</h2>
-            <button type="submit" name="opcion" value="botonPreorden" class="btn btn-primary btn-lg boton" onclick="location.href='Preorden.jsp'"><img src="IMG/Preorden.png" width="60" height="60"><br>Orden  </button>
-            <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='OrdenCompra.jsp'"><img src="IMG/Ocompra.png" width="60" height="60"><br>Preorden </button>    
+            <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='ComprasM.jsp'"><img src="IMG/Preorden.png" width="60" height="60"><br>MATERIALES  </button>
+            <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='ComprasE.jsp'"><img src="IMG/Ocompra.png" width="60" height="60"><br>EQUIPAMIENTO </button>    
             </form>
         </div>
     </body>

@@ -43,7 +43,7 @@
         <h1>HISTORIALES</h1>
         <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='HistorialSoliE.jsp'"><img src="IMG/historial.png" width="60" height="60"><br> Materiales solicitados</button>
 
-        <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='HistorialSalidaw.jsp'"><img src="IMG/historial.png" width="60" height="60"><br> Salida de Materiales</button>
+        <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='HistorialSalidaE.jsp'"><img src="IMG/historial.png" width="60" height="60"><br> Salida de Materiales</button>
 
         <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='HistorialDevolucionw.jsp'"><img src="IMG/historial.png" width="60" height="60"><br> Devoluciones de Materiales</button> 
           

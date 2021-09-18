@@ -36,18 +36,27 @@
         }
         </style>
     <body>
-        <div align="center">
-        <a href="Wisp.jsp"> <img src="IMG/ima.png" width="150" height="150" HSPACE="20"></a>
+         <div align="center">
+
+       
+        <a href="Wisp.jsp"> <img src="IMG/img.png" width="150" height="150" HSPACE="20"></a>
+
         </div>
         <form align="center" action="">
         <h1>MENU ALMACEN </h1>
-         <form align="center" action="">
+         
              <br>
                 <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='Materiales.jsp'"><img src="IMG/Listam.png" width="60" height="60"><br>MATERIALES</button>
-
-                    <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='MaterialesSolicitados.jsp'"><img src="IMG/Materials.png" width="60" height="60"><br>Materiales Solicitados</button>
+                
+                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='TablaEquipamiento.jsp'"><img src="IMG/Listam.png" width="60" height="60"><br>EQUIPAMIENTO</button>
+                
+                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='MaterialesSolicitados.jsp'"><img src="IMG/Materials.png" width="60" height="60"><br>Materiales Solicitados</button>
+                
+                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='EquipamientosSolicitados.jsp'"><img src="IMG/Materials.png" width="60" height="60"><br>Equipamientos Solicitados</button>
 
                 <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='SoliicitudDev.jsp'"><img src="IMG/Devolucion.png" width="60" height="60"><br>Devolucion de Materiales</button> 
+                
+                     <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='DevolucionE.jsp'"><img src="IMG/Devolucion.png" width="60" height="60"><br>Devolucion de Equipamiento</button> 
                 
                 <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='MaterialRegistro.jsp'"><img src="IMG/RegistroM.png" width="60" height="60"><br>Registro de Material</button> 
             </form>
