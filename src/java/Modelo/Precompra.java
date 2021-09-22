@@ -263,5 +263,23 @@ public class Precompra {
         }
         return "error de conexion";
      }
+   public static Vector mostrartablaPre() throws SQLException{
+        Vector materiales = null; 
+        Connection c = Conexion.conectar();
+           if (c != null) {
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(" SELECT * FROM PreCompra ");
+             materiales  = new Vector();
+             while(rs.next()){
+                 materiales.add(new Precompra(rs.getString("numeroSerie"),rs.getString("folio")));
+             }
+               
+              return materiales; 
+               
+           }else {
+            return null;
+        }
+          
+    }
     
 }

@@ -10,6 +10,7 @@ import java.util.Vector;
 
 public class MaterialSolicitado {
 
+
 private int id;
 private String otiga;
 private String codigo;
@@ -20,6 +21,7 @@ private String solicitado;
 private String fecha;
 private String hora;
 private int existenciaant;
+private int autorizado;
 
     public MaterialSolicitado(){
         
@@ -73,7 +75,32 @@ private int existenciaant;
         this.existenciaant = existenciaant;
     }
     
+    public MaterialSolicitado(int id, String otiga, String codigo, 
+                              String nombre,String unidades,int existenciaant, 
+                              String solicitado,int autorizado,int existencia,
+                              String hora,String fecha) {
+        this.id = id;
+        this.otiga = otiga;
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.unidades = unidades;
+        this.existenciaant = existenciaant;
+        this.solicitado = solicitado;
+        this.autorizado = autorizado;
+        this.existencia = existencia;
+        this.hora = hora;
+        this.fecha = fecha;
+    }
     
+    
+    
+    public int getAutorizado() {
+        return autorizado;
+    }
+
+    public void setAutorizado(int autorizado) {
+        this.autorizado = autorizado;
+    }
 
     public String getFecha() {
         return fecha;
@@ -363,6 +390,25 @@ public boolean buscarSolicitudPrecompra(String id){
         } catch (Exception e) {
         }
         return res;
+    }
+public static Vector mostrarHistoPrecompra(String busqueda) throws SQLException{
+        Vector proyectos = null; 
+        Connection c = Conexion.conectar();
+           if (c != null) {
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(" SELECT * FROM historialOrdenCompra WHERE folio  = '" + busqueda +"'");
+             proyectos  = new Vector();
+             while(rs.next()){
+                       proyectos.add(new MaterialSolicitado(
+                         rs.getInt("id"),rs.getString("folio"),rs.getString("codigo"), 
+                         rs.getString("nombre"),rs.getString("unidad"),rs.getInt("existencia_ant"),
+                         rs.getString("solicitado"),rs.getInt("autorizado"),rs.getInt("existencia_act"),
+                         rs.getString("hora"),rs.getString("fecha")));                       
+             }               
+              return proyectos;                
+           }else {
+            return null;
+        }
     }
 
     
