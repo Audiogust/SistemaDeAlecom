@@ -40,8 +40,7 @@
         <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20">    
         </div>
         <br><br>
-        <div>
-            
+        <div>            
             <form align="center" action="controlFull.do">
             <font color="#ffffff"><h2>MENU PRINCIPAL ADMINISTRADOR</h2></font><br>
                         <button type="submit" name="opcion" value="botonGenerarNumero" class="btn btn-primary btn-lg boton letra" ><img src="IMG/trabajar.svg" width="60" height="60"><br>Proyectos </button>
