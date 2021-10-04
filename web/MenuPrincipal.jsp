@@ -9,8 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">      
-        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
@@ -48,9 +47,7 @@
                         <button type="button" name="enviar" class="btn btn-primary btn-lg boton letra" onclick="location.href='Almacen.jsp'"><img src="IMG/almacen.svg" width="60" height="60"><br>Almacen</button>
                         <button type="button" name="enviar" class="btn btn-primary btn-lg boton letra" onclick="location.href='Compras.jsp'"><img src="IMG/compra.png" width="60" height="60"><br>Compras</button>
                         <button type="button" name="enviar" class="btn btn-primary btn-lg boton letra" onclick="location.href='ModificacionMateriales.jsp'"><img src="IMG/EditarMaterial.png" width="60" height="60"><br>Editar materiales</button>
-                        <button type="button" name="enviar" class="btn btn-primary btn-lg boton letra" onclick="location.href='RegistroMateriales.jsp'"><img src="IMG/RegistroM.png" width="60" height="60"><br>Registrar material</button>
-                        
-                
+                        <button type="button" name="enviar" class="btn btn-primary btn-lg boton letra" onclick="location.href='RegistroMateriales.jsp'"><img src="IMG/RegistroM.png" width="60" height="60"><br>Registrar material</button>               
             </form>
         </div>
     </body>

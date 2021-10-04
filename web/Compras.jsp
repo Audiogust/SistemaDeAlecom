@@ -21,8 +21,7 @@
                 background-position: center;
                 background-size: cover;
                 height: 100vh;
-                min-height: 600px;
-                
+                min-height: 600px;     
                 }
            .boton{
                  background-repeat:no-repeat;
@@ -36,7 +35,7 @@
                  }
     </style>
     <body>
-        <h1>Compras</h1>
+        <h1>Menu Compras</h1>
         <div class="table-responsive" align="center">
                 <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a>
         </div>
