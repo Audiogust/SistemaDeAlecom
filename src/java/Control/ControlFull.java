@@ -78,18 +78,30 @@ public class ControlFull extends HttpServlet {
                 
             }                       
              if (opcion.equals("autorizarExistencia")) {
+                 System.out.println("cambio");
                 Precompra p = new Precompra();
+                OrdenPrecompra o = new OrdenPrecompra();
+                Material m = new Material();
                 String idProyecto=request.getParameter("otiga");
                 OrdenPrecompra op = new OrdenPrecompra();
                 String codigoe[] = request.getParameterValues("codigosOrd");
                 String numeros[] = request.getParameterValues("solicitadoOrd");
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm:ss");
+                String fecha = dtf.format(LocalDateTime.now());
+                String hora = dtf1.format(LocalDateTime.now());                
                 for (int i = 0; i < codigoe.length; i++) {    
+                    String nom = m.Descripcion(codigoe[i]);
+                    String unidad = m.Unidades(codigoe[i]);
+                    String existencia = m.Existencia(codigoe[i]);
+                    String ordenSol = o.solicitadoOrden(idProyecto, nom);
                     op.Autorizar(codigoe[i],Integer.parseInt(numeros[i]));                    
+                    p.OrdencompraHistorial(idProyecto, codigoe[i], nom, unidad,existencia, ordenSol, numeros[i], String.valueOf(Integer.parseInt(existencia) + Integer.parseInt(numeros[i])) , hora, fecha);
                     System.out.println(codigoe[i]+" "+numeros[i]);                   
                 }
                 p.cambioStatusOrden(idProyecto);
                 
-                request.getRequestDispatcher("Compras.jsp").forward(request, response);  
+                request.getRequestDispatcher("Compras.jsp").forward(request, response);
              }
              
              if (opcion.equals("BuscarProyecto")) {
@@ -402,19 +414,27 @@ public class ControlFull extends HttpServlet {
             }
             
             if (opcion.equals("cambiarEstadoPrecompra")) {
-                Precompra p = new Precompra();
+           Precompra p = new Precompra();
+                Material m = new Material();
+                OrdenPrecompra o = new OrdenPrecompra();
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm:ss");
                 String idProyecto=request.getParameter("otiga");
                 String codigos[] = request.getParameterValues("codigosSolP");
                 String solicitado[] = request.getParameterValues("numeroSolP");
-                
+                String fecha = dtf.format(LocalDateTime.now());
+                String hora = dtf1.format(LocalDateTime.now());                
                 for (int i = 0; i < codigos.length; i++) {
-                    p.cambioCantidadSolicitada(codigos[i], Integer.parseInt(solicitado[i]));                   
-                }
-                
-                p.cambioStatusPrecompra(idProyecto);
-                
-               request.getRequestDispatcher("Compras.jsp").forward(request, response);         
-                
+                    p.cambioCantidadSolicitada(codigos[i], Integer.parseInt(solicitado[i]));
+                    String nom = m.Descripcion(codigos[i]);
+                    String unidad = m.Unidades(codigos[i]);
+                    String existencia = m.Existencia(codigos[i]);
+                    String ordenSol = o.solicitadoOrden(idProyecto, nom);
+                    System.out.println(idProyecto+"  "+codigos[i]+"  "+nom+"  "+unidad+"  "+ ordenSol+"  "+ solicitado[i]+"  "+ hora+"  "+ fecha);
+                    p.precompraHistorial(idProyecto, codigos[i], nom, unidad,existencia ,ordenSol, solicitado[i], hora, fecha);
+                }                
+                p.cambioStatusPrecompra(idProyecto);                
+               request.getRequestDispatcher("Compras.jsp").forward(request, response);                       
             }
 
         }

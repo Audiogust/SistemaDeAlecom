@@ -281,5 +281,55 @@ public class Precompra {
         }
           
     }
+   public String precompraHistorial(String folio,String cod,String nom,String uni,String exis,String sol,String aut,String fecha,String hor) {
+        Connection c = Conexion.conectar();
+        try {
+            if (c != null) {
+                PreparedStatement ps = c.prepareStatement(" INSERT INTO historialPreordenCompra(folio,codigo,nombre,unidad,existencia,solicitado,autorizado,hora,fecha)  values(?,?,?,?,?,?,?,?,?)");
+                ps.setString(1, folio);
+                ps.setString(2, cod);
+                ps.setString(3, nom);
+                ps.setString(4, uni);
+                ps.setString(5, exis);
+                ps.setString(6, sol);
+                ps.setString(7, aut);
+                ps.setString(8, hor);
+                ps.setString(9, fecha);
+                ps.execute();
+                return "Modificación realizada";
+            } else {
+                return "No hay conexion a la base ";
+            }
+        } catch (Exception e) {
+            return "Error al modificar " + e;
+        }
+     }
+   
+   public String OrdencompraHistorial(String folio, String cod,String nom,String uni,String exisant,
+                                      String sol, String aut, String exisact,String fecha,String hor) {
+        Connection c = Conexion.conectar();
+        try {
+            if (c != null) {
+                PreparedStatement ps = c.prepareStatement(" INSERT INTO historialOrdenCompra(folio,codigo,nombre,unidad,"
+                        + "existencia_ant,solicitado,autorizado,existencia_act,hora,fecha)  values(?,?,?,?,?,?,?,?,?,?)");
+                ps.setString(1, folio);
+                ps.setString(2, cod);
+                ps.setString(3, nom);
+                ps.setString(4, uni);
+                ps.setString(5, exisant);
+                ps.setString(6, sol);
+                ps.setString(7, aut);
+                ps.setString(8, exisact);
+                ps.setString(9, fecha);
+                ps.setString(10, hor);
+                ps.execute();
+                return "Modificación realizada";
+            } else {
+                return "No hay conexion a la base ";
+            }
+        } catch (Exception e) {
+            return "Error al modificar " + e;
+        }
+     }
     
 }

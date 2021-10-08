@@ -95,4 +95,21 @@ public class OrdenPrecompra {
         }
     }
     
+       public String solicitadoOrden(String fol,String nom){
+        Connection c = Conexion.conectar();
+       
+        try{
+            PreparedStatement ps = c.prepareStatement("SELECT  solicitado from OrdenPreCompra where folio = ? and nombre = ?");
+            ps.setString(1, fol);
+            ps.setString(2, nom);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                String descripcion = rs.getString("solicitado");
+                return descripcion;
+            }
+            return "No hay datos";
+        } catch (Exception e) {
+            return "No se pudo";
+        }
+    }
 }
