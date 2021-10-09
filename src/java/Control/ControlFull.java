@@ -414,7 +414,7 @@ public class ControlFull extends HttpServlet {
             }
             
             if (opcion.equals("cambiarEstadoPrecompra")) {
-                System.out.println("cambio");
+                System.out.println("cambiodificil");
                 Precompra p = new Precompra();
                 Material m = new Material();
                 OrdenPrecompra o = new OrdenPrecompra();
