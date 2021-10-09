@@ -414,7 +414,8 @@ public class ControlFull extends HttpServlet {
             }
             
             if (opcion.equals("cambiarEstadoPrecompra")) {
-           Precompra p = new Precompra();
+                System.out.println("cambio");
+                Precompra p = new Precompra();
                 Material m = new Material();
                 OrdenPrecompra o = new OrdenPrecompra();
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
