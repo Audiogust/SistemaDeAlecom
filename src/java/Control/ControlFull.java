@@ -155,10 +155,7 @@ public class ControlFull extends HttpServlet {
                     otiga += newDateString;
                     otiga += otigon;
 
-                    System.out.println(tipo);
-                    /* DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");          
-                       LocalDate ahora = LocalDate.now();       
-                     */
+                    System.out.println(tipo);              
 
                     Date fechad = new Date(Calendar.getInstance().getTimeInMillis());
 

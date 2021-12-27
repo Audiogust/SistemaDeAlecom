@@ -91,8 +91,8 @@
             </div>
             
             <div class="input-group">
-            <span class="input-group-text">Folio</span>
-            <input type="text" aria-label="First name" class="form-control" name="otigon" value="${numerito}">
+            <span class="input-group-text">Folio: ${numerito}</span>
+            <input type="hidden" name="otigon" value="${numerito}">
             </div>
             
         

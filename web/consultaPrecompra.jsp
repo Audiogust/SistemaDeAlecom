@@ -17,7 +17,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>consulta preorden</h1>
+        <h1>Consulta Orden de Compra</h1>
         <%
             HttpSession sesion = request.getSession();
             Precompra producto = (Precompra) sesion.getAttribute("precompra");
