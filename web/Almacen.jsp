@@ -2,6 +2,8 @@
     Document   : Almacen
     Created on : 31-mar-2021, 22:25:04
     Author     : Hp
+
+    cambios extraños que hay en mi
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

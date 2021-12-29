@@ -42,7 +42,11 @@
             
         %>
         <h1>Consultar solicitudes de Materiales</h1>
-        
+        <div>
+            <td width="50%"><input type="text" size="53" name="folioextraer"  value="${folioo}" id="textfield"></td>
+          
+            <td width="50%"><input type="text" size="53" name="folionumeros"  value="${numeroS}" id="textfield"></td>
+            </div>
    
         <form align="center" action="controlFull.do" method="post">
         <td width="50%"><input type="text" size="53" name="otiga_1"  value="<%= otiga%>" id="textfield"></td>
