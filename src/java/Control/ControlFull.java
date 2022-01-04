@@ -305,7 +305,7 @@ public class ControlFull extends HttpServlet {
                     request.setAttribute("folioo", folio);
                     request.setAttribute("numeroS", numeroSerie);
                 }
-
+                System.out.println("avisoooooooooooo"+numeroSerie);
                 request.getRequestDispatcher("Preorden.jsp").forward(request, response);
             }
             if (opcion.equals("botonPreordenAccion")) {
@@ -392,22 +392,23 @@ public class ControlFull extends HttpServlet {
                     folio = folio + "-A" + numeroSerie;
                     request.setAttribute("folioo", folio);
                     request.setAttribute("numeroS", numeroSerie);
+                    System.out.println(numeroSerie); 
+                    Material m = new Material();
+                    Material m1 = new Material();
+                    p.precompra(numeroSerie, folio);
+                    for (int i = 0; i < codigos.length; i++) {
+                        String existencia = m.Existencia(codigos[i]);
+                        //String solicitado = m.Solicitado(codigos[i],otiga);    
+                        String descripciones = m.Descripcion(codigos[i]);
+                        
+                        if (Integer.parseInt(solicitado[i]) > Integer.parseInt(existencia)) {
+                            m1.precompra(folio, descripciones, String.valueOf(Integer.parseInt(solicitado[i]) - Integer.parseInt(existencia)));
+                        }
+
+                    }
                 }
-                Material m = new Material();
-                Material m1 = new Material();                
-                p.precompra(numeroSerie, folio);
-                for(int i = 0; i < codigos.length; i++) {
-                    String existencia = m.Existencia(codigos[i]);
-                    //String solicitado = m.Solicitado(codigos[i],otiga);    
-                    String descripciones = m.Descripcion(codigos[i]);
-                    System.out.println(descripciones+"  "+ existencia+" "+solicitado[i]);
-                    if (Integer.parseInt(solicitado[i]) > Integer.parseInt(existencia)) {
-                        System.out.println("jeje "+descripciones);
-                        m1.precompra(folio, descripciones, String.valueOf(Integer.parseInt(solicitado[i]) - Integer.parseInt(existencia)));
-                    }                   
-                    
-                }
-                request.getRequestDispatcher("OrdenCompra.jsp").forward(request, response);         
+               
+                request.getRequestDispatcher("folioPrecompra.jsp").forward(request, response);         
             }
             
             if (opcion.equals("cambiarEstadoPrecompra")) {

@@ -19,10 +19,11 @@
     <body>
         
         <div>
-            <div align="center">
-                <img src="IMG/logotipo.png" width="150" height="80" HSPACE="20">    
+            <div class="table-responsive" align="center">
+                <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a>
+                <h1 align="center">Busqueda Proyectos</h1>
             </div>
-            
+
             <form align="center" action="">
                 <font color="#ffffff"><h2>MENU Historiales</h2></font>
                 <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='tablaHistorial.jsp'"><img src="IMG/historial.png" width="60" height="60"><br>Historial de Materiales solicitados</button>

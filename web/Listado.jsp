@@ -24,7 +24,11 @@
         
     </style>
     <body>
+         <div class="table-responsive" align="center">
+                <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a>
         <h1 align="center">Solicitar Materiales</h1>
+        </div>
+        
         <%
             HttpSession sesion=request.getSession();
             Proyecto producto=(Proyecto)sesion.getAttribute("proyectos"); 
@@ -46,8 +50,11 @@
         <center>
         <form action="controlFull.do" method="post">
             <div>
-            <td width="50%"><input type="text" size="53" name="otiga"  value="<%= otiga%>" id="textfield"></td>
-            <td width="50%"><input type="text" size="53"  value="<%= nombre%>" id="textfield"></td>          
+            <label align="center" class="input-group-text" width="50%">OTIGA: <%= otiga%></label>
+            <label align="center" class="input-group-text" width="50%">Nombre del Proyecto: <%= nombre%></label>
+          
+            <td width="50%"><input type="hidden" size="53" name="otiga"  value="<%= otiga%>" id="textfield"></td>
+            <td width="50%"><input type="hidden" size="53"  value="<%= nombre%>" id="textfield"></td>          
             </div>
             
             <table align="center" border="5" width="50%" class="table table-dark table-bordered table-hover table-responsive-sm">
@@ -70,7 +77,7 @@
                              %>
                              <tr>
 
-                                 <td><label><input class="table-dark" type="text" value="<%= objs.getCodigo()%>" name="cod"></label></td>
+                                 <td><label> <%= objs.getCodigo()%> <input class="table-dark" type="hidden" value="<%= objs.getCodigo()%>" name="cod"></label></td>
                                  <td><%= objs.getDescripcion()%></td>
                                  <td><%= objs.getUnidad()%></td>
                                  <td><%= objs.getExistencia()%></td>

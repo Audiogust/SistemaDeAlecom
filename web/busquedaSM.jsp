@@ -25,7 +25,11 @@
                }
     </style>
     <body>
+       <div class="table-responsive" align="center">
+                <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a>
        <h1 align="center">Busqueda Proyectos</h1>
+       </div>
+       
         <form align="center" action="controlFull.do" method="post">
         <div class="form-group d-flex">
             <div>
@@ -75,7 +79,7 @@
                                 <td><%= objs.getAutorizado()%></td>                                
                                 <td><%= objs.getTipo()%></td>   
                                 <td align="center" ><a href="consultaSolicitud.jsp?txtpara=M&id=<%= objs.getOtiga()%>">
-                                     <img src="IMG/peticion.svg" width="25px" height="25px"> </td>
+                                     <img src="IMG/peticion.svg" width="25px" height="25px">z </td>
                              </tr>
                                 <%}%>
                 </table> 

@@ -20,8 +20,8 @@
        }
     </style>
     <body>
-        <div align="center">
-        <img src="IMG/logotipo.png" width="150" height="80" HSPACE="20">    
+        <div class="table-responsive" align="center">
+                <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a>
         </div>
         <div class="container flexc">
         <form align="center" action="controlFull.do" method="post">

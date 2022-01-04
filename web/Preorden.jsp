@@ -17,15 +17,21 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     </head>
     <body>
-        <h1>Orden de compra</h1>
-        
+        <div class="table-responsive" align="center">
+            <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a>
+            <h1>Orden de compra</h1>
+        </div>
         <center>
             <form action="controlFull.do" method="post">
             
             <div>
-            <td width="50%"><input type="text" size="53" name="folioextraer"  value="${folioo}" id="textfield"></td>
+           
+            <label align="center" class="input-group-text" width="50%">Folio para la Precompra: ${folioo}</label>
+            <label align="center" class="input-group-text" width="50%">Numero : ${numeroS}</label>
+            
+            <td width="50%"><input type="hidden" size="53" name="folioextraer"  value="${folioo}" id="textfield"></td>
           
-            <td width="50%"><input type="text" size="53" name="folionumeros"  value="${numeroS}" id="textfield"></td>
+            <td width="50%"><input type="hidden" size="53" name="folionumeros"  value="${numeroS}" id="textfield"></td>
             </div>
             
           
@@ -50,15 +56,13 @@
                              %>
                              <tr <% if (objs.getExistencia() <= r) { %> class="table-danger" <%}%> >
                                  
-                                 <td><input  type="text" value="<%= objs.getCodigo()%>" name="codC"></td>
+                                 <td><%= objs.getCodigo()%> <input  type="hidden" value="<%= objs.getCodigo()%>" name="codC"></td>
                                  <td><%= objs.getDescripcion()%></td>
                                  <td><%= objs.getUnidad()%></td>
                                  <td><input class="formulario__campo" type="number" name="numerosC"   placeholder="Cantidad" min="0"></td> 
                                
                              </tr>
-                                <%}%>
-                                           
-                        
+                                <%}%>                                                                   
                 </table>
                
                  <button type="submit" name="opcion" value="botonPreordenAccion" class="btn btn-success">Generar</button>

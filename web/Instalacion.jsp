@@ -38,6 +38,9 @@
    </style>
     <body>
          <form align="center" action="controlClientes.do" method="post">
+             <div align="center">               
+                <a href="Wisp.jsp"> <img src="IMG/Wispgal.png" width="150" height="150" HSPACE="20"></a>
+            </div>
              <h1>Consultar Grupo</h1>
                 <p><label>Grupo:</label>
                         <select name="grupo_consultar" id="grupo">

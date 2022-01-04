@@ -35,6 +35,9 @@
                  }
     </style>
     <body>
+        <div>      
+        <a href="menuProyectos.jsp"> <img src="IMG/Menu.png" width="25" height="25" HSPACE="20"></a>
+        </div>
         <div align="center">
         <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20">    
         </div>

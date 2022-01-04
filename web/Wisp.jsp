@@ -40,8 +40,11 @@
         }
         </style>
     <body>
-            <div align="center">
-         <img src="IMG/img.png" width="200" height="200" HSPACE="50">
+        <div>      
+        <a href="menuProyectos.jsp"> <img src="IMG/Menu.png" width="25" height="25" HSPACE="20"></a>
+        </div>
+        <div align="center">
+         <img src="IMG/Wispgal.png" width="200" height="200" HSPACE="50">
         </div>
             <form align="center" action="controlClientes.do">
                 <font color="#1D049B"><h2>MENU PRINCIPAL</h2></font>

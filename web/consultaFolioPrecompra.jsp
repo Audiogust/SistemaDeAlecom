@@ -16,8 +16,11 @@
         <title>JSP Page</title>
     </head>
     <body>
-        
-        <h1>Consulta Folio Preorden</h1>
+        <div class="table-responsive" align="center">
+            <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a>
+           <h1>Consulta Folio Preorden</h1>
+        </div>
+       
         <%
             HttpSession sesion = request.getSession();
             Precompra producto = (Precompra) sesion.getAttribute("precompra");
@@ -40,8 +43,11 @@
         <form action="controlFull.do" method="post">
 
             <div>
-                <td width="50%"><input type="text" size="53" name="otiga"  value="<%= folio%>" id="textfield"></td>
-                <td width="50%"><input type="text" size="53"  value="<%= serie%>" id="textfield"></td>          
+                <label align="center" class="input-group-text" width="50%">Folio para la Precompra: <%= folio%></label>
+                <label align="center" class="input-group-text" width="50%">Numero : <%= serie%></label>
+            
+                <td width="50%"><input type="hidden" size="53" name="otiga"  value="<%= folio%>" id="textfield"></td>
+                <td width="50%"><input type="hidden" size="53"  value="<%= serie%>" id="textfield"></td>          
             </div>
 
             <table align="center" border="5" width="50%" class="table table-dark table-bordered table-hover table-responsive-sm">
@@ -65,7 +71,7 @@
                 %>
                 <tr>                            
                     <td><%= objs.getFolio()%></td>
-                    <td><input type="text" name="codigosSolP" value="<%= objs.getCodigo()%>" disable></td>
+                    <td><%= objs.getCodigo()%><input type="hidden" name="codigosSolP" value="<%= objs.getCodigo()%>" disable></td>
                     <td><%= objs.getNombre()%></td>
                     <td><%= objs.getSolicitado()%></td>
                     <td><input class="formulario__campo" type="number" name="numeroSolP"  value="<%= objs.getSolicitado()%>" placeholder="Cantidad" min="0" ></td> 

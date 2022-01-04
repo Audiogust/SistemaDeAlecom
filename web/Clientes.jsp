@@ -39,14 +39,17 @@
    </style>
     <body>
         <form align="center" action="controlClientes.do">
+            <div align="center">               
+                <a href="Wisp.jsp"> <img src="IMG/Wispgal.png" width="150" height="150" HSPACE="20"></a>
+            </div>
             <h1>Registro Clientes</h1>
             <div align="center">
                 <img src="IMG/clientes.svg" width="250" height="100" HSPACE="20">    
             </div>
             <table border="0" cellpadding="0" cellspacing="0" width="40%"  align="center">
                 <tr>
-                    <td width="70%"><b>Folio:</b> </td>
-                    <td  width="50%"><input type="text" size="53" name="id" value="${numeritow}"></td>
+                    <td width="70%"><b>Folio: ${numeritow}</b> </td>
+                    <td  width="50%"><input type="hidden" size="53" name="id" value="${numeritow}"></td>
                 </tr>
                 <tr>
                     <td width="70%"><b>Nombre:</b> </td>
@@ -64,11 +67,11 @@
                 </tr>
                 <tr>
                     <td width="70%"><b>Telefono:</b> </td>
-                    <td width="50%"><input type="text" size="53" name="n_telefono"></td>
+                    <td width="50%"><input type="tel" size="53" name="n_telefono"></td>
                 </tr>
                 <tr>
                     <td width="70%"><b>Correo:</b> </td>
-                    <td width="50%"><input type="text" size="53" name="n_correo"></td>
+                    <td width="50%"><input type="email" size="53" name="n_correo"></td>
                 </tr>
                 <tr>
                     <td width="70%"><b>Tiempo:</b> </td>
