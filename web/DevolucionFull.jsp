@@ -33,7 +33,13 @@
             }
             
         %>
+        
+        <div class="table-responsive" align="center">
+                <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a>
         <h1>DEVOLUCION</h1>
+        </div>
+        
+        
         <div class="table-responsive">
         <form align="center" action="controlFull.do" method="post">
         <td width="50%"><input type="text" size="53" name="otiga_1"  value="<%= otiga%>" id="textfield"></td>
@@ -69,7 +75,7 @@
                              <tr>
                                 
                                 <td ><%= objs.getOtiga()%></td>
-                                <td><label><input type="text" name="codigosDev" value="<%= objs.getCodigo()%>" disable></label></td>
+                                <td><%= objs.getCodigo()%><label><input type="hidden" name="codigosDev" value="<%= objs.getCodigo()%>" disable></label></td>
                                 <td><%= objs.getNombre()%></td>
                                 <td><%= objs.getUnidades()%></td>                                
                                 <td><%= objs.getSolicitado()%></td>                              

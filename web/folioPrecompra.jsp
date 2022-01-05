@@ -23,8 +23,9 @@
     <body>
         <div class="table-responsive" align="center">
             <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a>
+            <h1>Folios de precompra</h1>
         </div>
-        <h1>Folios de precompra</h1>
+        
          <br><table align="center" border="5" width="50%" class="table thead-dark table-bordered table-hover">
   	                 <thead class="bg-info"> 
                             <tr>                             

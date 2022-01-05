@@ -56,7 +56,6 @@
         <form align="center" action="controlFull.do" method="post">
             <td width="50%"><input type="text" size="53" name="otiga_1"  value="<%= otiga%>" id="textfield"></td>
 
-
             <!--   <input type="text" name="codigo" value="" class="form-control" placeholder="OTIGA"> 
                    <button type="submit" name="opcion" value="BuscarSolicitud" class="btn btn-outline-info">Buscar</button>
             -->
@@ -122,7 +121,7 @@
                     <td><%= objs.getUnidades()%></td>
                     <td><%= objs.getExistencia()%></td>
                     <td> <%= objs.getSolicitado()%> <input type="hidden" name="solicitadoF" value="<%= objs.getSolicitado()%>"></td>                                                          
-                    <td><input class="formulario__campo" type="number" name="solicitudes"   placeholder="Cantidad" min="0" max="<%= objs.getExistencia()%>" ></td>
+                    <td><input class="formulario__campo" type="number" name="solicitudes"   placeholder="Cantidad" min="1" max="<%= objs.getExistencia()%>" ></td>
                 </tr>
                 <%}%>  
                 <input type="hidden" name="txtpara" value=<%=VPara%> />
@@ -149,7 +148,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="submit" name="opcion" value="enviarPrecompra" class="btn btn-success">Confirmar Precompra</button>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
                             
                         </div>
                     </div>
@@ -157,8 +156,6 @@
             </div> 
 
         </form> 
-           
-           
            
            
            <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

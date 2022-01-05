@@ -3,7 +3,7 @@
     Created on : 31-mar-2021, 22:25:04
     Author     : Hp
 
-    Canbio de condiciones
+    Canbio para entregar
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -34,7 +34,7 @@
 
                 <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='SolicitudMaterial.jsp'"><img src="IMG/solicitud.svg" width="60" height="60"><br>Devolucion de Materiales</button>                
                 
-                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='MenuHistoriales.jsp'"><img src="IMG/historial.png" width="60" height="60"><br>Historial de Materiales solicitados</button>
+                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='MenuHistoriales.jsp'"><img src="IMG/historial.png" width="60" height="60"><br>Historiales</button>
             </form>
         </div>
     </body>

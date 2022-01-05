@@ -21,7 +21,6 @@
         <div>
             <div class="table-responsive" align="center">
                 <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a>
-                <h1 align="center">Busqueda Proyectos</h1>
             </div>
 
             <form align="center" action="">

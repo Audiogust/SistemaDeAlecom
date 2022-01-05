@@ -79,7 +79,7 @@
             </table>
             <br>
             <input type="submit"  name="opcion" value="Modificar" class="btn btn-success"> 
-            <input type="submit"  name="opcion" value="Eliminar" class="btn btn-danger">          
+             
         </form>        
     </center>
     </body>
