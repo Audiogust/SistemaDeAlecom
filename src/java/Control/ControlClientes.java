@@ -320,7 +320,7 @@ public class ControlClientes extends HttpServlet {
                 Precompra pc = new Precompra();
                 Precompra pc1 = new Precompra();
                 numeroSerie = pc.GenerarSerie();
-
+                String proyecto = request.getParameter("pro");
                 if (numeroSerie == null) {
                     numeroSerie = "0001";
                     folio = folio + "-A" + numeroSerie;
@@ -337,7 +337,7 @@ public class ControlClientes extends HttpServlet {
                 Material m1 = new Material();
                 String soli[] = request.getParameterValues("numerosW");
                 String codigos[] = request.getParameterValues("codigoW");
-               p.precompra(numeroSerie, folio);
+               p.precompra(numeroSerie, proyecto,folio);
                 for (int i = 0; i < soli.length; i++) {
                     String existencia = m.Existencia(codigos[i]);
                     String solicitado = m.SolicitadoWisp(codigos[i]);

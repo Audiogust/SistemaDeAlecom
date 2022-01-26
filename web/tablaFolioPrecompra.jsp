@@ -18,29 +18,37 @@
         <title>JSP Page</title>
     </head>
     <body>        
-        <h1>Historiales de Precompra</h1>
+        <div class="table-responsive" align="center">
+            <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a>
+            <h1>Historiales de Precompra</h1>
+        </div>
+        
         <%HttpSession sesion = request.getSession();
             Precompra producto = (Precompra) sesion.getAttribute("precompra");
             Precompra p = new Precompra();
             String VPara = request.getParameter("txtpara");
             String idd = request.getParameter("id");
             String serie = "";
+            String otiga="";
             String folio = "";
 
             if (VPara.equals("N") == false) {
                 String id = idd;
                 p.buscarPre(idd);
                 serie = p.getNumeroSerie();
+                otiga = p.getOtiga();
                 folio = p.getFolio();
             }
         %>
         
         <div class="table-responsive">
         <form align="center" action="controlFull.do" method="post">
-        <td width="50%"><input type="text" size="53" name="folio"  value="<%= folio %>" id="textfield"></td>
-             <!--   <input type="text" name="codigo" value="" class="form-control" placeholder="OTIGA"> 
-                    <button type="submit" name="opcion" value="BuscarSolicitud" class="btn btn-outline-info">Buscar</button>
-             -->
+            <div>
+                <label align="center" class="input-group-text" width="50%">Folio para la Precompra: <%= folio%></label>
+                <label align="center" class="input-group-text" width="50%">Numero : <%= serie%></label>
+                <label align="center" class="input-group-text" width="50%">Otiga: <%= otiga %></label>
+            </div>
+                  
            <br>
            <div  class="table-responsive">
            <table align="right" border="5" width="50%" class="table table-dark table-bordered table-hover">
@@ -64,7 +72,7 @@
                              MaterialSolicitado objs = new MaterialSolicitado();                
                             
                              Vector usu = new Vector();
-                             usu=objs.mostrarHistoPrecompra(folio);                           
+                             usu=objs.mostrarHistoPreocompra(folio);                           
                              
                              for(int i=0; i<usu.size();i++){
                                  objs=(MaterialSolicitado)usu.get(i);

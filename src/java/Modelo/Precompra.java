@@ -18,15 +18,27 @@ public class Precompra {
     
     
     private String numeroSerie;
+    private String otiga;
     private String folio;
 
     public Precompra() {
     }
 
-    public Precompra(String numeroSerie, String folio) {
+    public Precompra(String numeroSerie, String otiga, String folio) {
         this.numeroSerie = numeroSerie;
+        this.otiga = otiga;
         this.folio = folio;
     }
+
+    public String getOtiga() {
+        return otiga;
+    }
+
+    public void setOtiga(String otiga) {
+        this.otiga = otiga;
+    }
+
+    
 
     public String getNumeroSerie() {
         return numeroSerie;
@@ -54,6 +66,7 @@ public class Precompra {
         ResultSet rs=st.executeQuery("select * from PreCompra where folio='"+id+"'");
             if (rs.next()) {
                 this.numeroSerie=rs.getString("numeroSerie");
+                this.otiga = rs.getString("otiga");
                 this.folio=rs.getString("folio");
                 
                 res=true;
@@ -146,13 +159,14 @@ public class Precompra {
         }
         return res;
     }
-        public String precompra(String numSerie, String folio) {
+        public String precompra(String numSerie,String otiga, String folio) {
         Connection c = Conexion.conectar();
         try {
             if (c != null) {
-                PreparedStatement ps = c.prepareStatement(" INSERT INTO PreCompra(numeroSerie,folio)  values(?,?)");
+                PreparedStatement ps = c.prepareStatement(" INSERT INTO PreCompra(numeroSerie,otiga,folio)  values(?,?,?)");
                 ps.setString(1, numSerie);
-                ps.setString(2, folio);               
+                ps.setString(2, otiga);
+                ps.setString(3, folio);
                 ps.execute();
                 return "Modificación realizada";
             } else {
@@ -171,7 +185,7 @@ public class Precompra {
              ResultSet rs = st.executeQuery(" SELECT * FROM PreCompra WHERE status = 'A' ");
              materiales  = new Vector();
              while(rs.next()){
-                 materiales.add(new Precompra(rs.getString("numeroSerie"),rs.getString("folio")));
+                 materiales.add(new Precompra(rs.getString("numeroSerie"),rs.getString("otiga"),rs.getString("folio")));
              }
                
               return materiales; 
@@ -190,7 +204,7 @@ public class Precompra {
              ResultSet rs = st.executeQuery(" SELECT * FROM PreCompra WHERE status = 'D' ");
              materiales  = new Vector();
              while(rs.next()){
-                 materiales.add(new Precompra(rs.getString("numeroSerie"),rs.getString("folio")));
+                 materiales.add(new Precompra(rs.getString("numeroSerie"),rs.getString("otiga"),rs.getString("folio")));
              }
                
               return materiales; 
@@ -271,7 +285,7 @@ public class Precompra {
              ResultSet rs = st.executeQuery(" SELECT * FROM PreCompra ");
              materiales  = new Vector();
              while(rs.next()){
-                 materiales.add(new Precompra(rs.getString("numeroSerie"),rs.getString("folio")));
+                 materiales.add(new Precompra(rs.getString("numeroSerie"),rs.getString("otiga"),rs.getString("folio")));
              }
                
               return materiales; 

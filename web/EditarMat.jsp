@@ -21,7 +21,10 @@
        }
     </style>
     <body>
-        <h1 align="center">Editar Material</h1>
+         <div class="table-responsive" align="center">
+            <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a>
+            <h1 align="center">Editar Material</h1>
+        </div>
         <center>
     <%
             

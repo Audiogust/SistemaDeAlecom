@@ -48,7 +48,8 @@ private int autorizado;
         this.solicitado = solicitado;
     }
 
-    public MaterialSolicitado(int id, String otiga, String codigo, String nombre, String unidades, int existencia, String solicitado, String fecha, String hora) {
+    public MaterialSolicitado(int id, String otiga, String codigo,
+            String nombre, String unidades, int existencia, String solicitado, String fecha, String hora) {
         this.id = id;
         this.otiga = otiga;
         this.codigo = codigo;
@@ -56,6 +57,20 @@ private int autorizado;
         this.unidades = unidades;
         this.existencia = existencia;
         this.solicitado = solicitado;
+        this.fecha = fecha;
+        this.hora = hora;
+    }
+    public MaterialSolicitado(int id, String otiga, String codigo,
+            String nombre, String unidades, int existencia, String solicitado,int autorizado,
+            String fecha, String hora) {
+        this.id = id;
+        this.otiga = otiga;
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.unidades = unidades;
+        this.existencia = existencia;
+        this.solicitado = solicitado;
+        this.autorizado = autorizado;
         this.fecha = fecha;
         this.hora = hora;
     }
@@ -403,6 +418,26 @@ public static Vector mostrarHistoPrecompra(String busqueda) throws SQLException{
                          rs.getInt("id"),rs.getString("folio"),rs.getString("codigo"), 
                          rs.getString("nombre"),rs.getString("unidad"),rs.getInt("existencia_ant"),
                          rs.getString("solicitado"),rs.getInt("autorizado"),rs.getInt("existencia_act"),
+                         rs.getString("hora"),rs.getString("fecha")));                       
+             }               
+              return proyectos;                
+           }else {
+            return null;
+        }
+    }
+
+public static Vector mostrarHistoPreocompra(String busqueda) throws SQLException{
+        Vector proyectos = null; 
+        Connection c = Conexion.conectar();
+           if (c != null) {
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(" SELECT * FROM historialPreordenCompra WHERE folio  = '" + busqueda +"'");
+             proyectos  = new Vector();
+             while(rs.next()){
+                       proyectos.add(new MaterialSolicitado(
+                         rs.getInt("id"),rs.getString("folio"),rs.getString("codigo"), 
+                         rs.getString("nombre"),rs.getString("unidad"),rs.getInt("existencia"),
+                         rs.getString("solicitado"),rs.getInt("autorizado"),
                          rs.getString("hora"),rs.getString("fecha")));                       
              }               
               return proyectos;                

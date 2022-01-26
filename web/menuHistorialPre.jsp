@@ -28,6 +28,7 @@
   	                 <thead class="bg-info"> 
                             <tr>                             
                                 <th>Nummero de Serie</th>
+                                <th>Otiga</th>
                                 <th>Folio</th>
                                 <th>Consulta de materiales</th>    
                             </tr>
@@ -43,6 +44,7 @@
                              %>
                              <tr>
                                 <td><%= objs.getNumeroSerie()%></td>
+                                <td><%= objs.getOtiga()%></td>
                                 <td><%= objs.getFolio()%></td>
                                 <td align="center" ><a href="tablaFolioPrecompra.jsp?txtpara=M&id=<%= objs.getFolio()%>">
                                      <img src="IMG/peticion.svg" width="25px" height="25px"> </td>

@@ -153,7 +153,7 @@ public class ControlFull extends HttpServlet {
                     }
                     otiga += "_" + nombre;
                     otiga += newDateString;
-                    otiga += otigon;
+                    otiga += "-"+otigon;
 
                     System.out.println(tipo);              
 
@@ -282,6 +282,31 @@ public class ControlFull extends HttpServlet {
                     }
                     request.getRequestDispatcher("Proyectos.jsp").forward(request, response);
             }
+            if (opcion.equals("recargar")) {
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                Calendar cal = Calendar.getInstance();
+                String fechaa = dateFormat.format(cal.getTime());
+                String folio = "PREOC-";
+                folio = folio + fechaa;
+
+                Precompra pc = new Precompra();
+                Precompra pc1 = new Precompra();
+                numeroSerie = pc.GenerarSerie();
+
+                if (numeroSerie == null) {
+                    numeroSerie = "0001";
+                    folio = folio + "-A" + numeroSerie;
+                    request.setAttribute("folioo", folio);
+                    request.setAttribute("numeroS", numeroSerie);
+                } else {
+                    int incrementador = Integer.parseInt(numeroSerie);
+                    numeroSerie = pc1.numeros(incrementador);
+                    folio = folio + "-A" + numeroSerie;
+                    request.setAttribute("folioo", folio);
+                    request.setAttribute("numeroS", numeroSerie);
+                }                
+                request.getRequestDispatcher("Preorden.jsp").forward(request, response);
+            }
             if (opcion.equals("botonPreorden")) {
                 DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                 Calendar cal = Calendar.getInstance();
@@ -304,40 +329,71 @@ public class ControlFull extends HttpServlet {
                     folio = folio + "-A" + numeroSerie;
                     request.setAttribute("folioo", folio);
                     request.setAttribute("numeroS", numeroSerie);
-                }
-                System.out.println("avisoooooooooooo"+numeroSerie);
+                }                
                 request.getRequestDispatcher("Preorden.jsp").forward(request, response);
             }
             if (opcion.equals("botonPreordenAccion")) {
              Material m = new Material();
              Material m1 = new Material();
              Precompra p = new Precompra();
+             
              String foliosito = request.getParameter("folioextraer");
              String num = request.getParameter("folionumeros");
              
              String codigos[] = request.getParameterValues("codC");
              String numeros[] = request.getParameterValues("numerosC");
-             int c=0;
-                for (int i = 0; i < codigos.length; i++) {
-                    if (numeros[i].length() > 0) {
-                    c++;
-                    } 
-                }              
-                if (c > 0) {
-                    p.precompra(num, foliosito);
-                    System.out.println(c);
+             String proyecto = request.getParameter("pro");
+             
+                if (proyecto != "Elige un proyecto") {
+                    int c = 0;
                     for (int i = 0; i < codigos.length; i++) {
                         if (numeros[i].length() > 0) {
-                            String descripciones = m.Descripcion(codigos[i]);
-                            m1.precompra(foliosito, descripciones, numeros[i]);
-                            System.out.println(descripciones + "sd" + numeros[i]);
+                            c++;
                         }
                     }
-                    request.getRequestDispatcher("Compras.jsp").forward(request, response);
+                    if (c > 0) {
+                        p.precompra(num, proyecto, foliosito);
+                        System.out.println(proyecto);
+                        for (int i = 0; i < codigos.length; i++) {
+                            if (numeros[i].length() > 0) {
+                                String descripciones = m.Descripcion(codigos[i]);
+                                m1.precompra(foliosito, descripciones, numeros[i]);
+                                System.out.println(descripciones + "sd" + numeros[i]);
+                            }
+                        }
+                        request.getRequestDispatcher("Compras.jsp").forward(request, response);
+                    } else if (c == 0) {
+                        request.getRequestDispatcher("Preorden.jsp").forward(request, response);
+                    }
                 }
-                else if(c ==0){
-                    request.getRequestDispatcher("Preorden.jsp").forward(request, response);
+                if(proyecto == "Elige un proyecto"){
+                request.getRequestDispatcher("Preorden.jsp").forward(request, response);    
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                Calendar cal = Calendar.getInstance();
+                String fechaa = dateFormat.format(cal.getTime());
+                String folio = "PREOC-";
+                folio = folio + fechaa;
+
+                Precompra pc = new Precompra();
+                Precompra pc1 = new Precompra();
+                numeroSerie = pc.GenerarSerie();
+
+                if (numeroSerie == null) {
+                    numeroSerie = "0001";
+                    folio = folio + "-A" + numeroSerie;
+                    request.setAttribute("folioo", folio);
+                    request.setAttribute("numeroS", numeroSerie);
+                } else {
+                    int incrementador = Integer.parseInt(numeroSerie);
+                    numeroSerie = pc1.numeros(incrementador);
+                    folio = folio + "-A" + numeroSerie;
+                    request.setAttribute("folioo", folio);
+                    request.setAttribute("numeroS", numeroSerie);
+                }                
+                request.getRequestDispatcher("Preorden.jsp").forward(request, response);
                 }
+             
+             
             }
             if (opcion.equals("enviarAlmacen")) {   
                 Material ms = new Material();
@@ -395,7 +451,7 @@ public class ControlFull extends HttpServlet {
                     System.out.println(numeroSerie); 
                     Material m = new Material();
                     Material m1 = new Material();
-                    p.precompra(numeroSerie, folio);
+                    p.precompra(numeroSerie,otiga, folio);
                     for (int i = 0; i < codigos.length; i++) {
                         String existencia = m.Existencia(codigos[i]);
                         //String solicitado = m.Solicitado(codigos[i],otiga);    
@@ -419,6 +475,7 @@ public class ControlFull extends HttpServlet {
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm:ss");
                 String idProyecto=request.getParameter("otiga");
+                String otigaProyecto=request.getParameter("otigaP");
                 String codigos[] = request.getParameterValues("codigosSolP");
                 String solicitado[] = request.getParameterValues("numeroSolP");
                 String fecha = dtf.format(LocalDateTime.now());
@@ -429,8 +486,8 @@ public class ControlFull extends HttpServlet {
                     String unidad = m.Unidades(codigos[i]);
                     String existencia = m.Existencia(codigos[i]);
                     String ordenSol = o.solicitadoOrden(idProyecto, nom);
-                    System.out.println(idProyecto+"  "+codigos[i]+"  "+nom+"  "+unidad+"  "+ ordenSol+"  "+ solicitado[i]+"  "+ hora+"  "+ fecha);
-                    p.precompraHistorial(idProyecto, codigos[i], nom, unidad,existencia ,ordenSol, solicitado[i], hora, fecha);
+                    System.out.println(idProyecto+"  "+codigos[i]+"  "+nom+" "+ existencia+"  "+unidad+"  "+ ordenSol+"  "+ solicitado[i]+"  "+ hora+"  "+ fecha);
+                   p.precompraHistorial(idProyecto, codigos[i], nom, unidad,existencia ,ordenSol, solicitado[i], hora, fecha);
                 }                
                 p.cambioStatusPrecompra(idProyecto);                
                request.getRequestDispatcher("Compras.jsp").forward(request, response);                       

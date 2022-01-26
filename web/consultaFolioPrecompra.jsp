@@ -28,12 +28,14 @@
             String VPara = request.getParameter("txtpara");
             String idd = request.getParameter("id");
             String serie = "";
+            String otiga="";
             String folio = "";
 
             if (VPara.equals("N") == false) {
                 String id = idd;
                 p.buscarPre(idd);
                 serie = p.getNumeroSerie();
+                otiga = p.getOtiga();
                 folio = p.getFolio();
             }
 
@@ -43,10 +45,13 @@
         <form action="controlFull.do" method="post">
 
             <div>
-                <label align="center" class="input-group-text" width="50%">Folio para la Precompra: <%= folio%></label>
-                <label align="center" class="input-group-text" width="50%">Numero : <%= serie%></label>
+                
+                <label align="center" class="input-group-text" width="50%">Folio para la Precompra: <%= folio %></label>
+                <label align="center" class="input-group-text" width="50%">Numero : <%= serie %></label>
+                <label align="center" class="input-group-text" width="50%">Otiga: <%= otiga %></label>
             
                 <td width="50%"><input type="hidden" size="53" name="otiga"  value="<%= folio%>" id="textfield"></td>
+                <td width="50%"><input type="hidden" size="53" nmae="otigaP" value="<%= otiga%>" id="textfield"></td>
                 <td width="50%"><input type="hidden" size="53"  value="<%= serie%>" id="textfield"></td>          
             </div>
 
