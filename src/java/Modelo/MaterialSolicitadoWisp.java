@@ -107,7 +107,7 @@ public class MaterialSolicitadoWisp {
              clientes  = new Vector();
              while(rs.next()){
                        clientes.add(new MaterialSolicitadoWisp(rs.getInt("ide"),
-                         rs.getString("ID"),rs.getString("codigo"), rs.getString("nombre"),rs.getString("unidad"),
+                         rs.getString("ID"),rs.getString("codigo"), rs.getString("descripcion"),rs.getString("unidad"),
                          rs.getInt("existencia"),rs.getInt("solicitado")));                       
              }               
               return clientes;                

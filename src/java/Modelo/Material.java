@@ -220,7 +220,7 @@ public class Material {
         Connection c = Conexion.conectar();
         try {
             if (c != null) {
-                PreparedStatement ps = c.prepareStatement(" INSERT INTO MaterialSolicitado(otiga,nombre,solicitado)  values(?,?,?)");
+                PreparedStatement ps = c.prepareStatement(" INSERT INTO MaterialSolicitado(otiga,codigo,solicitado)  values(?,?,?)");
                 ps.setString(1, cod);
                 ps.setString(2, des);
                 ps.setInt(3,Integer.parseInt(cantidad));
@@ -380,7 +380,7 @@ public class Material {
         Connection c = Conexion.conectar();
         try {
             if (c != null) {
-                PreparedStatement ps = c.prepareStatement(" INSERT INTO MaterialSolicitadoWisp(ID,nombre,solicitado)  values(?,?,?)");
+                PreparedStatement ps = c.prepareStatement(" INSERT INTO MaterialSolicitadoWisp(ID,codigo,solicitado)  values(?,?,?)");
                 ps.setString(1, codigo);
                 ps.setString(2, descripcion);
                 ps.setInt(3,Integer.parseInt(cantidad));

@@ -42,7 +42,9 @@
         
         <div class="table-responsive">
         <form align="center" action="controlFull.do" method="post">
-        <td width="50%"><input type="text" size="53" name="otiga_1"  value="<%= otiga%>" id="textfield"></td>
+        <td width="50%">
+            <label align="center" class="input-group-text" width="50%">Otiga: <%= otiga%></label>
+            <input type="hidden" size="53" name="otiga_1"  value="<%= otiga%>" id="textfield"></td>
              <!--   <input type="text" name="codigo" value="" class="form-control" placeholder="OTIGA"> 
                     <button type="submit" name="opcion" value="BuscarSolicitud" class="btn btn-outline-info">Buscar</button>
              -->

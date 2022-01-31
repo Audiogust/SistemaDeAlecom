@@ -163,7 +163,7 @@ public class ControlClientes extends HttpServlet {
                         String existencias = ms.Existencia(codigo[i]);
                         String fecha = dtf.format(LocalDateTime.now());
                         String hora = dtf1.format(LocalDateTime.now());
-                        m1.Wisp(id, material, cantidad[i]);
+                        m1.Wisp(id, codigo[i], cantidad[i]);
                         jeje.insertarHistoW(id, codigo[i] , material, unidad,Integer.parseInt(existencias) ,Integer.parseInt(cantidad[i]), fecha, hora);
                         System.out.println(codigo[i] + " " + cantidad[i]);
                     }

@@ -68,7 +68,7 @@ public class ControlFull extends HttpServlet {
                     String existencias = m.Existencia(arr[i]);
                     String fecha = dtf.format(LocalDateTime.now());
                     String hora = dtf1.format(LocalDateTime.now());
-                    m1.Pedidos(otiga, descripciones, ar[i]);
+                    m1.Pedidos(otiga, arr[i], ar[i]);
                     m2.insertarHisto(otiga, arr[i] , descripciones, unidad,Integer.parseInt(existencias) ,Integer.parseInt(ar[i]), fecha, hora);
                     System.out.println(arr[i]+"  || "+ar[i]);    
                     }                    

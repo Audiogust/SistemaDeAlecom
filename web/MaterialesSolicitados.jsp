@@ -24,7 +24,10 @@
                min-height: 600px;
                }
     </style>
-        
+        <div align="center">
+                    
+            <a href="Wisp.jsp"> <img src="IMG/Wispgal.png" width="150" height="150" HSPACE="20"></a>
+        </div>
         <form action="controlClientes.do" method="post" align="center">
             <h1>Materiales Solicitados</h1>
             <div class="container" align="center">

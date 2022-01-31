@@ -41,7 +41,7 @@
                       }
    </style>
     <body>
-        <h1>FORMATO SOLICITUD </h1>
+        
         <%
             HttpSession sesion=request.getSession();
             Clientes producto=(Clientes)sesion.getAttribute("clientes"); 
@@ -63,9 +63,15 @@
         <center>
         <form action="controlClientes.do" method="post">
             
-            <div>
-            <td width="50%"><input type="text" size="53" name="id_wisp"  value="<%= id%>" id="textfield"></td>
-            <td width="50%"><input type="text" size="53"  value="<%= nombre%>" id="textfield"></td>          
+            <div align="center">
+                    
+            <a href="Wisp.jsp"> <img src="IMG/Wispgal.png" width="150" height="150" HSPACE="20"></a>
+            <h1>FORMATO SOLICITUD </h1>
+            <label align="center" class="input-group-text" width="50%">OTIGA: <%= id%></label>
+            <label align="center" class="input-group-text" width="50%">Nombre del Proyecto: <%= nombre%></label>
+            
+            <td width="50%"><input type="hidden" size="53" name="id_wisp"  value="<%= id%>" id="textfield"></td>
+            <td width="50%"><input type="hidden" size="53"  value="<%= nombre%>" id="textfield"></td>          
             
             </div>
             
@@ -89,7 +95,7 @@
                              %>
                              <tr>
 
-                                 <td><input class="table-dark" type="text" value="<%= objs.getCodigo()%>" name="codigo"></td>
+                                 <td> <label><%=objs.getCodigo() %> </label> <input class="table-dark" type="hidden" value="<%= objs.getCodigo()%>" name="codigo"></td>
                                  <td><%= objs.getDescripcion()%></td>
                                  <td><%= objs.getUnidad()%></td>
                                  <td><input class="formulario__campo" type="number" name="cantidades"   placeholder="Cantidad" min="0"></td> 
