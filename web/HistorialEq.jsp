@@ -34,13 +34,15 @@
                 table {
                       background-color: #3F9FEA;
                       }
-   </style>
-        <div align="center">
-            <a href="Wisp.jsp"> <img src="IMG/img.png" width="150" height="150" HSPACE="20"></a>
+   </style>       
+        <div align="center">                  
+            <a href="Wisp.jsp"> <img src="IMG/Wispgal.png" width="150" height="150" HSPACE="20"></a>
+            <h1>Historial de Equipamiento</h1> 
         </div>
+   
         <form align="center" action="">
 
-        <h1>HISTORIALES</h1>
+       
         <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='HistorialSoliE.jsp'"><img src="IMG/historial.png" width="60" height="60"><br> Materiales solicitados</button>
 
         <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='HistorialSalidaE.jsp'"><img src="IMG/historial.png" width="60" height="60"><br> Salida de Materiales</button>

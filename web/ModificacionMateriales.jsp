@@ -22,11 +22,11 @@
        }
     </style>
     <body>
-        <div align="center">
+        <div class="table-responsive" align="center">
             <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a>
+            <h1>Modificacion de Materiales</h1>
         </div>
-        <br>
-        <h1>Modificar</h1>
+        <br>        
         <table align="center" border="5" width="50%" class="table table-dark table-bordered table-hover">
             <thead class="bg-info"> 
                 <tr>
@@ -36,7 +36,6 @@
                     <th>EXISTENCIA</th>
                     <th>TOPE</th>
                     <th>EDITAR</th>
-
                 </tr>
             </thead>
             <%

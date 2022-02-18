@@ -4,8 +4,8 @@
     Author     : Vane
 --%>
 
+<%@page import="Modelo.Equipamiento"%>
 <%@page import="java.util.Vector"%>
-<%@page import="Modelo.Material1"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -37,11 +37,15 @@
                       }
    </style>
     <body>
-       
+       <div align="center">                    
+            <a href="Wisp.jsp"> <img src="IMG/Wispgal.png" width="150" height="150" HSPACE="20"></a>
+        </div>
           <table align="center" border="5" width="50%" class="table table-bordered ">
                <h1>Equipamiento WISP</h1>
   	                 <thead class="bg-info"> 
                             <tr>
+                                <th>Identificador</th>
+                                <th>Codigo</th>
                                 <th>MARCA</th>
                                 <th>TIPO</th>
                                 <th>DISPOSITIVO</th>
@@ -50,17 +54,19 @@
                             </tr>
 		         </thead>
                          <%
-                             Material1 objs = new Material1();
+                             Equipamiento objs = new Equipamiento();
                              Vector usu = new Vector();
                              usu=objs.mostrarTabla();
                              
                              for(int i=0; i<usu.size();i++){
-                                 objs=(Material1)usu.get(i);
+                                 objs=(Equipamiento)usu.get(i);
                                  
                               double r=((20*objs.getTope()))/100;
                              %>
                              <tr>
                                 <tr <% if (objs.getExistencia() <= r) { %> class="table-danger" <%}%> >
+                                <td><%= objs.getIden()%></td>
+                                <td><%= objs.getCodigo()%></td>
                                 <td><%= objs.getMarca()%></td>
                                 <td><%= objs.getTipo()%></td>
                                 <td><%= objs.getDispositivo()%></td>

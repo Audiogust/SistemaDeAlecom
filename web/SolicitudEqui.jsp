@@ -4,6 +4,11 @@
     Author     : Vane
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="Modelo.PrecompraE"%>
+<%@page import="java.util.Calendar"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="Modelo.Equipamiento"%>
 <%@page import="java.util.Vector"%>
 <%@page import="Modelo.EquipamientoSolicitado"%>
 <%@page import="Modelo.Clientes"%>
@@ -58,60 +63,122 @@
         %>
     <center>
         <form action="controlClientes.do" method="post">
-            <h1>Consultar Solicitud</h1>
-            <td width="50%"><input type="text" size="53" name="idt_1"  value="<%= id%>" id="textfield"></td>
-
-            <div class="form-group d-flex">
-                <div class="col-sm-6 ">
+            <div align="center">                   
+                <a href="Wisp.jsp"> <img src="IMG/Wispgal.png" width="150" height="150" HSPACE="20"></a>
+                <h1>Consultar Solicitud de Equipamiento</h1>
+            </div>            
+            <label align="center" class="input-group-text" width="50%">ID Cliente: <%= id%></label>
+            <label align="center" class="input-group-text" width="50%">Nombre Cliente: <%= nombre%></label>
+            <td width="50%"><input type="hidden" size="53" name="idt_1"  value="<%= id%>" id="textfield"></td>
+            <div>
+                <div>
 
                     <br>
                     <table align="center" border="5" width=
                            "50%" class="table table-dark table-bordered table-hover">
                         <thead class="bg-info"> 
                             <tr>
-                                    <th>NO</th>
-                                    <th>ID</th>
-                                    <th>MARCA</th>
-                                    <th>TIPO</th>
-                                    <th>DISPOSITIVO</th>  
-                                    <th>EXISTENCIA</th>                             
-                                    <th>SOLICITADO</th>
-                                    <th>CANTIDADES</th>
+                                <th>IDE</th>
+                                <th>ID CLIENTE</th>
+                                <th>Identificador</th>
+                                <th>DISPOSITIVO</th>  
+                                <th>EXISTENCIA</th>                             
+                                <th>SOLICITADO</th>
+                                <th>CANTIDADES</th>
 
                             </tr>
                         </thead>
 
-                            <%
-                                String n = request.getParameter("codigo");
-                                EquipamientoSolicitado objs = new EquipamientoSolicitado();
+                        <%
 
-                                Vector usu = new Vector();
-                                usu = objs.mostrarEQ(id);
+                            String numeroSerie;
+                            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                            Calendar cal = Calendar.getInstance();
+                            String fechaa = dateFormat.format(cal.getTime());
+                            String folio = "PREOC-";
+                            folio = folio + fechaa;
 
-                                for (int i = 0; i < usu.size(); i++) {
-                                    objs = (EquipamientoSolicitado) usu.get(i);
+                            PrecompraE pc = new PrecompraE();
+                            PrecompraE pc1 = new PrecompraE();
+                            numeroSerie = pc.GenerarSerie();
 
-                            %>
-                            <tr <% if (objs.getSolicitado() > objs.getExistencia()) { %> class="table-danger" <%}%>>
-                                <td><%= objs.getIde()%></td>
-                                <td><%= objs.getID()%></td>
-                                <td><input type="text" name="marcas" value="<%= objs.getMarca()%>" disable></td>
-                                <td><%= objs.getNombre()%></td>
-                                <td><%= objs.getTipo()%></td>
-                                <td><%= objs.getExistencia()%></td>
-                                <td><%= objs.getSolicitado()%></td>                              
+                            if (numeroSerie == null) {
+                                numeroSerie = "0001";
+                                folio = folio + "-A" + numeroSerie;
+                                request.setAttribute("folioo", folio);
+                                request.setAttribute("numeroS", numeroSerie);
+                            } else {
+                                int incrementador = Integer.parseInt(numeroSerie);
+                                numeroSerie = pc1.numeros(incrementador);
+                                folio = folio + "-A" + numeroSerie;
+                                request.setAttribute("folioo", folio);
+                                request.setAttribute("numeroS", numeroSerie);
+                                System.out.println(numeroSerie);
+                            }
 
-                                <td><input class="formulario__campo" type="number" name="soli"   placeholder="Cantidad" min="0" max="<%= objs.getExistencia()%>" ></td>
-                            </tr>
-                            <%}%>  
-                            <input type="hidden" name="txtpara" value=<%=VPara%> />
-                        </table>
+                            EquipamientoSolicitado objs = new EquipamientoSolicitado();
+                            int cont = 0;
+                            Vector usu = new Vector();
+                            usu = objs.mostrarEquiWisp(id);
 
-                        <button type="submit" name="opcion" value="guardarAlmacenE" class="btn btn-success">Enviar</button>
-                        <button type="submit" name="opcion" value="guardarPrecompra" class="btn btn-primary">Generar Precompra</button>
+                            for (int i = 0; i < usu.size(); i++) {
+                                objs = (EquipamientoSolicitado) usu.get(i);
+
+                        %>
+                            <tr <% if (objs.getSolicitado() > objs.getExistencia()) {
+                                    cont++; %> class="table-danger" <%}%>>
+                            <td><%= objs.getIde()%></td>
+                            <td><%= objs.getID()%></td>
+                            <td><%= objs.getIden()%><input type="hidden" name="identificador" value="<%= objs.getIden()%>" disable></td>
+                            <td><%= objs.getDispositivo()%></td>
+                            <td><%= objs.getExistencia()%></td>                            
+                            <td><%= objs.getSolicitado()%><input type="hidden"  name="numerosW" value="<%= objs.getSolicitado()%>"></td>                              
+                                <% int resultado;
+                                    if (objs.getExistencia() > objs.getSolicitado()) {
+                                        resultado = objs.getSolicitado();
+                                    } else {
+                                        resultado = 0;
+                                    }%>        
+                            <td><input class="formulario__campo" type="number" name="numeros" value="<%=resultado%>"  placeholder="Cantidad" min="0" max="<%= objs.getExistencia()%>" ></td>
+                        </tr>
+                        <%}%>  
+                        <input type="hidden" name="txtpara" value=<%=VPara%> />
+                    </table>
+
+                    <button type="submit" name="opcion" value="guardarAlmacenE" class="btn btn-success">Enviar</button>
+
+                    <% if (cont > 0) {%>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Generar Precompra</button>
+                    <% }%>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Crear Precompra</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    ¿Quieres general el folio <%=folio%>  para el Cliente <%= id%>?
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="submit" name="opcion" value="enviarPrecompra" class="btn btn-success">Confirmar Precompra</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </form>
     </center>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </body>
 </html>

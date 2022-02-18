@@ -25,7 +25,9 @@
                min-height: 600px;
                }
     </style>
-        
+        <div align="center">                    
+            <a href="Wisp.jsp"> <img src="IMG/Wispgal.png" width="150" height="150" HSPACE="20"></a>          
+            </div>
         <form action="controlClientes.do" method="post" align="center">
             <h1>Equipamientos Solicitados</h1>
             <div class="container" align="center">
@@ -56,7 +58,7 @@
                              String n=request.getParameter("nombre");
                              Clientes objs = new Clientes();
                              Vector usu = new Vector();
-                             usu=objs.mostrarBusquedamM(n);
+                             usu=objs.mostrarEqui(n);
                              
                              for(int i=0; i<usu.size();i++){
                                  objs=(Clientes)usu.get(i);

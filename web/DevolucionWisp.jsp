@@ -58,14 +58,19 @@
             }
 
         %>
-        <h1>DEVOLUCION MATERIALES</h1>
+        
+        <div align="center">                    
+            <a href="Wisp.jsp"> <img src="IMG/Wispgal.png" width="150" height="150" HSPACE="20"></a>
+            <h1>DEVOLUCION MATERIALES</h1>
+        </div>
     <center>
         <form align="center" action="controlClientes.do" method="post">
-            <td width="50%"><input type="text" size="53" name="idt_1"  value="<%= id%>" id="textfield"></td>
-            <div class="form-group d-flex">
-                <div class="col-sm-6 ">
-
-                   
+            <label align="center" class="input-group-text" width="50%">ID Cliente: <%= id%></label>
+            <label align="center" class="input-group-text" width="50%">Nombre Cliente: <%= nombre%></label>
+            <td width="50%"><input type="hidden" size="53" name="idt_1"  value="<%= id%>" id="textfield"></td>
+            
+            <div class="form-group">
+                <div>
                     <br>
                     <table align="center" border="5" width="50%" class="table table-dark table-bordered table-hover">
                         <thead class="bg-info"> 
@@ -95,12 +100,12 @@
                         <tr>
                             <td><%= objs.getIde()%></td>
                             <td><%= objs.getID()%></td>
-                            <td><input type="text" name="codigosw" value="<%= objs.getCodigo()%>" disable></td>
+                            <td><%= objs.getCodigo()%><input type="hidden" name="codigosw" value="<%= objs.getCodigo()%>"></td>
                             <td><%= objs.getNombre()%></td>
                             <td><%= objs.getUnnidades()%></td>                                
                             <td><%= objs.getSolicitado()%></td>                              
 
-                            <td><input class="formulario__campo" type="number" name="devolucionw"   placeholder="Cantidad" min="0" max="" ></td>
+                            <td><input class="formulario__campo" type="number" name="devolucionw"   placeholder="Cantidad" min="0" max="<%= objs.getSolicitado()%>" ></td>
                         </tr>
                         <%}%>  
                         <input type="hidden" name="txtpara" value=<%=VPara%> />

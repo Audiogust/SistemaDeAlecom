@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <title>JSP Page</title>
     </head>
     <style>
@@ -22,10 +22,10 @@
     <body>
         <div class="table-responsive" align="center">
                 <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a>
+                <h1>Materiales</h1>
         </div>
         <div class="container flexc">
-        <form align="center" action="controlFull.do" method="post">
-            <h1>Materiales</h1>
+        <form align="center" action="controlFull.do" method="post">            
             <img src="IMG/trabajar.svg" width="100" height="100"/>
             
             <div class="input-group">           

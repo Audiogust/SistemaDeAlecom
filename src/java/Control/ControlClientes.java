@@ -8,9 +8,12 @@ package Control;
 import Modelo.Clientes;
 import Modelo.EquipamientoSolicitado;
 import Modelo.Material;
-import Modelo.Material1;
+import Modelo.Equipamiento;
 import Modelo.MaterialSolicitadoWisp;
+import Modelo.OrdenPrecompra;
+import Modelo.OrdenPrecompraE;
 import Modelo.Precompra;
+import Modelo.PrecompraE;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -140,6 +143,37 @@ public class ControlClientes extends HttpServlet {
                     request.getRequestDispatcher("Clientes.jsp").forward(request, response);
                 
             }
+            if (opcion.equals("generarNumeroid")) {
+                    Equipamiento e = new Equipamiento();    
+                    String numeroE="";
+                    numeroE = e.GenerarNumeroE();
+                    if (numeroE == null) {
+                        numeroE = "1";                                        
+                        request.setAttribute("numeritow", numeroE);
+                    } else {
+                        int incrementador = Integer.parseInt(numeroE);
+                        numeroE = e.numeros(incrementador);
+                        request.setAttribute("numeritow", numeroE);
+                    }
+                    request.getRequestDispatcher("registrarEquipamiento.jsp").forward(request, response);
+                
+            }
+            if (opcion.equals("registrarEquipamiento")) {
+                 
+                
+                Equipamiento e = new Equipamiento();
+                String id = request.getParameter("id");
+                String codigo = request.getParameter("codigo");
+                String marca = request.getParameter("marca");
+                String tipo = request.getParameter("tipo");
+                String dispositivo = request.getParameter("dispositivo");
+                int existencia = Integer.parseInt(request.getParameter("existencia"));
+                int tope = Integer.parseInt(request.getParameter("tope"));
+                
+                e.EquiInsertar(id, codigo,marca ,tipo,dispositivo,existencia,tope);
+                
+                  request.getRequestDispatcher("registrarEquipamiento.jsp").forward(request, response);
+              }
             if (opcion.equals("BuscarGrupo")) {
                  
                   request.getRequestDispatcher("Instalacion.jsp").forward(request, response);
@@ -172,32 +206,34 @@ public class ControlClientes extends HttpServlet {
                 request.getRequestDispatcher("Wisp.jsp").forward(request, response);
             }
             
+            
               if (opcion.equals("guardarEquipamiento")) {
                 String cantidad[] = request.getParameterValues("cantidades");
-                String marca[] = request.getParameterValues("marca");  
+                String identificadores[] = request.getParameterValues("identificador");  
                 String id = request.getParameter("id_wisp");
+                
                 Clientes cl1 = new Clientes();
-                Material m = new Material();
-                Material m1 = new Material();
+                
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm:ss");
+               
                 Material ms = new Material();
-                Material1 mat1 = new Material1();
-                Material1 ms1 = new Material1();
-                Material jeje = new Material();
-                Material1 mt= new Material1();
-                String c = cl1.Status(id);
+                Equipamiento equi = new Equipamiento();
+                cl1.StatusEquip(id);
                 for (int i = 0; i < cantidad.length; i++) {
                     if (cantidad[i].length() > 0) {
-                        String material = mat1.Tipo(marca[i]);
-                        String disp = ms1.Dispo(marca[i]);
-                        String existencias = ms1.Existencia(marca[i]);
+                        
+                        String nom =equi.Dispo(identificadores[i]);
+                        String mar =equi.Marca(identificadores[i]);
+                        String tipo =equi.TipoE(identificadores[i]);
+                        int existencia = equi.Existencia(identificadores[i]);
                         String fecha = dtf.format(LocalDateTime.now());
                         String hora = dtf1.format(LocalDateTime.now());
-                        m1.Wisp(id, material, cantidad[i]);
-                        mat1.Equi(id, disp, cantidad[i]);
-                        mt.insertarHistoE(id, marca[i] , material, disp,Integer.parseInt(existencias) ,Integer.parseInt(cantidad[i]), fecha, hora);
-                        System.out.println(marca[i] + " " + cantidad[i]);
+                        
+                        
+                     equi.EquiSolicitado(id, identificadores[i], cantidad[i]);
+                     equi.EquiSolicitadoHistorial(id,Integer.parseInt(identificadores[i]),nom,
+                             mar,tipo,String.valueOf(existencia),cantidad[i],fecha,hora);
                     }
                 }
 
@@ -238,45 +274,37 @@ public class ControlClientes extends HttpServlet {
                     }
                 }
                  if (cont > 0 ) {
-                     cli.StatusDev(id1);
-                    request.getRequestDispatcher("MaterialesSolicitados.jsp").forward(request, response);
+                     cli.StatusDevMat(id1);
+                    request.getRequestDispatcher("Wisp.jsp").forward(request, response);
                  }
                 
                   request.getRequestDispatcher("Wisp.jsp").forward(request, response);
               }
              
              if (opcion.equals("guardarAlmacenE")) {
-                Material ms = new Material();
-                Material1 ma1 = new Material1();
-                MaterialSolicitadoWisp mts = new MaterialSolicitadoWisp();
+               
                 String id1 = request.getParameter("idt_1");
                 MaterialSolicitadoWisp wisp = new MaterialSolicitadoWisp();
                 EquipamientoSolicitado eqs = new EquipamientoSolicitado();
                 Clientes cli = new Clientes();
                 String soli[] = request.getParameterValues("numerosW");
-                String marcas[] = request.getParameterValues("marcas");
+                String identificador[] = request.getParameterValues("identificador");
+                
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm:ss");
                 int cont=0;
+                //cli.cambioStatusDevolverE(id1);
                 for (int i = 0; i < soli.length; i++) {
                     if (soli[i].length() > 0) {
-                    cont++;
-                    String tipo = ma1.Tipo(marcas[i]);
-                    String dispositivos =ma1.Dispo(marcas[i]);
-                    String existencias = ma1.Existencia(marcas[i]);
-                    String fecha = dtf.format(LocalDateTime.now());
-                    String hora = dtf1.format(LocalDateTime.now());
-                    eqs.OperacionE(marcas[i],Integer.parseInt(soli[i]));                    
-                    
-                    System.out.println(soli[i]+" "+marcas[i]);
+                    cont++;                    
+                    eqs.OperacionEquiWisp(identificador[i],Integer.parseInt(soli[i]));                                                          
                     }
                 }
                  if (cont > 0 ) {
                      cli.StatusDev(id1);
-                    request.getRequestDispatcher("EquipamientosSolicitados.jsp").forward(request, response);
+                    request.getRequestDispatcher("Wisp.jsp").forward(request, response);
                  }
-                
-                  request.getRequestDispatcher("Wisp.jsp").forward(request, response);
+                 
               }
              
                 if(opcion.equals("guardarDevolucion")) {
@@ -289,6 +317,7 @@ public class ControlClientes extends HttpServlet {
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm:ss");
                 int cont=0;
+                cl1.CambioSw(id);
                 for (int i = 0; i < dev.length; i++) {
                     if (dev[i].length() > 0) {
                     String descripciones = m.Descripcion(codev[i]);
@@ -298,13 +327,58 @@ public class ControlClientes extends HttpServlet {
                     String hora = dtf1.format(LocalDateTime.now());
                     mw.DevolverMaterial(codev[i], Integer.parseInt(dev[i]));
                     m.insertarHistoDevolucionW(id, codev[i], descripciones, unidad,Integer.parseInt(existencias),Integer.parseInt(dev[i]),Integer.parseInt(existencias)+Integer.parseInt(dev[i]), fecha, hora);              
-                    cont = cont+1;
+                    cont++;
                     }
                 }
-                m.eliminarPedidoWisp(id);
-                cl1.CambioSw(id);
+                m.eliminarPedidoWisp(id);                
                 request.getRequestDispatcher("MenuAlmacen.jsp").forward(request, response);
-
+            }
+                if(opcion.equals("devolverEquipamiento")) {
+                Material m = new Material();
+                String id = request.getParameter("idt_1");
+                Clientes cl1 = new Clientes();
+                String dev[] = request.getParameterValues("numerosW");
+                String codev[] = request.getParameterValues("identificador");                
+                EquipamientoSolicitado es = new EquipamientoSolicitado();
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm:ss");
+                int cont=0;
+                cl1.CambioSE(id);
+                for (int i = 0; i < dev.length; i++) {
+                    if (dev[i].length() > 0) {                    
+                    
+                    es.DevolverEquipamiento( Integer.parseInt(codev[i]) ,Integer.parseInt(dev[i]));
+                    cont++;
+                    }
+                }
+                m.eliminarPedidoWisp(id);                
+                request.getRequestDispatcher("MenuAlmacen.jsp").forward(request, response);
+            }
+                
+                if (opcion.equals("cambiarEstadoPrecompra")) {
+                
+                Precompra p = new Precompra();
+                Material m = new Material();
+                OrdenPrecompra o = new OrdenPrecompra();
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm:ss");
+                String idProyecto=request.getParameter("otiga");
+                String otigaProyecto=request.getParameter("otigaP");
+                String codigos[] = request.getParameterValues("codigosSolP");
+                String solicitado[] = request.getParameterValues("numeroSolP");
+                String fecha = dtf.format(LocalDateTime.now());
+                String hora = dtf1.format(LocalDateTime.now());                
+                for (int i = 0; i < codigos.length; i++) {
+                    p.cambioCantidadSolicitada(codigos[i], Integer.parseInt(solicitado[i]));
+                    String nom = m.Descripcion(codigos[i]);
+                    String unidad = m.Unidades(codigos[i]);
+                    String existencia = m.Existencia(codigos[i]);
+                    String ordenSol = o.solicitadoOrden(idProyecto, nom);
+                    System.out.println(idProyecto+"  "+codigos[i]+"  "+nom+" "+ existencia+"  "+unidad+"  "+ ordenSol+"  "+ solicitado[i]+"  "+ hora+"  "+ fecha);
+                   p.precompraHistorial(idProyecto, codigos[i], nom, unidad,existencia ,ordenSol, solicitado[i], hora, fecha);
+                }                
+                p.cambioStatusPrecompra(idProyecto);                
+               request.getRequestDispatcher("ComprasW.jsp").forward(request, response);                       
             }
                 
                if (opcion.equals("guardarPrecompra")) {
@@ -337,7 +411,7 @@ public class ControlClientes extends HttpServlet {
                 Material m1 = new Material();
                 String soli[] = request.getParameterValues("numerosW");
                 String codigos[] = request.getParameterValues("codigoW");
-               p.precompra(numeroSerie, proyecto,folio);
+               p.precompra(numeroSerie, proyecto,folio,"Full");
                 for (int i = 0; i < soli.length; i++) {
                     String existencia = m.Existencia(codigos[i]);
                     String solicitado = m.SolicitadoWisp(codigos[i]);
@@ -384,6 +458,386 @@ public class ControlClientes extends HttpServlet {
 
                 }
 
+            }
+            
+            if (opcion.equals("botonPreorden")) {
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                Calendar cal = Calendar.getInstance();
+                String fechaa = dateFormat.format(cal.getTime());
+                String folio = "PREOC-";
+                folio = folio + fechaa;
+
+                Precompra pc = new Precompra();
+                Precompra pc1 = new Precompra();
+                numeroSerie = pc.GenerarSerie();
+
+                if (numeroSerie == null) {
+                    numeroSerie = "0001";
+                    folio = folio + "-A" + numeroSerie;
+                    request.setAttribute("folioo", folio);
+                    request.setAttribute("numeroS", numeroSerie);
+                } else {
+                    int incrementador = Integer.parseInt(numeroSerie);
+                    numeroSerie = pc1.numeros(incrementador);
+                    folio = folio + "-A" + numeroSerie;
+                    request.setAttribute("folioo", folio);
+                    request.setAttribute("numeroS", numeroSerie);
+                }                
+                request.getRequestDispatcher("preordenWisp.jsp").forward(request, response);
+            }
+            if (opcion.equals("botonPreordenAccion")) {
+             Material m = new Material();
+             Material m1 = new Material();
+             Precompra p = new Precompra();
+             
+             String foliosito = request.getParameter("folioextraer");
+             String num = request.getParameter("folionumeros");
+             
+             String codigos[] = request.getParameterValues("codC");
+             String numeros[] = request.getParameterValues("numerosC");
+             String proyecto = request.getParameter("pro");
+             
+                if (proyecto != "Elige un proyecto") {
+                    int c = 0;
+                    for (int i = 0; i < codigos.length; i++) {
+                        if (numeros[i].length() > 0) {
+                            c++;
+                        }
+                    }
+                    if (c > 0) {
+                        p.precompra(num, proyecto, foliosito,"Wisp");
+                        System.out.println(proyecto);
+                        for (int i = 0; i < codigos.length; i++) {
+                            if (numeros[i].length() > 0) {
+                                String descripciones = m.Descripcion(codigos[i]);
+                                m1.precompra(foliosito, descripciones, numeros[i]);
+                                System.out.println(descripciones + "sd" + numeros[i]);
+                            }
+                        }
+                        request.getRequestDispatcher("ComprasW.jsp").forward(request, response);
+                    } else if (c == 0) {
+                        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                        Calendar cal = Calendar.getInstance();
+                        String fechaa = dateFormat.format(cal.getTime());
+
+                        String folio = "PREOC-";
+                        folio = folio + fechaa;
+                        Precompra pc = new Precompra();
+                        Precompra pc1 = new Precompra();
+                        numeroSerie = pc.GenerarSerie();
+
+                        if (numeroSerie == null) {
+                            numeroSerie = "0001";
+                            folio = folio + "-A" + numeroSerie;
+                            request.setAttribute("folioo", folio);
+                            request.setAttribute("numeroS", numeroSerie);
+                        } else {
+                            int incrementador = Integer.parseInt(numeroSerie);
+                            numeroSerie = pc1.numeros(incrementador);
+                            folio = folio + "-A" + numeroSerie;
+                            request.setAttribute("folioo", folio);
+                            request.setAttribute("numeroS", numeroSerie);
+                        }        
+                        request.getRequestDispatcher("preordenWisp.jsp").forward(request, response);
+                    }
+                }              
+            }
+            
+            if (opcion.equals("botonPreordenAccionE")) {
+                
+             Equipamiento eq = new Equipamiento();
+             PrecompraE pe = new PrecompraE();
+             Material m = new Material();
+             Material m1 = new Material();
+             Precompra p = new Precompra();
+             
+             String foliosito = request.getParameter("folioextraer");
+             String num = request.getParameter("folionumeros");
+             
+             String codigos[] = request.getParameterValues("codC");
+             String numeros[] = request.getParameterValues("numerosC");
+             String proyecto = request.getParameter("pro");
+             
+                if (proyecto != "Elige un proyecto") {
+                    int c = 0;
+                    for (int i = 0; i < codigos.length; i++) {
+                        if (numeros[i].length() > 0) {
+                            c++;
+                        }
+                    }
+                    if (c > 0) {
+                        pe.precompraE(num, proyecto, foliosito);
+                        System.out.println(proyecto);
+                        for (int i = 0; i < codigos.length; i++) {
+                            if (numeros[i].length() > 0) {
+                                String descripciones = eq.Dispo(codigos[i]);
+                                String marca= eq.Marca(codigos[i]);
+                                String tipo= eq.TipoE(codigos[i]);
+                                eq.ordenPrecompraE(foliosito,Integer.parseInt(codigos[i]),
+                                        marca, descripciones, tipo,Integer.parseInt(numeros[i]));
+                                System.out.println(foliosito+" "+codigos[i] + " | " +marca +descripciones +" " +tipo+" | "+ numeros[i]);
+                            }
+                        }
+                        request.getRequestDispatcher("comprasWE.jsp").forward(request, response);
+                    } else if (c == 0) {
+                        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                        Calendar cal = Calendar.getInstance();
+                        String fechaa = dateFormat.format(cal.getTime());
+
+                        String folio = "PREOC-";
+                        folio = folio + fechaa;
+                        PrecompraE pc = new PrecompraE();
+                        PrecompraE pc1 = new PrecompraE();
+                        numeroSerie = pc.GenerarSerie();
+
+                        if (numeroSerie == null) {
+                            numeroSerie = "0001";
+                            folio = folio + "-A" + numeroSerie;
+                            request.setAttribute("folioo", folio);
+                            request.setAttribute("numeroS", numeroSerie);
+                        } else {
+                            int incrementador = Integer.parseInt(numeroSerie);
+                            numeroSerie = pc1.numeros(incrementador);
+                            folio = folio + "-A" + numeroSerie;
+                            request.setAttribute("folioo", folio);
+                            request.setAttribute("numeroS", numeroSerie);
+                        }        
+                        request.getRequestDispatcher("preordenWispE.jsp").forward(request, response);
+                    }
+                }              
+            }
+            
+            if (opcion.equals("enviarPrecompra")) {
+                Material mat = new Material();
+                
+                String codigos[] = request.getParameterValues("identificador");
+                String solicitado[] = request.getParameterValues("numerosW");
+                String otiga = request.getParameter("idt_1");
+
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                Calendar cal = Calendar.getInstance();
+                String fechaa = dateFormat.format(cal.getTime());
+                String folio = "PREOC-";
+                folio = folio + fechaa;
+                PrecompraE p = new PrecompraE();
+                PrecompraE pc = new PrecompraE();
+                PrecompraE pc1 = new PrecompraE();
+                numeroSerie = pc.GenerarSerie();
+
+                if (numeroSerie == null) {
+                    numeroSerie = "0001";
+                    folio = folio + "-A" + numeroSerie;
+                    request.setAttribute("folioo", folio);
+                    request.setAttribute("numeroS", numeroSerie);
+                } else {
+                    int incrementador = Integer.parseInt(numeroSerie);
+                    numeroSerie = pc1.numeros(incrementador);
+                    folio = folio + "-A" + numeroSerie;
+                    request.setAttribute("folioo", folio);
+                    request.setAttribute("numeroS", numeroSerie);                                       
+                }
+                Equipamiento m = new Equipamiento();
+                    Equipamiento m1 = new Equipamiento();
+                   p.precompraE(numeroSerie,otiga, folio);
+                  System.out.println("hooola");  
+                  for (int i = 0; i < codigos.length; i++) {
+                        int existencia = m.Existencia(codigos[i]);
+                        String marca = m.Marca(codigos[i]);    
+                        String descripciones = m.Dispo(codigos[i]);
+                        String tipo= m.TipoE(codigos[i]);
+                        //System.out.println("hola perro");
+                        if (Integer.parseInt(solicitado[i]) > existencia) {
+                           //m1.precompra(folio, descripciones, String.valueOf(Integer.parseInt(solicitado[i]) - existencia));
+                        m1.ordenPrecompraE(folio,Integer.parseInt(codigos[i]),
+                                        marca, descripciones, tipo,Integer.parseInt(solicitado[i])-existencia);
+                            System.out.println("hola perro"+descripciones);
+                        }
+
+                    }
+               
+                request.getRequestDispatcher("MenuAlmacen.jsp").forward(request, response);         
+            }
+            
+            
+            if (opcion.equals("autorizarExistencia")) {
+                 System.out.println("cambio");
+                Precompra p = new Precompra();
+                OrdenPrecompra o = new OrdenPrecompra();
+                Material m = new Material();
+                String idProyecto=request.getParameter("otiga");
+                OrdenPrecompra op = new OrdenPrecompra();
+                String codigoe[] = request.getParameterValues("codigosOrd");
+                String numeros[] = request.getParameterValues("solicitadoOrd");
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm:ss");
+                String fecha = dtf.format(LocalDateTime.now());
+                String hora = dtf1.format(LocalDateTime.now());                
+                for (int i = 0; i < codigoe.length; i++) {    
+                    String nom = m.Descripcion(codigoe[i]);
+                    String unidad = m.Unidades(codigoe[i]);
+                    String existencia = m.Existencia(codigoe[i]);
+                    String ordenSol = o.solicitadoOrden(idProyecto, nom);
+                    op.Autorizar(codigoe[i],Integer.parseInt(numeros[i]));                    
+                    p.OrdencompraHistorial(idProyecto, codigoe[i], nom, unidad,existencia, ordenSol, numeros[i], String.valueOf(Integer.parseInt(existencia) + Integer.parseInt(numeros[i])) , hora, fecha);
+                    System.out.println(codigoe[i]+" "+numeros[i]);                   
+                }
+                p.cambioStatusOrden(idProyecto);
+                
+                request.getRequestDispatcher("ComprasW.jsp").forward(request, response);
+             }
+            
+            if (opcion.equals("Modificar")) {              
+               Equipamiento eq = new Equipamiento();
+               
+               eq.setCodigo(request.getParameter("n_codigo").toString());
+               eq.setMarca(request.getParameter("n_marca").toString());
+               eq.setTipo(request.getParameter("n_tipo").toString());
+               eq.setDispositivo(request.getParameter("n_dispositivo").toString());
+               eq.setExistencia(Integer.parseInt(request.getParameter("n_existencia").toString()));
+               eq.setTope(Integer.parseInt(request.getParameter("n_tope").toString()));
+               eq.setIden(Integer.parseInt(request.getParameter("id").toString()));
+               
+               eq.cambio();
+               request.getRequestDispatcher("editarEquipamiento.jsp").forward(request, response);
+                        
+            }
+            
+            if (opcion.equals("botonPreordenE")) {
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                Calendar cal = Calendar.getInstance();
+                String fechaa = dateFormat.format(cal.getTime());
+                String folio = "PREOC-";
+                folio = folio + fechaa;
+
+                PrecompraE pc = new PrecompraE();
+                PrecompraE pc1 = new PrecompraE();
+                numeroSerie = pc.GenerarSerie();
+
+                if (numeroSerie == null) {
+                    numeroSerie = "0001";
+                    folio = folio + "-A" + numeroSerie;
+                    request.setAttribute("folioo", folio);
+                    request.setAttribute("numeroS", numeroSerie);
+                } else {
+                    int incrementador = Integer.parseInt(numeroSerie);
+                    numeroSerie = pc1.numeros(incrementador);
+                    folio = folio + "-A" + numeroSerie;
+                    request.setAttribute("folioo", folio);
+                    request.setAttribute("numeroS", numeroSerie);
+                }                
+                request.getRequestDispatcher("preordenWispE.jsp").forward(request, response);
+            }
+            
+            if (opcion.equals("cambiarEstadoPrecompraE")) {
+                
+                Precompra p = new Precompra();
+                
+                PrecompraE pe = new PrecompraE();
+                Equipamiento eq = new Equipamiento();
+                OrdenPrecompraE oe = new OrdenPrecompraE();
+                
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm:ss");
+                           
+                
+                String idCliente=request.getParameter("otiga");
+                String codigosE[] = request.getParameterValues("codigosSolP");
+                String solicitadoE[] = request.getParameterValues("numeroSolP");
+                
+                String fecha = dtf.format(LocalDateTime.now());
+                String hora = dtf1.format(LocalDateTime.now());                
+                for (int i = 0; i < codigosE.length; i++) {
+                    pe.cambioCantidadSolicitada(codigosE[i], Integer.parseInt(solicitadoE[i]));
+                   /* String nom = m.Descripcion(codigos[i]);
+                    String unidad = m.Unidades(codigos[i]);
+                    String existencia = m.Existencia(codigos[i]);
+                    String ordenSol = o.solicitadoOrden(idProyecto, nom);                    
+                   p.precompraHistorial(idProyecto, codigos[i], nom, unidad,existencia ,ordenSol, solicitado[i], hora, fecha);
+                    
+                    */
+                }                
+                pe.cambioStatusPrecompra(idCliente);                
+               request.getRequestDispatcher("comprasWE.jsp").forward(request, response);                       
+            }
+           
+            
+            if (opcion.equals("autorizarExistenciaEqui")) {               
+                
+                PrecompraE pe = new PrecompraE();
+                Equipamiento oe = new Equipamiento();
+                OrdenPrecompraE me = new OrdenPrecompraE();
+                
+                //String idProyecto=request.getParameter("otiga");
+                String idProyecto=request.getParameter("otiga");
+                OrdenPrecompra op = new OrdenPrecompra();
+                String codigoe[] = request.getParameterValues("codigosSolP");
+                String numeros[] = request.getParameterValues("solicitadoOrd");
+                
+                DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm:ss");
+                String fecha = dtf.format(LocalDateTime.now());
+                String hora = dtf1.format(LocalDateTime.now());                
+                System.out.println("hooola"+idProyecto);
+                pe.cambioStatusOrden(idProyecto);
+                for (int i = 0; i < codigoe.length; i++) {    
+                    //String nom = m.Descripcion(codigoe[i]);
+                    //String unidad = m.Unidades(codigoe[i]);
+                    //String existencia = m.Existencia(codigoe[i]);
+                    //String ordenSol = o.solicitadoOrden(idProyecto, nom);
+                    me.Autorizar(Integer.parseInt(codigoe[i]),Integer.parseInt(numeros[i]));                    
+                    //p.OrdencompraHistorial(idProyecto, codigoe[i], nom, unidad,existencia, ordenSol, numeros[i], String.valueOf(Integer.parseInt(existencia) + Integer.parseInt(numeros[i])) , hora, fecha);
+                    System.out.println(numeros[i]);
+                }
+                
+                
+                request.getRequestDispatcher("comprasWE.jsp").forward(request, response);
+             }
+            
+            if (opcion.equals("enviarPrecompraM")) {
+                Material mat = new Material();
+                
+                String codigos[] = request.getParameterValues("codigoW");
+                String solicitado[] = request.getParameterValues("numerosW");
+                String otiga = request.getParameter("idt_1");
+
+                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                Calendar cal = Calendar.getInstance();
+                String fechaa = dateFormat.format(cal.getTime());
+                String folio = "PREOC-";
+                folio = folio + fechaa;
+                Precompra p = new Precompra();
+                Precompra pc = new Precompra();
+                Precompra pc1 = new Precompra();
+                numeroSerie = pc.GenerarSerie();
+
+                if (numeroSerie == null) {
+                    numeroSerie = "0001";
+                    folio = folio + "-A" + numeroSerie;
+                    request.setAttribute("folioo", folio);
+                    request.setAttribute("numeroS", numeroSerie);
+                } else {
+                    int incrementador = Integer.parseInt(numeroSerie);
+                    numeroSerie = pc1.numeros(incrementador);
+                    folio = folio + "-A" + numeroSerie;
+                    request.setAttribute("folioo", folio);
+                    request.setAttribute("numeroS", numeroSerie);
+                    System.out.println(numeroSerie); 
+                    Material m = new Material();
+                    Material m1 = new Material();
+                    p.precompra(numeroSerie,otiga, folio,"Wisp");
+                    for (int i = 0; i < codigos.length; i++) {
+                        String existencia = m.Existencia(codigos[i]);
+                        //String solicitado = m.Solicitado(codigos[i],otiga);    
+                        String descripciones = m.Descripcion(codigos[i]);
+                        
+                        if (Integer.parseInt(solicitado[i]) > Integer.parseInt(existencia)) {
+                            m1.precompra(folio, descripciones, String.valueOf(Integer.parseInt(solicitado[i]) - Integer.parseInt(existencia)));
+                        }
+
+                    }
+                }
+               
+                request.getRequestDispatcher("MenuAlmacen.jsp").forward(request, response);         
             }
 
              

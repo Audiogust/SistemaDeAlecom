@@ -15,6 +15,15 @@
         <title>JSP Page</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     </head>
+     <style>
+               body {
+               background-color: #B2D0EE;
+               background-position: center;
+               background-size: cover;
+               height: 100vh;
+               min-height: 600px;
+               }
+    </style>
     <body>
         <%
             HttpSession sesion=request.getSession();
@@ -33,10 +42,19 @@
             }
             
         %>
+        
+        <div class="table-responsive" align="center">
+                <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a>
         <h1>Historial Materiales solicitados</h1>
+        </div>
+         <div>
+            <label align="center" class="input-group-text" width="50%">OTIGA: <%= otiga%></label>
+            <label align="center" class="input-group-text" width="50%">NOMBRE Proyecto: <%= nombre%></label>    
+         </div>
+        
         <div class="table-responsive">
         <form align="center" action="controlFull.do" method="post">
-        <td width="50%"><input type="text" size="53" name="otiga_1"  value="<%= otiga%>" id="textfield"></td>
+        <td width="50%"><input type="hidden" size="53" name="otiga_1"  value="<%= otiga%>" id="textfield"></td>
              <!--   <input type="text" name="codigo" value="" class="form-control" placeholder="OTIGA"> 
                     <button type="submit" name="opcion" value="BuscarSolicitud" class="btn btn-outline-info">Buscar</button>
              -->

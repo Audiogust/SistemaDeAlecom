@@ -211,7 +211,7 @@ public static Vector mostrarDev(String busqueda) throws SQLException{
              proyectos  = new Vector();
              while(rs.next()){
                        proyectos.add(new MaterialSolicitado(rs.getInt("id"),
-                         rs.getString("otiga"),rs.getString("codigo"), rs.getString("codigo"),rs.getString("unidad"),
+                         rs.getString("otiga"),rs.getString("codigo"), rs.getString("descripcion"),rs.getString("unidad"),
                          rs.getString("solicitado")));                       
              }               
               return proyectos;                

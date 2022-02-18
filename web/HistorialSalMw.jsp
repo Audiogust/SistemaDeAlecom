@@ -15,6 +15,15 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <title>JSP Page</title>
     </head>
+    <style>
+               body {
+               background-color: #B2D0EE;
+               background-position: center;
+               background-size: cover;
+               height: 100vh;
+               min-height: 600px;
+               }
+    </style>
     <body>
          <%
             HttpSession sesion=request.getSession();
@@ -33,12 +42,20 @@
             }
             
         %>
+        
+        <div align="center">                   
+                <a href="Wisp.jsp"> <img src="IMG/Wispgal.png" width="150" height="150" HSPACE="20"></a>
+                <h1>Historial Materiales Salida</h1>
+        </div>
         <form align="center" method="post">
         
-        <h1>Historial Materiales Salida</h1>
         
+        <div>
+            <label align="center" class="input-group-text" width="50%">ID Cliente: <%= otiga%></label>
+            <label align="center" class="input-group-text" width="50%">NOMBRE Cliente: <%= nombre%></label>    
+        </div>
         <div class="table-responsive">
-        <td width="50%"><input type="text" size="53" name="otiga_1"  value="<%= otiga%>" id="textfield"></td>
+        <td width="50%"><input type="hidden" size="53" name="otiga_1"  value="<%= otiga%>" id="textfield"></td>
              <!--   <input type="text" name="codigo" value="" class="form-control" placeholder="OTIGA"> 
                     <button type="submit" name="opcion" value="BuscarSolicitud" class="btn btn-outline-info">Buscar</button>
              -->

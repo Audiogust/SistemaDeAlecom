@@ -25,9 +25,11 @@
     </style>
     <body>
         
-        
-          <form action="controlClientes.do" method="post" align="center">
-             <h1>Materiales Solicitados</h1>   
+        <div align="center">                   
+                <a href="Wisp.jsp"> <img src="IMG/Wispgal.png" width="150" height="150" HSPACE="20"></a>
+                <h1>Historial Material Solicitado</h1>
+            </div> 
+          <form action="controlClientes.do" method="post" align="center">   
             <br><table align="center" border="5" width="50%" class="table thead-dark table-bordered table-hover">
   	                 <thead class="bg-info"> 
                             <tr>

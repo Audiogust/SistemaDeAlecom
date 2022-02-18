@@ -4,7 +4,7 @@
     Author     : Vane
 --%>
 
-<%@page import="Modelo.Material1"%>
+<%@page import="Modelo.Equipamiento"%>
 <%@page import="java.util.Vector"%>
 <%@page import="Modelo.Clientes"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -50,22 +50,27 @@
             String nombre="";
             String id="";
             
-
-            if (VPara.equals("N") == false) {
-                
+            if (VPara.equals("N") == false) {    
                 p.buscarClientes(idd);
                 nombre = p.getNombre();
                 id = p.getId();              
             }
             
         %>
-        <h1> EQUIPAMIENTO </h1>
         <center>
+            <div align="center">                    
+            <a href="Wisp.jsp"> <img src="IMG/Wispgal.png" width="150" height="150" HSPACE="20"></a>
+            <h1> EQUIPAMIENTO </h1>
+            </div>
         <form action="controlClientes.do" method="post">
             
             <div>
-            <td width="50%"><input type="text" size="53" name="id_wisp"  value="<%= id%>" id="textfield"></td>
-            <td width="50%"><input type="text" size="53"  value="<%= nombre%>" id="textfield"></td>          
+            <label align="center" class="input-group-text" width="50%">OTIGA: <%= id%></label>
+            <label align="center" class="input-group-text" width="50%">Nombre del Cliente: <%= nombre%></label>
+            
+            <td width="50%"><input type="hidden" size="53" name="id_wisp"  value="<%= id%>" id="textfield"></td>
+            <td width="50%"><input type="hidden" size="53"  value="<%= nombre%>" id="textfield"></td>          
+                    
             
             </div>
             
@@ -75,6 +80,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>MARCA</th>
+                                <th>CODIGO</th>
                                 <th>TIPO</th>
                                 <th>DISPOSITVO</th>
                                 <th>EXISTENCIA</th>
@@ -82,16 +88,17 @@
                             </tr>
 		         </thead>
                             <%
-                             Material1 objs = new Material1();
+                             Equipamiento objs = new Equipamiento();
                              Vector usu = new Vector();
                              usu=objs.mostrarE();
                              
                              for(int i=0; i<usu.size();i++){
-                                 objs=(Material1)usu.get(i);
+                                 objs=(Equipamiento)usu.get(i);
                              %>
                              <tr>
-                                 <td><%= objs.getId()%></td>
-                                 <td><input class="table-dark" type="text" value="<%= objs.getMarca()%>" name="marca"></td>
+                                 <td><%= objs.getIden()%><input class="table-dark" type="hidden" value="<%= objs.getIden()%>"z name="identificador"></td>
+                                 <td><%= objs.getMarca()%></td>
+                                 <td><%= objs.getCodigo()%></td>
                                  <td><%= objs.getTipo()%></td>
                                  <td><%= objs.getDispositivo()%></td>
                                  <td><%= objs.getExistencia()%></td>

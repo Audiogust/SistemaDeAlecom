@@ -93,6 +93,6 @@
                            
                 </table> 
                 </form>
-         <font face="Arial, Gadget, sans-serif"><a href="http://localhost:8080/SistemaDeAlecom/Wisp.jsp">Menu principal</a></font>
+         
     </body>
 </html>

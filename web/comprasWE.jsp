@@ -1,6 +1,6 @@
 <%-- 
-    Document   : ComprasW
-    Created on : 07-feb-2022, 0:04:22
+    Document   : comprasWE
+    Created on : 13-feb-2022, 23:05:34
     Author     : Hp
 --%>
 
@@ -44,10 +44,10 @@
         
         <div>
             <form align="center" action="controlClientes.do" method="post">
-            <font color="#ffffff"><h2>MENU COMPRAS DE MATERIALES</h2></font><br>
-            <button type="submit" name="opcion" value="botonPreorden" class="btn btn-primary btn-lg boton letra" ><img src="IMG/Preorden.png" width="60" height="60"><br>Generar Preorden de compra</button>
-            <button type="button" name="opcion" class="btn btn-primary btn-lg boton letra" onclick="location.href='folioPrecompraWisp.jsp'"><img src="IMG/Ocompra.png" width="60" height="60"><br>Consultar Preorden de compra</button>
-            <button type="button" name="opcion" class="btn btn-primary btn-lg boton letra" onclick="location.href='ordenCompraWisp.jsp'"><img src="IMG/Ocompra.png" width="60" height="60"><br>Orden de compra</button>
+            <font color="#ffffff"><h2>MENU COMPRAS DE Equipamiento</h2></font><br>
+            <button type="submit" name="opcion" value="botonPreordenE" class="btn btn-primary btn-lg boton letra" ><img src="IMG/Preorden.png" width="60" height="60"><br>Generar Preorden compra Equipamiento</button>
+            <button type="button" name="opcion" class="btn btn-primary btn-lg boton letra" onclick="location.href='folioPrecompraWispE.jsp'"><img src="IMG/Ocompra.png" width="60" height="60"><br>Consultar Preorden compra Equipamiento</button>
+            <button type="button" name="opcion" class="btn btn-primary btn-lg boton letra" onclick="location.href='ordenCompraWispE.jsp'"><img src="IMG/Ocompra.png" width="60" height="60"><br>Orden de compra Equipamiento</button>
             </form>
         </div>
         

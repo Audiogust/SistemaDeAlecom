@@ -1,12 +1,12 @@
 <%-- 
-    Document   : consultaFolioPrecompra
-    Created on : 23-ago-2021, 22:43:24
+    Document   : consultaFolioPrecompraW
+    Created on : 07-feb-2022, 15:39:57
     Author     : Hp
 --%>
 
+<%@page import="Modelo.Precompra"%>
 <%@page import="java.util.Vector"%>
 <%@page import="Modelo.OrdenPrecompra"%>
-<%@page import="Modelo.Precompra"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,10 +15,33 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <title>JSP Page</title>
     </head>
-    <body>
-        <div class="table-responsive" align="center">
-            <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a>
-           <h1>Consulta Folio Preorden</h1>
+    <style>
+        h2{
+            font-size: 40px;
+            color: white;
+        }
+        body {
+            background-image: url("IMG/fondo_4.jpg");
+            background-position: center;
+            height: 100vh;                
+            min-height: 600px;
+        }
+        .boton{
+            background-repeat:no-repeat;
+            height:170px;
+            width:170px;
+            background-position:center;
+            margin-right:10px!important;
+        }
+        .letra{
+            font-size: 19px;
+        }
+       
+    </style>
+    <body>           
+        <div align="center">                    
+            <a href="Wisp.jsp"> <img src="IMG/Wispgal.png" width="150" height="150" HSPACE="20"></a>
+            <h1>Consulta Folio Preorden</h1>
         </div>
        
         <%
@@ -41,33 +64,12 @@
 
         %>
 
-        <style>
-        body {
-                background-image: url("Imagenes/Fondo2.jpg");
-                background-position: center;
-                background-size: cover;
-                height: 100vh;
-                min-height: 600px;     
-                }
-           .boton{
-                 background-repeat:no-repeat;
-                 height:200px;
-                 width:200px;
-                 background-position:center;
-                 margin-right:14px!important;
-                 }
-                 .letra{
-                     font-size: 20px;
-                 }
-    </style>
     <center>
-        <form action="controlFull.do" method="post">
-
+        <form action="controlClientes.do" method="post">
             <div>
-                
                 <label align="center" class="input-group-text" width="50%">Folio para la Precompra: <%= folio %></label>
                 <label align="center" class="input-group-text" width="50%">Numero : <%= serie %></label>
-                <label align="center" class="input-group-text" width="50%">Otiga: <%= otiga %></label>
+                <label align="center" class="input-group-text" width="50%">ID cliente: <%= otiga %></label>
             
                 <td width="50%"><input type="hidden" size="53" name="otiga"  value="<%= folio%>" id="textfield"></td>
                 <td width="50%"><input type="hidden" size="53" nmae="otigaP" value="<%= otiga%>" id="textfield"></td>

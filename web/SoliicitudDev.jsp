@@ -12,37 +12,27 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-        <title>JSP Page</title>
     </head>
-    <style>
-          body {
-               background-image: url("IMG/fondo_4.jpg");
+    <body>
+        <style>
+               body {
+               background-color: #8BADC4;
                background-position: center;
                background-size: cover;
                height: 100vh;
                min-height: 600px;
                }
-                .input{
-                      background-repeat:no-repeat;
-                 
-                background-position:right;
-                margin-right:600px!important;
-                     }
-                     .derecha   { float: right; }
-.izquierda { float: left;  }
-                
-                
-               table {
-                     background-color: #3F9FEA;
-                     }
-                     h1{
-                         align: center;
-                     }
     </style>
-    <body>
-        <form align="center">
-        <h1>DEVOLUCION MATERIALES</h1>
-        <table align="center" border="5" width="50%" class="table table-dark table-bordered table-hover">
+        <div align="center">
+                    
+            <a href="Wisp.jsp"> <img src="IMG/Wispgal.png" width="150" height="150" HSPACE="20"></a>
+        </div>
+        <form action="controlClientes.do" method="post" align="center">
+            <h1>Devolucion de Materiales</h1>
+            <div class="container" align="center">               
+                
+            </div>
+            <br><table align="center" border="5" width="50%" class="table thead-dark table-bordered table-hover">
   	                 <thead class="bg-info"> 
                             <tr>
                                 <th>NO</th>
@@ -57,14 +47,15 @@
                                 <th>FECHA</th>
                                 <th>GRUPO</th>
                                 <th>COMENTARIOS</th>
-                                <th>DEVOLVER</th>
-                                
+                                <th>SELECCIONAR</th>
                             </tr>
 		         </thead>
                             <%
+                                
+                             String n=request.getParameter("nombre");
                              Clientes objs = new Clientes();
                              Vector usu = new Vector();
-                             usu=objs.mostrarMatDev();
+                             usu=objs.mostrarBusquedam();
                              
                              for(int i=0; i<usu.size();i++){
                                  objs=(Clientes)usu.get(i);
@@ -82,11 +73,12 @@
                                 <td><%= objs.getFecha()%></td>
                                 <td><%= objs.getGrupo()%></td>
                                 <td><%= objs.getComentarios()%></td>
+                                
                                 <td align="center" ><a href="DevolucionWisp.jsp?txtpara=M&id=<%= objs.getId()%>">
-                                     <img src="IMG/peticion.svg" width="25px" height="25px"> </td>
-                                  </tr>
+                                     <img src="IMG/formato1.png" width="25px" height="25px"> </td>
+                             </tr>
                                 <%}%>
-                </table> 
+                </table>
         </form>
     </body>
 </html>

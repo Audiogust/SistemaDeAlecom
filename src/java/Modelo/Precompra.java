@@ -159,14 +159,15 @@ public class Precompra {
         }
         return res;
     }
-        public String precompra(String numSerie,String otiga, String folio) {
+        public String precompra(String numSerie,String otiga, String folio, String tipo) {
         Connection c = Conexion.conectar();
         try {
             if (c != null) {
-                PreparedStatement ps = c.prepareStatement(" INSERT INTO PreCompra(numeroSerie,otiga,folio)  values(?,?,?)");
+                PreparedStatement ps = c.prepareStatement(" INSERT INTO PreCompra(numeroSerie,otiga,folio,tipo)  values(?,?,?,?)");
                 ps.setString(1, numSerie);
                 ps.setString(2, otiga);
                 ps.setString(3, folio);
+                ps.setString(4, tipo);
                 ps.execute();
                 return "Modificación realizada";
             } else {
@@ -182,7 +183,26 @@ public class Precompra {
         Connection c = Conexion.conectar();
            if (c != null) {
              Statement st = c.createStatement();
-             ResultSet rs = st.executeQuery(" SELECT * FROM PreCompra WHERE status = 'A' ");
+             ResultSet rs = st.executeQuery(" SELECT * FROM PreCompra WHERE status = 'A' and tipo ='Full' ");
+             materiales  = new Vector();
+             while(rs.next()){
+                 materiales.add(new Precompra(rs.getString("numeroSerie"),rs.getString("otiga"),rs.getString("folio")));
+             }
+               
+              return materiales; 
+               
+           }else {
+            return null;
+        }
+          
+    }
+     
+     public static Vector mostrartablaWisp() throws SQLException{
+        Vector materiales = null; 
+        Connection c = Conexion.conectar();
+           if (c != null) {
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(" SELECT * FROM PreCompra WHERE status = 'A' and tipo = 'Wisp' ");
              materiales  = new Vector();
              while(rs.next()){
                  materiales.add(new Precompra(rs.getString("numeroSerie"),rs.getString("otiga"),rs.getString("folio")));
@@ -201,7 +221,25 @@ public class Precompra {
         Connection c = Conexion.conectar();
            if (c != null) {
              Statement st = c.createStatement();
-             ResultSet rs = st.executeQuery(" SELECT * FROM PreCompra WHERE status = 'D' ");
+             ResultSet rs = st.executeQuery(" SELECT * FROM PreCompra WHERE status = 'D' and tipo = 'Full'");
+             materiales  = new Vector();
+             while(rs.next()){
+                 materiales.add(new Precompra(rs.getString("numeroSerie"),rs.getString("otiga"),rs.getString("folio")));
+             }
+               
+              return materiales; 
+               
+           }else {
+            return null;
+        }
+          
+    }
+   public static Vector mostrartablaOrdWisp() throws SQLException{
+        Vector materiales = null; 
+        Connection c = Conexion.conectar();
+           if (c != null) {
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(" SELECT * FROM PreCompra WHERE status = 'D' and tipo = 'Wisp' ");
              materiales  = new Vector();
              while(rs.next()){
                  materiales.add(new Precompra(rs.getString("numeroSerie"),rs.getString("otiga"),rs.getString("folio")));

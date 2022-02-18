@@ -352,7 +352,7 @@ public class ControlFull extends HttpServlet {
                         }
                     }
                     if (c > 0) {
-                        p.precompra(num, proyecto, foliosito);
+                        p.precompra(num, proyecto, foliosito,"Full");
                         System.out.println(proyecto);
                         for (int i = 0; i < codigos.length; i++) {
                             if (numeros[i].length() > 0) {
@@ -363,36 +363,31 @@ public class ControlFull extends HttpServlet {
                         }
                         request.getRequestDispatcher("Compras.jsp").forward(request, response);
                     } else if (c == 0) {
+                        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                        Calendar cal = Calendar.getInstance();
+                        String fechaa = dateFormat.format(cal.getTime());
+
+                        String folio = "PREOC-";
+                        folio = folio + fechaa;
+                        Precompra pc = new Precompra();
+                        Precompra pc1 = new Precompra();
+                        numeroSerie = pc.GenerarSerie();
+
+                        if (numeroSerie == null) {
+                            numeroSerie = "0001";
+                            folio = folio + "-A" + numeroSerie;
+                            request.setAttribute("folioo", folio);
+                            request.setAttribute("numeroS", numeroSerie);
+                        } else {
+                            int incrementador = Integer.parseInt(numeroSerie);
+                            numeroSerie = pc1.numeros(incrementador);
+                            folio = folio + "-A" + numeroSerie;
+                            request.setAttribute("folioo", folio);
+                            request.setAttribute("numeroS", numeroSerie);
+                        }        
                         request.getRequestDispatcher("Preorden.jsp").forward(request, response);
                     }
                 }
-                if(proyecto == "Elige un proyecto"){
-                request.getRequestDispatcher("Preorden.jsp").forward(request, response);    
-                DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                Calendar cal = Calendar.getInstance();
-                String fechaa = dateFormat.format(cal.getTime());
-                String folio = "PREOC-";
-                folio = folio + fechaa;
-
-                Precompra pc = new Precompra();
-                Precompra pc1 = new Precompra();
-                numeroSerie = pc.GenerarSerie();
-
-                if (numeroSerie == null) {
-                    numeroSerie = "0001";
-                    folio = folio + "-A" + numeroSerie;
-                    request.setAttribute("folioo", folio);
-                    request.setAttribute("numeroS", numeroSerie);
-                } else {
-                    int incrementador = Integer.parseInt(numeroSerie);
-                    numeroSerie = pc1.numeros(incrementador);
-                    folio = folio + "-A" + numeroSerie;
-                    request.setAttribute("folioo", folio);
-                    request.setAttribute("numeroS", numeroSerie);
-                }                
-                request.getRequestDispatcher("Preorden.jsp").forward(request, response);
-                }
-             
              
             }
             if (opcion.equals("enviarAlmacen")) {   
@@ -404,6 +399,7 @@ public class ControlFull extends HttpServlet {
                 String nombres[] = request.getParameterValues("codigosS");
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm:ss");
+                pr.cambioStatusDevolver(idProyecto);
                 for (int i = 0; i < soli.length; i++) {
                     if (soli[i].length() > 0) {
                     String nombre = ms.Descripcion(nombres[i]);
@@ -415,7 +411,6 @@ public class ControlFull extends HttpServlet {
                     ms.insertarHistoSalida(idProyecto, nombres[i], nombre, unidad,Integer.parseInt(existencias),Integer.parseInt(soli[i]),Integer.parseInt(existencias)-Integer.parseInt(soli[i]) , fecha, hora);
                     System.out.println(soli[i]+" "+nombres[i]);
                     }
-                    pr.cambioStatusDevolver(idProyecto);
                 }
                  request.getRequestDispatcher("MenuPrincipal.jsp").forward(request, response);
             }           
@@ -451,7 +446,7 @@ public class ControlFull extends HttpServlet {
                     System.out.println(numeroSerie); 
                     Material m = new Material();
                     Material m1 = new Material();
-                    p.precompra(numeroSerie,otiga, folio);
+                    p.precompra(numeroSerie,otiga, folio,"Full");
                     for (int i = 0; i < codigos.length; i++) {
                         String existencia = m.Existencia(codigos[i]);
                         //String solicitado = m.Solicitado(codigos[i],otiga);    

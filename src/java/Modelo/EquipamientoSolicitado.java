@@ -16,42 +16,22 @@ public class EquipamientoSolicitado {
 
 private int ide;
 private String ID;
-private String otiga;
-private String marca;
-private String tipo;
-private String nombre;
+private String iden;
+private String dispositivo;
 private int existencia;
 private int solicitado;
-private String fecha;
-private String hora;
 
     public EquipamientoSolicitado() {
     }
 
-    public EquipamientoSolicitado(int ide, String ID, String marca, String tipo, String nombre, int existencia, int solicitado) {
+    public EquipamientoSolicitado(int ide, String ID, String iden, String dispositivo, int existencia, int solicitado) {
         this.ide = ide;
         this.ID = ID;
-        this.marca = marca;
-        this.tipo = tipo;
-        this.nombre = nombre;
+        this.iden = iden;
+        this.dispositivo = dispositivo;
         this.existencia = existencia;
         this.solicitado = solicitado;
     }
-
-    public EquipamientoSolicitado(int ide, String otiga, String marca, String tipo, String nombre, int existencia, int solicitado, String fecha, String hora) {
-        this.ide = ide;
-        this.otiga = otiga;
-        this.marca = marca;
-        this.tipo = tipo;
-        this.nombre = nombre;
-        this.existencia = existencia;
-        this.solicitado = solicitado;
-        this.fecha = fecha;
-        this.hora = hora;
-    }
-
-    
- 
 
     public int getIde() {
         return ide;
@@ -69,28 +49,20 @@ private String hora;
         this.ID = ID;
     }
 
-    public String getMarca() {
-        return marca;
+    public String getIden() {
+        return iden;
     }
 
-    public void setMarca(String marca) {
-        this.marca = marca;
+    public void setIden(String iden) {
+        this.iden = iden;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getDispositivo() {
+        return dispositivo;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setDispositivo(String dispositivo) {
+        this.dispositivo = dispositivo;
     }
 
     public int getExistencia() {
@@ -108,51 +80,37 @@ private String hora;
     public void setSolicitado(int solicitado) {
         this.solicitado = solicitado;
     }
-
-    public String getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(String fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getHora() {
-        return hora;
-    }
-
-    public void setHora(String hora) {
-        this.hora = hora;
-    }
+ 
     
     
+ 
 
-public static Vector mostrarEQ(String busqueda) throws SQLException{
+   public static Vector mostrarEquiWisp(String busqueda) throws SQLException{
         Vector clientes = null; 
         Connection c = Conexion.conectar();
            if (c != null) {
              Statement st = c.createStatement();
-             ResultSet rs = st.executeQuery(" SELECT * FROM solicitudE WHERE ID  = '" + busqueda +"'");
+             ResultSet rs = st.executeQuery(" SELECT * FROM solicituEquiWisp WHERE ID  = '" + busqueda +"'");
              clientes  = new Vector();
              while(rs.next()){
                        clientes.add(new EquipamientoSolicitado(rs.getInt("ide"),
-                         rs.getString("ID"),rs.getString("marca"), rs.getString("nombre"),rs.getString("tipo"),
-                         rs.getInt("existencia"),rs.getInt("solicitado")));                       
+                       rs.getString("ID"),rs.getString("iden"), rs.getString("dispositivo"),
+                       rs.getInt("existencia"),rs.getInt("solicitado")));                       
              }               
               return clientes;                
            }else {
             return null;
         }
     }
-
- public String OperacionE(String marca,int cantidad) {
+   
+   public String OperacionEquiWisp(String material,int cantidad) {
         Connection c = Conexion.conectar();
         if (c != null) {
             try {
-                PreparedStatement ps = c.prepareStatement(" update Equipamiento set existencia = existencia + "+(-cantidad)+" where dispositivo = ? ");
-                ps.setString(1, marca);   
+                PreparedStatement ps = c.prepareStatement(" update Equipamiento set existencia = existencia + "+(-cantidad)+" where iden = ? ");
+                ps.setString(1, material);   
                 ps.execute();   
-                return "Equipamiento Anexado";
+                return "Material Anexado";
             } catch (Exception e) {
                 return "Error en guardar " + e;
             }
@@ -160,27 +118,23 @@ public static Vector mostrarEQ(String busqueda) throws SQLException{
             return ("No hay conexion a la base");
         }
     }
- 
- 
- public static Vector mostrarHistoE(String busqueda) throws SQLException{
-        Vector proyectos = null; 
+   
+   public String DevolverEquipamiento(int matw,int cantw) {
         Connection c = Conexion.conectar();
-           if (c != null) {
-             Statement st = c.createStatement();
-             ResultSet rs = st.executeQuery(" SELECT * FROM historialSolicitadoE WHERE otiga  = '" + busqueda +"'");
-             proyectos  = new Vector();
-             while(rs.next()){
-                       proyectos.add(new EquipamientoSolicitado(rs.getInt("id"),
-                         rs.getString("otiga"),rs.getString("marca"), rs.getString("tipo"),rs.getString("dispositivo"),
-                         rs.getInt("existencia"),rs.getInt("solicitado"),rs.getString("fecha"),rs.getString("hora") ));                       
-             }               
-              return proyectos;                
-           }else {
-            return null;
+
+        if (c != null) {
+            try {
+                PreparedStatement ps = c.prepareStatement(" update Equipamiento set existencia = existencia + "+ cantw +" where iden = ? ");
+                ps.setInt(1, matw);   
+                ps.execute();   
+                return "Material Anexado";
+            } catch (Exception e) {
+                return "Error en guardar " + e;
+            }
+        } else {
+            return ("No hay conexion a la base");
         }
     }
-
-   
 
 
 }

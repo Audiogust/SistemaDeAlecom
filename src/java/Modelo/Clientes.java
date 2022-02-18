@@ -258,7 +258,56 @@ public class Clientes {
         }     
      }
      
+     public static Vector mostrarBusquedam() throws SQLException{
+        Vector clientes = null; 
+        Connection c = Conexion.conectar();
+           if (c != null) {
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(" SELECT * FROM Clientes WHERE  status = 'E'");
+             clientes  = new Vector();
+             while(rs.next()){
+                       clientes.add(new Clientes(rs.getInt("Numero"), rs.getString("ID"), rs.getString("nombre"), rs.getString("direccion"), rs.getString("telefono"), rs.getString("correo"), rs.getString("tiempo"),
+                         rs.getString("megas"), rs.getString("tarifa"), rs.getString("fecha"), rs.getInt("grupo"), rs.getString("comentarios")));
+             }               
+              return clientes;                
+           }else {
+            return null;
+        }     
+     }
      
+     public static Vector mostrarBusquedamED() throws SQLException{
+        Vector clientes = null; 
+        Connection c = Conexion.conectar();
+           if (c != null) {
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(" SELECT * FROM Clientes WHERE status2 = 'E'");
+             clientes  = new Vector();
+             while(rs.next()){
+                       clientes.add(new Clientes(rs.getInt("Numero"), rs.getString("ID"), rs.getString("nombre"), rs.getString("direccion"), rs.getString("telefono"), rs.getString("correo"), rs.getString("tiempo"),
+                         rs.getString("megas"), rs.getString("tarifa"), rs.getString("fecha"), rs.getInt("grupo"), rs.getString("comentarios")));
+             }               
+              return clientes;                
+           }else {
+            return null;
+        }     
+     }
+     
+     public static Vector mostrarEqui(String busqueda) throws SQLException{
+        Vector clientes = null; 
+        Connection c = Conexion.conectar();
+           if (c != null) {
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(" SELECT * FROM Clientes WHERE nombre  LIKE '%" + busqueda +"%' and status2 = 'D'");
+             clientes  = new Vector();
+             while(rs.next()){
+                       clientes.add(new Clientes(rs.getInt("Numero"), rs.getString("ID"), rs.getString("nombre"), rs.getString("direccion"), rs.getString("telefono"), rs.getString("correo"), rs.getString("tiempo"),
+                         rs.getString("megas"), rs.getString("tarifa"), rs.getString("fecha"), rs.getInt("grupo"), rs.getString("comentarios")));
+             }               
+              return clientes;                
+           }else {
+            return null;
+        }     
+     }
        public String Status(String id) {
         Connection c = Conexion.conectar();
         String respuesta = "";
@@ -280,8 +329,49 @@ public class Clientes {
         return "error de conexion";
      }
        
+       public String StatusEquip(String id) {
+        Connection c = Conexion.conectar();
+        String respuesta = "";
+        if (c != null) {
+            try {
+                PreparedStatement ps = c.prepareStatement("update Clientes set status2='D' where ID = ?");
+                ps.setString(1, id);
+                ps.execute();
+                respuesta = "Habilitado";
+                return respuesta;
+
+            } catch (Exception e) {
+                respuesta = "Error";
+                return respuesta;
+            }
+
+        } else {
+        }
+        return "error de conexion";
+     }
        
-           public String StatusDev(String id) {
+       
+       public String StatusDev(String id) {
+        Connection c = Conexion.conectar();
+        String respuesta = "";
+        if (c != null) {
+            try {
+                PreparedStatement ps = c.prepareStatement("update Clientes set status2='E' where ID = ?");
+                ps.setString(1, id);
+                ps.execute();
+                respuesta = "Habilitado";
+                return respuesta;
+
+            } catch (Exception e) {
+                respuesta = "Error";
+                return respuesta;
+            }
+
+        } else {
+        }
+        return "error de conexion";
+    }
+       public String StatusDevMat(String id) {
         Connection c = Conexion.conectar();
         String respuesta = "";
         if (c != null) {
@@ -342,6 +432,27 @@ public class Clientes {
         }
         return "error de conexion";
     }
+    
+    public String CambioSE(String id) {
+        Connection c = Conexion.conectar();
+        String respuesta = "";
+        if (c != null) {
+            try {
+                PreparedStatement ps = c.prepareStatement("update Clientes set status2='A' where ID = ?");
+                ps.setString(1, id);
+                ps.execute();
+                respuesta = "Habilitado";
+                return respuesta;
+
+            } catch (Exception e) {
+                respuesta = "Error";
+                return respuesta;
+            }
+
+        } else {
+        }
+        return "error de conexion";
+    }
           
     Connection con;
     Conexion cn = new Conexion();
@@ -382,6 +493,28 @@ public class Clientes {
         }
         return res;
     }
+    
+    
+    public String cambioStatusDevolverE(String otigaa) {
+        Connection c = Conexion.conectar();
+        String respuesta = "";
+        if (c != null) {
+            try {
+                PreparedStatement ps = c.prepareStatement("update Clientes set status='E' where ID = ?");
+                ps.setString(1, otigaa);
+                ps.execute();
+                respuesta = "Habilitado";
+                return respuesta;
+
+            } catch (Exception e) {
+                respuesta = "Error";
+                return respuesta;
+            }
+
+        } else {
+        }
+        return "error de conexion";
+     }
      
 }
 

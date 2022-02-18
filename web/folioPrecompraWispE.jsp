@@ -1,11 +1,11 @@
 <%-- 
-    Document   : folioPrecompra
-    Created on : 23-ago-2021, 19:27:33
+    Document   : folioPrecompraWispE
+    Created on : 14-feb-2022, 9:53:02
     Author     : Hp
 --%>
 
 <%@page import="java.util.Vector"%>
-<%@page import="Modelo.Precompra"%>
+<%@page import="Modelo.PrecompraE"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -15,39 +15,56 @@
         <title>JSP Page</title>
     </head>
     <style>
-       body {
-       background-color:rgba(0,0,255, 0.3);
-       }
+        h2{
+            font-size: 40px;
+            color: white;
+        }
+        body {
+            background-image: url("IMG/fondo_4.jpg");
+            background-position: center;
+            height: 100vh;                
+            min-height: 600px;
+        }
+        .boton{
+            background-repeat:no-repeat;
+            height:170px;
+            width:170px;
+            background-position:center;
+            margin-right:10px!important;
+        }
+        .letra{
+            font-size: 19px;
+        }
+       
     </style>
     <body>
-        <div class="table-responsive" align="center">
-            <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a>
-            <h1>Folios de precompra</h1>
+       <div align="center">                    
+            <a href="Wisp.jsp"> <img src="IMG/Wispgal.png" width="150" height="150" HSPACE="20"></a>
         </div>
         
          <br><table align="center" border="5" width="50%" class="table thead-dark table-bordered table-hover">
   	                 <thead class="bg-info"> 
                             <tr>                             
                                 <th>Nummero de Serie</th>
-                                <th>Otiga</th>
-                                <th>Folio de Precompra</th>
+                                <th>Folio</th>
+                                <th>ID Ciente</th>
                                 <th>Consulta de materiales</th>    
                             </tr>
 		         </thead>
                             <%                         
-                             Precompra objs = new Precompra();
+                             PrecompraE objs = new PrecompraE();
                              Vector usu = new Vector();
-                             usu=objs.mostrartabla();
+                             usu=objs.mostrartablaWispE();
                              
                              for(int i=0; i<usu.size();i++){
-                                 objs=(Precompra)usu.get(i);
+                                 objs=(PrecompraE)usu.get(i);
                                  
                              %>
                              <tr>
                                 <td><%= objs.getNumeroSerie()%></td>
-                                <td><%= objs.getOtiga()%></td>
                                 <td><%= objs.getFolio()%></td>
-                                <td align="center" ><a href="consultaFolioPrecompra.jsp?txtpara=M&id=<%= objs.getFolio()%>">
+                                <td><%= objs.getOtiga()%></td>
+                                <td align="center" ><a href="consultaFolioPrecompraWE.jsp?txtpara=M&id=<%= objs.getFolio()%>">
                                      <img src="IMG/peticion.svg" width="25px" height="25px"> </td>
                              </tr>
                                 <%}%>

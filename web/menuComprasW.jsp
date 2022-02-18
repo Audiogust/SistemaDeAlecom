@@ -1,7 +1,7 @@
 <%-- 
-    Document   : MenuHistorial
-    Created on : 9/09/2021, 12:20:07 AM
-    Author     : Vane
+    Document   : menuComprasW
+    Created on : 13-feb-2022, 22:55:20
+    Author     : Hp
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -40,12 +40,14 @@
             <a href="Wisp.jsp"> <img src="IMG/Wispgal.png" width="150" height="150" HSPACE="20"></a>
         </div>
         <form align="center" action="">
-        <h1>MENU HISTORIALES </h1> 
-        <br>        
-        
-        <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='Historiales.jsp'"><img src="IMG/Listam.png" width="60" height="60"><br>MATERIALES</button>
-                               
-        <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='HistorialEq.jsp'"><img src="IMG/Listam.png" width="60" height="60"><br>COMPRAS</button>
+        <h1>MENU Compras</h1>
+         
+             <br>
+             
+             
+                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='ComprasW.jsp'"><img src="IMG/Listam.png" width="60" height="60"><br>MATERIALES</button>
+                
+                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='comprasWE.jsp'"><img src="IMG/Listam.png" width="60" height="60"><br>EQUIPAMIENTO</button>
         
     </body>
 </html>

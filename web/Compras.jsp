@@ -41,7 +41,7 @@
         </div>
         <br><br>
         <div>         
-             <form align="center" action="controlFull.do" method="post">
+            <form align="center" action="controlFull.do" method="post">
             <font color="#ffffff"><h2>MENU PRINCIPAL DE COMPRAS</h2></font><br>
             <button type="submit" name="opcion" value="botonPreorden" class="btn btn-primary btn-lg boton letra" ><img src="IMG/Preorden.png" width="60" height="60"><br>Generar Preorden de compra</button>
             <button type="button" name="opcion" class="btn btn-primary btn-lg boton letra" onclick="location.href='folioPrecompra.jsp'"><img src="IMG/Ocompra.png" width="60" height="60"><br>Consultar Preorden de compra</button>

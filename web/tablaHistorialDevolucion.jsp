@@ -14,6 +14,15 @@
         <title>JSP Page</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     </head>
+    <style>
+               body {
+               background-color: #B2D0EE;
+               background-position: center;
+               background-size: cover;
+               height: 100vh;
+               min-height: 600px;
+               }
+    </style>
     <body>
         <div class="table-responsive" align="center">
             <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a>

@@ -36,10 +36,10 @@
                       }
    </style>
         
-                <div>
-            <div align="center">
-                <h1>HISTORIALES</h1>
-                <img src="IMG/imagen 1.png" width="150" height="80" HSPACE="20">    
+            <div>
+            <div align="center">                   
+            <h1>HISTORIALES</h1>
+                <a href="Wisp.jsp"> <img src="IMG/Wispgal.png" width="150" height="150" HSPACE="20"></a>
             </div>
             
             <form align="center" action="">

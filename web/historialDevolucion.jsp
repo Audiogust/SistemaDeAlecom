@@ -15,8 +15,17 @@
         <title>JSP Page</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     </head>
+    <style>
+               body {
+               background-color: #B2D0EE;
+               background-position: center;
+               background-size: cover;
+               height: 100vh;
+               min-height: 600px;
+               }
+    </style>
     <body>
-        <h1>Historiales Devoluciones</h1>
+        
         <%
             HttpSession sesion=request.getSession();
             Proyecto producto=(Proyecto)sesion.getAttribute("proyectos"); 
@@ -35,9 +44,18 @@
             
         %>
         
+        <div class="table-responsive" align="center">
+                <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a>
+        <h1>Historiales Devoluciones</h1>
+        </div>
+        <div>
+            <label align="center" class="input-group-text" width="50%">OTIGA: <%= otiga%></label>
+            <label align="center" class="input-group-text" width="50%">Nombre Proyecto: <%= nombre%></label>    
+         </div>
+        
         <div class="table-responsive">
         <form align="center" action="controlFull.do" method="post">
-        <td width="50%"><input type="text" size="53" name="otiga_1"  value="<%= otiga%>" id="textfield"></td>
+        <td width="50%"><input type="hidden" size="53" name="otiga_1"  value="<%= otiga%>" id="textfield"></td>
              <!--   <input type="text" name="codigo" value="" class="form-control" placeholder="OTIGA"> 
                     <button type="submit" name="opcion" value="BuscarSolicitud" class="btn btn-outline-info">Buscar</button>
              -->

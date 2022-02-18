@@ -40,7 +40,7 @@
                     
             <a href="Wisp.jsp"> <img src="IMG/Wispgal.png" width="150" height="150" HSPACE="20"></a>
         </div>
-        <form align="center" action="">
+        <form align="center" action="controlClientes.do">
         <h1>MENU ALMACEN </h1>
          
              <br>
@@ -54,9 +54,13 @@
 
                 <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='SoliicitudDev.jsp'"><img src="IMG/Devolucion.png" width="60" height="60"><br>Devolucion de Materiales</button> 
                 
-                     <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='DevolucionE.jsp'"><img src="IMG/Devolucion.png" width="60" height="60"><br>Devolucion de Equipamiento</button> 
+                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='DevolucionE.jsp'"><img src="IMG/Devolucion.png" width="60" height="60"><br>Devolucion de Equipamiento</button> 
                 
-                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='MaterialRegistro.jsp'"><img src="IMG/RegistroM.png" width="60" height="60"><br>Registro de Material</button> 
+                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='MaterialRegistro.jsp'"><img src="IMG/RegistroM.png" width="60" height="60"><br>Registro de Material</button>
+                
+                <button type="submit" name="opcion" value="generarNumeroid" class="btn btn-primary btn-lg boton" onclick="location.href='registrarEquipamiento.jsp'"><img src="IMG/RegistroM.png" width="60" height="60"><br>Registro de Equipamiento</button>
+                
+                <button type="button" name="opcion" class="btn btn-primary btn-lg boton" onclick="location.href='editarEquipamiento.jsp'"><img src="IMG/RegistroM.png" width="60" height="60"><br>Editar Equipamiento</button>
             </form>
         
         
