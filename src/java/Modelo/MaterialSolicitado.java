@@ -446,6 +446,47 @@ public static Vector mostrarHistoPreocompra(String busqueda) throws SQLException
         }
     }
 
+
+public static Vector mostrarHistoPreocompraW(String busqueda) throws SQLException{
+        Vector proyectos = null; 
+        Connection c = Conexion.conectar();
+           if (c != null) {
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(" SELECT * FROM historialPreordenCompraW WHERE folio  = '" + busqueda +"'");
+             proyectos  = new Vector();
+             while(rs.next()){
+                       proyectos.add(new MaterialSolicitado(
+                         rs.getInt("id"),rs.getString("folio"),rs.getString("codigo"), 
+                         rs.getString("nombre"),rs.getString("unidad"),rs.getInt("existencia"),
+                         rs.getString("solicitado"),rs.getInt("autorizado"),
+                         rs.getString("hora"),rs.getString("fecha")));                       
+             }               
+              return proyectos;                
+           }else {
+            return null;
+        }
+    }
+
+
+public static Vector mostrarHistoPreocompraWo(String busqueda) throws SQLException{
+        Vector proyectos = null; 
+        Connection c = Conexion.conectar();
+           if (c != null) {
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(" SELECT * FROM historialOrdenCompraW WHERE folio  = '" + busqueda +"'");
+             proyectos  = new Vector();
+             while(rs.next()){
+                       proyectos.add(new MaterialSolicitado(
+                         rs.getInt("id"),rs.getString("folio"),rs.getString("codigo"), 
+                         rs.getString("nombre"),rs.getString("unidad"),rs.getInt("existencia"),
+                         rs.getString("solicitado"),rs.getInt("autorizado"),
+                         rs.getString("hora"),rs.getString("fecha")));                       
+             }               
+              return proyectos;                
+           }else {
+            return null;
+        }
+    }
     
 }
 

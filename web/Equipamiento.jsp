@@ -13,7 +13,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-        <title>JSP Page</title>
+        <link rel="shortcut icon" type="image/jpg" href="IMG/mundo.png"/>
+        <title>WISP-GAL</title>
     </head>
     <style>
            body {
@@ -60,7 +61,7 @@
         <center>
             <div align="center">                    
             <a href="Wisp.jsp"> <img src="IMG/Wispgal.png" width="150" height="150" HSPACE="20"></a>
-            <h1> EQUIPAMIENTO </h1>
+            <h1>FORMATO SOLICITUD EQUIPAMIENTO </h1>
             </div>
         <form action="controlClientes.do" method="post">
             

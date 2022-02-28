@@ -4,6 +4,7 @@
     Author     : Hp
 --%>
 
+<%@page import="Modelo.EquipamientoSolicitado"%>
 <%@page import="java.util.Vector"%>
 <%@page import="Modelo.MaterialSolicitado"%>
 <%@page import="Modelo.Clientes"%>
@@ -13,6 +14,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <link rel="shortcut icon" type="image/jpg" href="IMG/mundo.png"/>
         <title>JSP Page</title>
     </head>
     
@@ -99,6 +101,48 @@
                                 <%}%>  
                    <input type="hidden" name="txtpara" value=<%=VPara%> />
                 </table>
+           <h1>Equipamiento</h1>
+           <table align="right" border="5" width="50%" class="table table-dark table-bordered table-hover">
+  	                 <thead class="bg-info"> 
+                            <tr>                              
+                                <th>otiga</th>
+                                <th>Codigo</th>
+                                <th>Nombre</th>
+                                <th>Existencia Anterior</th>                             
+                                <th>Solicitado</th>
+                                <th>Existencia Actual</th>
+                                <th>Fecha</th>
+                                <th>Hora</th>
+                            </tr>
+		         </thead>
+                            <%
+                                
+                             EquipamientoSolicitado objss = new EquipamientoSolicitado();
+                            
+                             Vector usue = new Vector();
+                             usue=objss.mostrarHistoDev(otiga);                           
+                             
+                             for(int i=0; i<usue.size();i++){
+                                 objss=(EquipamientoSolicitado)usue.get(i);
+                               
+                             %>
+                             <tr>
+                                
+                                 <td><%= objss.getID()%></td>
+                                <td><%= objss.getCodigo()%></td>
+                                <td><%= objss.getDispositivo()%></td>                                  
+                                <td><%= objss.getExistencia()%></td>                                  
+                                <td><%= objss.getSolicitado()%></td>
+                                <td><%= objss.getExistencia_act()%></td>
+                                <td><%= objss.getFecha()%></td>                                  
+                                <td><%= objss.getHora()%></td>
+                             </tr>
+                                <%}%>  
+                  
+           </table>
+                
+                
+                
                 <div>
              </div>
         </div>

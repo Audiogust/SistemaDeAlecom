@@ -11,7 +11,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-        <title>JSP Page</title>
+        <title>FULL-SWAP 5G</title>
+        <link rel="shortcut icon" type="image/jpg" href="IMG/mundo.png"/>
     </head>
     <style>
        body {
@@ -59,7 +60,7 @@
 
                 <tr>
                     <td width="90%"><b>Codigo:</b> </td>
-                    <td width="50%"><input type="text" size="53" name="n_codigo" value="<%=codigo%>" id="textfield"></td>
+                    <td width="50%"><input type="hidden" size="53" name="n_codigo" value="<%=codigo%>" id="textfield"><%=codigo%></td>
                 </tr>
                 <tr>
                     <td width="90%"><b>Descripcion:</b> </td>

@@ -1,29 +1,43 @@
 <%-- 
-    Document   : tablaFolioPrecompra
-    Created on : 28-ago-2021, 13:53:23
+    Document   : tablaFolioPrecompraW
+    Created on : 27-feb-2022, 1:49:28
     Author     : Hp
 --%>
 
-<%@page import="Modelo.Proyecto"%>
-<%@page import="Modelo.MaterialSolicitado"%>
-<%@page import="Modelo.OrdenPrecompra"%>
-<%@page import="java.util.Vector"%>
 <%@page import="Modelo.Precompra"%>
+<%@page import="java.util.Vector"%>
+<%@page import="Modelo.MaterialSolicitado"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <title>FULL-SWAP 5G</title>
         <link rel="shortcut icon" type="image/jpg" href="IMG/mundo.png"/>
+        <title>JSP Page</title>
     </head>
-    <body>        
-        <div class="table-responsive" align="center">
-            <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a>
-            <h1>Historiales de Precompra</h1>
-        </div>
-        
+<style>
+                body {
+                background-image: url("IMG/fondo_4.jpg");
+                background-position: center;
+                background-size: cover;
+                height: 100vh;
+                min-height: 600px;
+                }
+                 .input{
+                       background-repeat:no-repeat;
+                 
+                 background-position:right;
+                 margin-right:600px!important;
+                      }
+                      .derecha   { float: right; }
+                .izquierda { float: left;  }
+                
+                
+                table {
+                      background-color: #3F9FEA;
+                      }
+   </style>
         <%HttpSession sesion = request.getSession();
             Precompra producto = (Precompra) sesion.getAttribute("precompra");
             Precompra p = new Precompra();
@@ -41,6 +55,11 @@
                 folio = p.getFolio();
             }
         %>
+        
+        <div align="center">                   
+            <a href="Wisp.jsp"> <img src="IMG/Wispgal.png" width="150" height="150" HSPACE="20"></a>
+        <h1>Historiales Folio de Precompras</h1>
+        </div>
         
         <div class="table-responsive">
         <form align="center" action="controlFull.do" method="post">
@@ -73,7 +92,7 @@
                              MaterialSolicitado objs = new MaterialSolicitado();                
                             
                              Vector usu = new Vector();
-                             usu=objs.mostrarHistoPreocompra(folio);                           
+                             usu=objs.mostrarHistoPreocompraW(folio);                           
                              
                              for(int i=0; i<usu.size();i++){
                                  objs=(MaterialSolicitado)usu.get(i);

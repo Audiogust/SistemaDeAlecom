@@ -15,7 +15,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <link rel="stylesheet" href="css/style.css">
-        <title>JSP Page</title>
+        <link rel="shortcut icon" type="image/jpg" href="IMG/mundo.png"/>
+        <title>MENU PRINCIPAL WISP-GAL</title>
     </head>
     <style>
         h2{
@@ -52,7 +53,7 @@
                         <button type="button" name="enviar" class="btn btn-success btn-sm  boton letra" onclick="location.href='Instalacion.jsp'"><img src="IMG/orden.svg" width="60" height="60"><br>Orden de instalacion</button>
                         <button type="button" name="enviar" class="btn btn-dark btn-sm boton letra" onclick="location.href='MenuAlmacen.jsp'"><img src="IMG/almacen1.svg" width="60" height="60"><br>Almacen</button>
                         <button type="button" name="enviar" class="btn btn-success btn-sm  boton letra" onclick="location.href='MenuHistorial.jsp'"><img src="IMG/historial.png" width="60" height="60"><br>Historiales</button>
-                        <button type="button" name="enviar" class="btn btn btn-success btn-sm boton letra" onclick="location.href='menuComprasW.jsp'"><img src="IMG/compras.svg" width="60" height="60"><br>Compras</button>
+                        <button type="button" name="enviar" class="btn btn btn-success btn-sm boton letra" onclick="location.href='menuComprasW.jsp'"><img src="IMG/ComprasI.png" width="60" height="60"><br>Compras</button>
                         <!--
                         <button type="button" name="enviar" class="btn btn btn-success btn-sm boton letra" onclick="location.href='Orden2.jsp'"><img src="IMG/reporte1.svg" width="60" height="60"><br>Orden de servicio</button>
                         <button type="button" name="enviar" class="btn btn-success btn-sm boton letra"  onclick="location.href='Calidad.jsp'"><img src="IMG/graficas.svg" width="50" height="50"/><br>Control de calidad de servicio</button>

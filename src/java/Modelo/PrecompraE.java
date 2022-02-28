@@ -123,6 +123,26 @@ public class PrecompraE {
           
     }
     
+    
+    public static Vector mostrartablaWispEH() throws SQLException{
+        Vector materiales = null; 
+        Connection c = Conexion.conectar();
+           if (c != null) {
+             Statement st = c.createStatement();
+             ResultSet rs = st.executeQuery(" SELECT * FROM PreCompraE  ");
+             materiales  = new Vector();
+             while(rs.next()){
+                 materiales.add(new PrecompraE(rs.getString("numeroSerie"),rs.getString("idCliente"),rs.getString("folio")));
+             }
+               
+              return materiales; 
+               
+           }else {
+            return null;
+        }
+          
+    }
+    
     public boolean buscarPre(String id){
         boolean res=false;
         try {
@@ -221,6 +241,85 @@ public class PrecompraE {
         } else {
         }
         return "error de conexion";
+     }
+  
+    
+    public String precompraHistorial(String folio,String cod,String nom,String uni,String exis,String sol,String aut,String fecha,String hor) {
+        Connection c = Conexion.conectar();
+        try {
+            if (c != null) {
+                PreparedStatement ps = c.prepareStatement(" INSERT INTO historialPreordenCompraW(folio,codigo,nombre,unidad,existencia,solicitado,autorizado,hora,fecha)  values(?,?,?,?,?,?,?,?,?)");
+                ps.setString(1, folio);
+                ps.setString(2, cod);
+                ps.setString(3, nom);
+                ps.setString(4, uni);
+                ps.setString(5, exis);
+                ps.setString(6, sol);
+                ps.setString(7, aut);
+                ps.setString(8, hor);
+                ps.setString(9, fecha);
+                ps.execute();
+                return "Modificación realizada";
+            } else {
+                return "No hay conexion a la base ";
+            }
+        } catch (Exception e) {
+            return "Error al modificar " + e;
+        }
+     }
+    
+    
+    public String precompraHistorialEquipamiento(String folio,int iden,String cod,String nom,
+                     String mar,int exis,int sol, String fecha,String hor) {
+        Connection c = Conexion.conectar();
+        try {
+            if (c != null) {
+                PreparedStatement ps = c.prepareStatement(" INSERT INTO historialPreordenEquipamiento(folio,iden,codigo,"
+                        + "nombre,marca,existencia,solicitado,hora,fecha)  values(?,?,?,?,?,?,?,?,?)");
+                ps.setString(1, folio);
+                ps.setInt(2, iden);
+                ps.setString(3, cod);
+                ps.setString(4, nom);
+                ps.setString(5, mar);
+                ps.setInt(6, exis);
+                ps.setInt(7, sol);
+                ps.setString(8, hor);
+                ps.setString(9, fecha);
+                ps.execute();
+                return "Modificación realizada";
+            } else {
+                return "No hay conexion a la base ";
+            }
+        } catch (Exception e) {
+            return "Error al modificar " + e;
+        }
+     }
+    
+    public String precompraHistorialO(String folio,int iden,String cod,
+            String nom,String mar,int exis,int sol,int exi_ac,String hora,String fecha) {
+        Connection c = Conexion.conectar();
+        try {
+            if (c != null) {
+                PreparedStatement ps = c.prepareStatement(" INSERT INTO historialOrdenCompraEquipamiento(folio,"
+                        + "iden,codigo,nombre,marca,existencia_ant,solicitado,existencia_act,hora,fecha)  values(?,?,?,?,?,?,?,?,?,?)");
+                ps.setString(1, folio);
+                ps.setInt(2, iden);
+                ps.setString(3, cod);
+                ps.setString(4, nom);
+                ps.setString(5, mar);
+                ps.setInt(6, exis);
+                ps.setInt(7, sol);
+                ps.setInt(8, exi_ac);
+                ps.setString(9, hora);
+                ps.setString(10, fecha);
+                ps.execute();
+                return "Modificación realizada";
+            } else {
+                return "No hay conexion a la base ";
+            }
+        } catch (Exception e) {
+            return "Error al modificar " + e;
+        }
      }
 
 }

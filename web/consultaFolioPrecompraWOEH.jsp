@@ -1,32 +1,46 @@
 <%-- 
-    Document   : tablaFolioPrecompra
-    Created on : 28-ago-2021, 13:53:23
+    Document   : consultaFolioPrecompraWOEH
+    Created on : 27-feb-2022, 21:08:02
     Author     : Hp
 --%>
 
-<%@page import="Modelo.Proyecto"%>
-<%@page import="Modelo.MaterialSolicitado"%>
-<%@page import="Modelo.OrdenPrecompra"%>
 <%@page import="java.util.Vector"%>
-<%@page import="Modelo.Precompra"%>
+<%@page import="Modelo.EquipamientoSolicitado"%>
+<%@page import="Modelo.PrecompraE"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <title>FULL-SWAP 5G</title>
         <link rel="shortcut icon" type="image/jpg" href="IMG/mundo.png"/>
+        <title>JSP Page</title>
     </head>
-    <body>        
-        <div class="table-responsive" align="center">
-            <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a>
-            <h1>Historiales de Precompra</h1>
-        </div>
-        
+    <style>
+                body {
+                background-image: url("IMG/fondo_4.jpg");
+                background-position: center;
+                background-size: cover;
+                height: 100vh;
+                min-height: 600px;
+                }
+                 .input{
+                       background-repeat:no-repeat;
+                 
+                 background-position:right;
+                 margin-right:600px!important;
+                      }
+                      .derecha   { float: right; }
+                .izquierda { float: left;  }
+                
+                
+                table {
+                      background-color: #3F9FEA;
+                      }
+   </style>
         <%HttpSession sesion = request.getSession();
-            Precompra producto = (Precompra) sesion.getAttribute("precompra");
-            Precompra p = new Precompra();
+            PrecompraE producto = (PrecompraE) sesion.getAttribute("precompra");
+            PrecompraE p = new PrecompraE();
             String VPara = request.getParameter("txtpara");
             String idd = request.getParameter("id");
             String serie = "";
@@ -42,6 +56,11 @@
             }
         %>
         
+        <div align="center">                   
+            <a href="Wisp.jsp"> <img src="IMG/Wispgal.png" width="150" height="150" HSPACE="20"></a>
+        <h1>Historiales Folio de Precompras</h1>
+        </div>
+        
         <div class="table-responsive">
         <form align="center" action="controlFull.do" method="post">
             <div>
@@ -55,39 +74,43 @@
            <table align="right" border="5" width="50%" class="table table-dark table-bordered table-hover">
   	                 <thead class="bg-info"> 
                             <tr>                              
+                               
                                 <th>Folio</th>
-                                <th>Codigo</th>
-                                <th>Nombre</th>
-                                <th>Unidad</th>
-                                <th>Existencia</th>
-                                <th>Solicitado</th>
-                                <th>Autorizado</th>
-                                <th>Hora</th>
-                                <th>Fecha</th>
+                                <th>Id de equipo</th>
+                                <th>CODIGO</th>
+                                <th>NOMBRE</th>
+                                <th>MARCA</th>
+                                <th>EXISTENCIA ANTERIOR</th>
+                                <th>SOLICITADO</th>
+                                <th>EXISTENCIA ACTUAL</th>
+                                <th>FECHA</th>
+                                <th>HORA</th>
                                 
                             </tr>
 		         </thead>
                             <%
                                 
                              String n=request.getParameter("folio");
-                             MaterialSolicitado objs = new MaterialSolicitado();                
+                             EquipamientoSolicitado objs = new EquipamientoSolicitado();                
                             
                              Vector usu = new Vector();
-                             usu=objs.mostrarHistoPreocompra(folio);                           
+                             usu=objs.mostrarHistoPreocompraWO(folio);                           
                              
                              for(int i=0; i<usu.size();i++){
-                                 objs=(MaterialSolicitado)usu.get(i);
+                                 objs=(EquipamientoSolicitado)usu.get(i);
                                
                              %>
                              <tr>
                                 
-                                <td><%= objs.getOtiga()%></td>
+                               
+                                <td><%= objs.getFolio()%></td>
+                                <td><%= objs.getIde()%></td>
                                 <td><%= objs.getCodigo()%></td>
-                                <td><%= objs.getNombre()%></td>
-                                <td><%= objs.getUnidades()%></td>
+                                <td><%= objs.getDispositivo()%></td>
+                                <td><%= objs.getMarca()%></td>
                                 <td><%= objs.getExistencia()%></td>
                                 <td><%= objs.getSolicitado()%></td>
-                                <td><%= objs.getAutorizado()%></td>
+                                <td><%= objs.getExistencia_act()%></td>
                                 <td><%= objs.getFecha()%></td>                                  
                                 <td><%= objs.getHora()%></td>
                              </tr>

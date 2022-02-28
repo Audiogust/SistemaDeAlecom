@@ -234,6 +234,8 @@ public class ControlClientes extends HttpServlet {
                      equi.EquiSolicitado(id, identificadores[i], cantidad[i]);
                      equi.EquiSolicitadoHistorial(id,Integer.parseInt(identificadores[i]),nom,
                              mar,tipo,String.valueOf(existencia),cantidad[i],fecha,hora);
+                     equi.insertarHistoWEq(id, identificadores[i], nom, existencia,Integer.parseInt(cantidad[i]), fecha, hora);
+                        System.out.println(id+""+identificadores[i]+" "+nom+" "+existencia+" "+Integer.parseInt(cantidad[i])+fecha+" "+hora);
                     }
                 }
 
@@ -285,6 +287,7 @@ public class ControlClientes extends HttpServlet {
                
                 String id1 = request.getParameter("idt_1");
                 MaterialSolicitadoWisp wisp = new MaterialSolicitadoWisp();
+                Equipamiento eq = new Equipamiento();
                 EquipamientoSolicitado eqs = new EquipamientoSolicitado();
                 Clientes cli = new Clientes();
                 String soli[] = request.getParameterValues("numerosW");
@@ -292,16 +295,25 @@ public class ControlClientes extends HttpServlet {
                 
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm:ss");
-                int cont=0;
-                //cli.cambioStatusDevolverE(id1);
+                String fecha = dtf.format(LocalDateTime.now());
+                String hora = dtf1.format(LocalDateTime.now());
+                int cont=0;                
                 for (int i = 0; i < soli.length; i++) {
                     if (soli[i].length() > 0) {
-                    cont++;                    
-                    eqs.OperacionEquiWisp(identificador[i],Integer.parseInt(soli[i]));                                                          
+                    cont++;
+                    String descripciones = eq.Dispo(identificador[i]);
+                    String marca= eq.Marca(identificador[i]);
+                    String tipo= eq.TipoE(identificador[i]);
+                    int eant= eq.Existencia(identificador[i]);
+                    
+                    eqs.OperacionEquiWisp(identificador[i],Integer.parseInt(soli[i]));
+                    eqs.insertarHistoSalidaE(id1, identificador[i], descripciones,
+                           eant ,Integer.parseInt(soli[i]), (eant -Integer.parseInt(soli[i])), fecha, hora);
+                    System.out.println(id1+" "+identificador[i]+" "+descripciones+" "+eant+soli[i]+" "+(eant -Integer.parseInt(soli[i]))+" "+ fecha+" "+hora);
                     }
                 }
                  if (cont > 0 ) {
-                     cli.StatusDev(id1);
+                    cli.StatusDev(id1);
                     request.getRequestDispatcher("Wisp.jsp").forward(request, response);
                  }
                  
@@ -342,22 +354,34 @@ public class ControlClientes extends HttpServlet {
                 EquipamientoSolicitado es = new EquipamientoSolicitado();
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 DateTimeFormatter dtf1 = DateTimeFormatter.ofPattern("HH:mm:ss");
+                String fecha = dtf.format(LocalDateTime.now());
+                String hora = dtf1.format(LocalDateTime.now());
+                Equipamiento eq = new Equipamiento();
                 int cont=0;
                 cl1.CambioSE(id);
                 for (int i = 0; i < dev.length; i++) {
                     if (dev[i].length() > 0) {                    
-                    
-                    es.DevolverEquipamiento( Integer.parseInt(codev[i]) ,Integer.parseInt(dev[i]));
                     cont++;
+                    String descripciones = eq.Dispo(codev[i]);
+                    String marca= eq.Marca(codev[i]);
+                    String tipo= eq.TipoE(codev[i]);
+                    int eant= eq.Existencia(codev[i]);
+                    es.DevolverEquipamiento( Integer.parseInt(codev[i]) ,Integer.parseInt(dev[i]));
+                    
+                    es.insertarHistoDevoE(id,codev[i], descripciones,
+                           eant ,Integer.parseInt(dev[i]), (eant + Integer.parseInt(dev[i])), fecha, hora);
+                    
+                    
                     }
                 }
-                m.eliminarPedidoWisp(id);                
+                m.eliminarPedidoWispE(id);                
                 request.getRequestDispatcher("MenuAlmacen.jsp").forward(request, response);
             }
                 
                 if (opcion.equals("cambiarEstadoPrecompra")) {
                 
                 Precompra p = new Precompra();
+                PrecompraE pw = new PrecompraE();
                 Material m = new Material();
                 OrdenPrecompra o = new OrdenPrecompra();
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -375,7 +399,7 @@ public class ControlClientes extends HttpServlet {
                     String existencia = m.Existencia(codigos[i]);
                     String ordenSol = o.solicitadoOrden(idProyecto, nom);
                     System.out.println(idProyecto+"  "+codigos[i]+"  "+nom+" "+ existencia+"  "+unidad+"  "+ ordenSol+"  "+ solicitado[i]+"  "+ hora+"  "+ fecha);
-                   p.precompraHistorial(idProyecto, codigos[i], nom, unidad,existencia ,ordenSol, solicitado[i], hora, fecha);
+                    pw.precompraHistorial(idProyecto, codigos[i], nom, unidad,existencia ,ordenSol, solicitado[i], hora, fecha);
                 }                
                 p.cambioStatusPrecompra(idProyecto);                
                request.getRequestDispatcher("ComprasW.jsp").forward(request, response);                       
@@ -650,7 +674,7 @@ public class ControlClientes extends HttpServlet {
                            //m1.precompra(folio, descripciones, String.valueOf(Integer.parseInt(solicitado[i]) - existencia));
                         m1.ordenPrecompraE(folio,Integer.parseInt(codigos[i]),
                                         marca, descripciones, tipo,Integer.parseInt(solicitado[i])-existencia);
-                            System.out.println("hola perro"+descripciones);
+                            System.out.println("hola "+descripciones);
                         }
 
                     }
@@ -678,7 +702,7 @@ public class ControlClientes extends HttpServlet {
                     String existencia = m.Existencia(codigoe[i]);
                     String ordenSol = o.solicitadoOrden(idProyecto, nom);
                     op.Autorizar(codigoe[i],Integer.parseInt(numeros[i]));                    
-                    p.OrdencompraHistorial(idProyecto, codigoe[i], nom, unidad,existencia, ordenSol, numeros[i], String.valueOf(Integer.parseInt(existencia) + Integer.parseInt(numeros[i])) , hora, fecha);
+                    p.OrdencompraHistorialW(idProyecto, codigoe[i], nom, unidad,existencia, ordenSol, numeros[i], String.valueOf(Integer.parseInt(existencia) + Integer.parseInt(numeros[i])) , hora, fecha);
                     System.out.println(codigoe[i]+" "+numeros[i]);                   
                 }
                 p.cambioStatusOrden(idProyecto);
@@ -748,13 +772,14 @@ public class ControlClientes extends HttpServlet {
                 String hora = dtf1.format(LocalDateTime.now());                
                 for (int i = 0; i < codigosE.length; i++) {
                     pe.cambioCantidadSolicitada(codigosE[i], Integer.parseInt(solicitadoE[i]));
-                   /* String nom = m.Descripcion(codigos[i]);
-                    String unidad = m.Unidades(codigos[i]);
-                    String existencia = m.Existencia(codigos[i]);
-                    String ordenSol = o.solicitadoOrden(idProyecto, nom);                    
-                   p.precompraHistorial(idProyecto, codigos[i], nom, unidad,existencia ,ordenSol, solicitado[i], hora, fecha);
+                    String nom = eq.Dispo(codigosE[i]);
+                    String cod = eq.codigoEqu(codigosE[i]);
+                    String marca = eq.Marca(codigosE[i]);
+                    int existencia = eq.Existencia(codigosE[i]);
                     
-                    */
+                   pe.precompraHistorialEquipamiento(idCliente,Integer.parseInt(codigosE[i]), cod,
+                           nom,marca, existencia,Integer.parseInt(solicitadoE[i]), hora, fecha);
+                    
                 }                
                 pe.cambioStatusPrecompra(idCliente);                
                request.getRequestDispatcher("comprasWE.jsp").forward(request, response);                       
@@ -780,12 +805,14 @@ public class ControlClientes extends HttpServlet {
                 System.out.println("hooola"+idProyecto);
                 pe.cambioStatusOrden(idProyecto);
                 for (int i = 0; i < codigoe.length; i++) {    
-                    //String nom = m.Descripcion(codigoe[i]);
-                    //String unidad = m.Unidades(codigoe[i]);
-                    //String existencia = m.Existencia(codigoe[i]);
-                    //String ordenSol = o.solicitadoOrden(idProyecto, nom);
+                    String nom = oe.Dispo(codigoe[i]);
+                    String cod = oe.codigoEqu(codigoe[i]);
+                    int existencia = oe.Existencia(codigoe[i]);
+                    String marca = oe.Marca(codigoe[i]);
                     me.Autorizar(Integer.parseInt(codigoe[i]),Integer.parseInt(numeros[i]));                    
                     //p.OrdencompraHistorial(idProyecto, codigoe[i], nom, unidad,existencia, ordenSol, numeros[i], String.valueOf(Integer.parseInt(existencia) + Integer.parseInt(numeros[i])) , hora, fecha);
+                    pe.precompraHistorialO(idProyecto,Integer.parseInt(codigoe[i]), cod, nom,
+                            marca, existencia,Integer.parseInt(numeros[i]), existencia+Integer.parseInt(numeros[i]), hora, fecha);
                     System.out.println(numeros[i]);
                 }
                 

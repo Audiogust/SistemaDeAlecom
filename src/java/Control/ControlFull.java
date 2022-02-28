@@ -482,7 +482,7 @@ public class ControlFull extends HttpServlet {
                     String existencia = m.Existencia(codigos[i]);
                     String ordenSol = o.solicitadoOrden(idProyecto, nom);
                     System.out.println(idProyecto+"  "+codigos[i]+"  "+nom+" "+ existencia+"  "+unidad+"  "+ ordenSol+"  "+ solicitado[i]+"  "+ hora+"  "+ fecha);
-                   p.precompraHistorial(idProyecto, codigos[i], nom, unidad,existencia ,ordenSol, solicitado[i], hora, fecha);
+                    p.precompraHistorial(idProyecto, codigos[i], nom, unidad,existencia ,ordenSol, solicitado[i], hora, fecha);
                 }                
                 p.cambioStatusPrecompra(idProyecto);                
                request.getRequestDispatcher("Compras.jsp").forward(request, response);                       

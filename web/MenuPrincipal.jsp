@@ -13,6 +13,7 @@
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="shortcut icon" type="image/jpg" href="IMG/mundo.png"/>
         <title>Proyecto full-swap</title>
     </head>
     <style>

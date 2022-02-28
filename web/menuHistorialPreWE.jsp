@@ -1,6 +1,6 @@
 <%-- 
-    Document   : folioPrecompraWispE
-    Created on : 14-feb-2022, 9:53:02
+    Document   : menuHistorialPreWE
+    Created on : 27-feb-2022, 3:01:47
     Author     : Hp
 --%>
 
@@ -11,11 +11,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">    
-        <link rel="shortcut icon" type="image/jpg" href="IMG/mundo.png"/>
         <title>JSP Page</title>
     </head>
-    <style>
+        <style>
         h2{
             font-size: 40px;
             color: white;
@@ -70,6 +68,6 @@
                              </tr>
                                 <%}%>
                 </table>
-        
+
     </body>
 </html>

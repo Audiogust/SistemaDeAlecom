@@ -13,6 +13,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <link rel="shortcut icon" type="image/jpg" href="IMG/mundo.png"/>
         <title>JSP Page</title>
     </head>
     <style>
@@ -66,7 +67,7 @@
             <div align="center">
                     
             <a href="Wisp.jsp"> <img src="IMG/Wispgal.png" width="150" height="150" HSPACE="20"></a>
-            <h1>FORMATO SOLICITUD </h1>
+            <h1>FORMATO SOLICITUD MATERIALES</h1>
             <label align="center" class="input-group-text" width="50%">OTIGA: <%= id%></label>
             <label align="center" class="input-group-text" width="50%">Nombre del Proyecto: <%= nombre%></label>
             

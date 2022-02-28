@@ -13,7 +13,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>FULL-SWAP 5G</title>
+        <link rel="shortcut icon" type="image/jpg" href="IMG/mundo.png"/>
     </head>
      <style>
         body {

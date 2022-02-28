@@ -1,32 +1,28 @@
 <%-- 
-    Document   : tablaFolioPrecompra
-    Created on : 28-ago-2021, 13:53:23
+    Document   : tablaFolioPrecompraE
+    Created on : 26-feb-2022, 22:14:27
     Author     : Hp
 --%>
 
-<%@page import="Modelo.Proyecto"%>
-<%@page import="Modelo.MaterialSolicitado"%>
-<%@page import="Modelo.OrdenPrecompra"%>
 <%@page import="java.util.Vector"%>
-<%@page import="Modelo.Precompra"%>
+<%@page import="Modelo.MaterialSolicitado"%>
+<%@page import="Modelo.PrecompraE"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <title>FULL-SWAP 5G</title>
         <link rel="shortcut icon" type="image/jpg" href="IMG/mundo.png"/>
+        <title>JSP Page</title>
     </head>
-    <body>        
-        <div class="table-responsive" align="center">
+    <body>
+         <div class="table-responsive" align="center">
             <a href="MenuPrincipal.jsp"> <img src="IMG/logotipo.png" width="250" height="100" HSPACE="20"></a>
             <h1>Historiales de Precompra</h1>
         </div>
-        
-        <%HttpSession sesion = request.getSession();
-            Precompra producto = (Precompra) sesion.getAttribute("precompra");
-            Precompra p = new Precompra();
+         <%HttpSession sesion = request.getSession();
+            PrecompraE producto = (PrecompraE) sesion.getAttribute("precompra");
+            PrecompraE p = new PrecompraE();
             String VPara = request.getParameter("txtpara");
             String idd = request.getParameter("id");
             String serie = "";

@@ -427,6 +427,23 @@ public class Material {
         }
     }
         
+        public String eliminarPedidoWispE(String id) {
+        Connection c = Conexion.conectar();
+        try {
+            if (c != null) {
+                PreparedStatement ps = c.prepareStatement("delete from EquipamientoSolicitadoWisp WHERE ID=?");    
+                ps.setString(1, id);
+                ps.execute();
+                return "modificacion realizada";
+            }
+            else{
+                return "no se realizo";
+            }
+        } catch (Exception e) {
+            return "Error al modificar " + e;
+        }
+    }
+        
         public String cambio() {
         Connection c = Conexion.conectar();
         try {

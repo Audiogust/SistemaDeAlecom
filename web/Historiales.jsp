@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="shortcut icon" type="image/jpg" href="IMG/mundo.png"/>
         <title>JSP Page</title>
     </head>
     <body>
@@ -44,11 +45,11 @@
             
             <form align="center" action="">
           
-                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='HistorialSolicitadow.jsp'"><img src="IMG/historial.png" width="60" height="60"><br>Historial de Materiales solicitados</button>
+                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='HistorialSolicitadow.jsp'"><img src="IMG/historial.png" width="60" height="60"><br>Historial  de Materiales <br> y Equipamiento solicitados</button>
 
-                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='HistorialSalidaw.jsp'"><img src="IMG/historial.png" width="60" height="60"><br>Historial de Salida de Materiales</button>
+                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='HistorialSalidaw.jsp'"><img src="IMG/historial.png" width="60" height="60"><br>Historial de Salida <br> Materiales y Equipamiento</button>
 
-                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='HistorialDevolucionw.jsp'"><img src="IMG/historial.png" width="60" height="60"><br>Historial de Devoluciones de Materiales</button> 
+                <button type="button" name="enviar" class="btn btn-primary btn-lg boton" onclick="location.href='HistorialDevolucionw.jsp'"><img src="IMG/historial.png" width="60" height="60"><br>Historial de Devoluciones <br> de Materiales y Equipamiento</button> 
             </form>
         </div>
     </body>

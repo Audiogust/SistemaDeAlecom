@@ -500,6 +500,30 @@ public class Equipamiento {
             return "Error al modificar " + e;
         }
      }
+     
+     public String insertarHistoWEq(String ot, String cod, String nom,
+                                  int exis,int sol,String fecha, String hora) {
+        Connection c = Conexion.conectar();
+        try {
+            if (c != null) {
+                PreparedStatement ps = c.prepareStatement(" INSERT INTO historialSolicitadoWE(otiga,codigo,nombre,existencia,solicitado,fecha,hora)  values(?,?,?,?,?,?,?)");
+                ps.setString(1, ot);
+                ps.setString(2, cod);
+                ps.setString(3, nom);               
+                ps.setInt(4,exis);
+                ps.setInt(5,sol);
+                ps.setString(6, fecha);
+                ps.setString(7, hora);
+
+                ps.execute();
+                return "Modificación realizada";
+            } else {
+                return "No hay conexion a la base ";
+            }
+        } catch (Exception e) {
+            return "Error al modificar " + e;
+        }
+     }
     
     
 }
