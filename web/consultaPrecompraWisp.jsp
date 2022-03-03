@@ -14,10 +14,31 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
         <link rel="shortcut icon" type="image/jpg" href="IMG/mundo.png"/>
-        <title>JSP Page</title>
+        <title>WISP-GAL</title>
     </head>
     <body>
-        
+        <style>
+             h2{
+            font-size: 40px;
+            color: white;
+        }
+        body {
+            background-image: url("IMG/fondo_4.jpg");
+            background-position: center;
+            height: 100vh;                
+            min-height: 600px;
+        }
+        .boton{
+            background-repeat:no-repeat;
+            height:170px;
+            width:170px;
+            background-position:center;
+            margin-right:10px!important;
+        }
+        .letra{
+            font-size: 19px;
+        }
+        </style>
         <div align="center">                   
             <a href="Wisp.jsp"> <img src="IMG/Wispgal.png" width="150" height="150" HSPACE="20"></a>
             <h1>Precompra WISP-GAL</h1>

@@ -277,10 +277,10 @@ public class ControlClientes extends HttpServlet {
                 }
                  if (cont > 0 ) {
                      cli.StatusDevMat(id1);
-                    request.getRequestDispatcher("Wisp.jsp").forward(request, response);
+                    request.getRequestDispatcher("MenuAlmacen.jsp").forward(request, response);
                  }
                 
-                  request.getRequestDispatcher("Wisp.jsp").forward(request, response);
+                  request.getRequestDispatcher("MenuAlmacen.jsp").forward(request, response);
               }
              
              if (opcion.equals("guardarAlmacenE")) {

@@ -11,7 +11,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link rel="shortcut icon" type="image/jpg" href="IMG/mundo.png"/>
+        <title>WISP-GAL</title>
     </head>
         <style>
         h2{

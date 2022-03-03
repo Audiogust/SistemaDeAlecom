@@ -3,7 +3,7 @@
     Created on : 31-mar-2021, 22:25:04
     Author     : Hp
 
-    Casi termino?????
+    nuevo cambio
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -17,6 +17,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
         <link rel="shortcut icon" type="image/jpg" href="IMG/mundo.png"/>
+       
     </head>
     <body>
         <div>

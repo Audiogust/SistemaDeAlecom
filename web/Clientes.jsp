@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         <link rel="stylesheet" href="IMG/style.css">
         <link rel="shortcut icon" type="image/jpg" href="IMG/mundo.png"/>
-        <title>Wisp-Gal</title>
+        <title>WISP-GAL</title>
     </head>
             <style>
                 body {
