@@ -40,7 +40,7 @@
         </style>
         <div align="center">                  
             <a href="Wisp.jsp"> <img src="IMG/Wispgal.png" width="150" height="150" HSPACE="20"></a>
-            <h1>Folios de Compra WISP-GAL</h1>
+            <h1>Folio Orden de Compra Materiales</h1>
         </div>
          <br><table align="center" border="5" width="50%" class="table thead-dark table-bordered table-hover">
   	                 <thead class="bg-info"> 
